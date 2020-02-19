@@ -98,6 +98,8 @@ To get the server running locally:
 
 `findUserById(userId)` -> Returns a single user by ID
 
+`findUserReviews(userId)` -> Returns all reviews for a specific user
+
 `addUser(user object)` -> Creates a new user and returns that user.
 
 `updateUser(userId)` -> Update a single user by ID

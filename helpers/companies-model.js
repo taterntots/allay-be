@@ -4,6 +4,7 @@ module.exports = {
   findCompanies,
   findCompaniesBy,
   findCompanyById,
+  findCompanyReviews,
   addCompany
 };
 
