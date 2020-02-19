@@ -114,6 +114,8 @@ To get the server running locally:
 
 `findCompanyBy(companyId)` -> Returns a single company by ID
 
+`findCompanyReviews(companyId)` -> Returns all reviews for a specific company
+
 `addCompany(company object)` --> Creates a new company and returns that company. If the company already exists the company will not be added.
 
 `updateCompany(userId, changes object)` -> Updates a single company by ID.

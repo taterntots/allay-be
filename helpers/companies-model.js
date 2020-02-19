@@ -5,7 +5,9 @@ module.exports = {
   findCompaniesBy,
   findCompanyById,
   findCompanyReviews,
-  addCompany
+  addCompany,
+  updateCompany,
+  deleteCompany
 };
 
 //Create some functions!
@@ -24,6 +26,12 @@ function findCompanyById(id) {
     .first();
 }
 
+function findCompanyReviews(companyId) {
+  return db('reviews')
+    .where('company_id', companyId)
+    .then(reviews => reviews.map(review => mappers.reviewToBody(review)));
+}
+
 function addCompany(company) {
   return db('companies')
     .insert(company)
@@ -31,4 +39,17 @@ function addCompany(company) {
       const [id] = ids;
       return findCompanyById(id);
     });
+}
+
+function updateCompany(id, changes) {
+  return db('companies')
+    .where({ id })
+    .update(changes)
+    .then(count => (count > 0 ? findCompanyById(id) : null));
+}
+
+function deleteCompany(id) {
+  return db('companies')
+    .where({ id })
+    .del();
 }
