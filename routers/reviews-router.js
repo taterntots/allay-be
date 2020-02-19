@@ -4,7 +4,7 @@ const Rev = require("../helpers/reviews-model.js");
 
 /**************************************************************************/
 
-//                for endpoints beginning with /companies                   //
+//                for endpoints beginning with /reviews                   //
 
 /**************************************************************************/
 

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const User = require("../helpers/users-model.js");
+const Rev = require("../helpers/reviews-model.js");
 
 /**************************************************************************/
 
@@ -9,7 +10,7 @@ const User = require("../helpers/users-model.js");
 /**************************************************************************/
 
 //GET USER BY ID
-// router.get("/", (req, res) => {
+// router.get("/:id", (req, res) => {
 //   const id = req.user.id;
 
 //   User.findById(id)
@@ -20,7 +21,7 @@ const User = require("../helpers/users-model.js");
 // });
 
 //UPDATE USER INFO
-router.put("/", (req, res) => {
+router.put("/:id", (req, res) => {
   const changes = req.body;
   const id = req.user.id;
 
@@ -55,6 +56,20 @@ router.delete("/delete/:id", async (req, res) => {
       .status(500)
       .json({ message: "There was an error deleting your account." });
   }
+});
+
+//***************** ADD NEW REVIEW *******************//
+router.post("/:id/reviews", (req, res) => {
+  let review = req.body;
+
+  Rev.add(review)
+    .then(newReview => {
+      res.status(201).json(newReview);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: "There was an error" });
+    });
 });
 
 /**************************************************************************/
