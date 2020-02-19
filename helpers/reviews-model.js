@@ -3,8 +3,8 @@ const db = require('../data/dbConfig.js');
 module.exports = {
   findReviews,
   findReviewsBy,
-  findReviewsById,
-  addReviews
+  findReviewById,
+  addReview
 };
 
 //Create some functions!
@@ -17,17 +17,17 @@ function findReviewsBy(filter) {
   return db('reviews').where(filter);
 }
 
-function findReviewsById(id) {
+function findReviewById(id) {
   return db('reviews')
     .where({ id })
     .first();
 }
 
-function addReviews(review) {
+function addReview(review) {
   return db('reviews')
     .insert(review)
     .then(ids => {
       const [id] = ids;
-      return findReviewsById(id);
+      return findReviewById(id);
     });
 }

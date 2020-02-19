@@ -3,8 +3,8 @@ const db = require('../data/dbConfig.js');
 module.exports = {
   findCompanies,
   findCompaniesBy,
-  findCompaniesById,
-  addCompanies
+  findCompanyById,
+  addCompany
 };
 
 //Create some functions!
@@ -17,17 +17,17 @@ function findCompaniesBy(filter) {
   return db('companies').where(filter);
 }
 
-function findCompaniesById(id) {
+function findCompanyById(id) {
   return db('companies')
     .where({ id })
     .first();
 }
 
-function addCompanies(company) {
+function addCompany(company) {
   return db('companies')
     .insert(company)
     .then(ids => {
       const [id] = ids;
-      return findCompaniesById(id);
+      return findCompanyById(id);
     });
 }
