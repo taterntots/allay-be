@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Co = require("../helpers/company-model.js");
+const Co = require("../helpers/companies-model.js");
 
 /**************************************************************************/
 
