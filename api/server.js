@@ -4,16 +4,11 @@ const cors = require("cors");
 const morgan = require("morgan"); //for logging middleware
 const server = express(); //creates the server
 
-const userRouter = require("../routers/users-router");
-
 //global middleware
 server.use(express.json()); //middleware needed to parse JSON
 server.use(helmet()); //middleware that adds a layer of security to the server
 server.use(cors()); //middleware that allows cross domain communication from the browser
 server.use(morgan("tiny")); //logger middleware
-
-// delete after testing
-server.use("/api", userRouter);
 
 //endpoints
 server.get("/", (req, res) => {
