@@ -1,6 +1,6 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const Rev = require("../helpers/reviews-model.js");
+const Rev = require('../helpers/reviews-model.js');
 
 /**************************************************************************/
 
@@ -9,7 +9,7 @@ const Rev = require("../helpers/reviews-model.js");
 /**************************************************************************/
 
 //************** GET ALL REVIEWS ****************//
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   Rev.find()
     .then(review => {
       res.json(review);

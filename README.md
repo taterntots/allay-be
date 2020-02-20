@@ -1,8 +1,8 @@
 🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
 
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric.  Contributing to docs does NOT count as a PR to meet your weekly requirements.
+🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
 
 # API Documentation
 
@@ -15,18 +15,18 @@ To get the server running locally:
 🚫 adjust these scripts to match your project
 
 - Clone this repo
-- **yarn install** to install all required dependencies
-- **yarn server** to start the local server
-- **yarn test** to start server using testing environment
+- **npm install** to install all required dependencies
+- **npm server** to start the local server
+- **npm test** to start server using testing environment
 
 ### Backend framework goes here
 
 🚫 Why did you choose this framework?
 
--    Point One
--    Point Two
--    Point Three
--    Point Four
+- Point One
+- Point Two
+- Point Three
+- Point Four
 
 ## 2️⃣ Endpoints
 
@@ -53,20 +53,22 @@ To get the server running locally:
 
 # Data Model
 
-🚫This is just an example. Replace this with your data model
-
-#### 2️⃣ ORGANIZATIONS
+#### 2️⃣ REVIEWS
 
 ---
 
 ```
 {
-  id: UUID
-  name: STRING
-  industry: STRING
-  paid: BOOLEAN
-  customer_id: STRING
-  subscription_id: STRING
+    "id": 2,
+    "job_title": "National Factors Consultant",
+    "job_location": "Iowa",
+    "salary": 87000,
+    "interview_review": "Nisi itaque natus atque. Voluptatum laudantium temporibus aut enim officia quasi. Quasi dolorum minus repellat est doloremque. Laboriosam hic ducimus facilis. Et esse minus qui et maiores. Eos laudantium maiores optio ut voluptate.",
+    "interview_rating": 2,
+    "job_review": "Odit iusto expedita vel sunt impedit cum soluta est eaque. Enim hic voluptates quisquam et non. Et quod fuga ut repellat et.\n \rSit quod incidunt. Suscipit modi impedit est eligendi voluptatem et. Nesciunt velit voluptates. Est molestiae qui et aut possimus facere ut id aut. Non in dolores. Dicta natus porro ad rerum ratione ipsam totam.\n \rAd cumque a dolore dicta rerum et qui. At et impedit omnis officiis. Modi reiciendis repellat commodi sunt. Officia non nemo est aut. Voluptatum ut veniam assumenda temporibus.",
+    "job_rating": 2,
+    "reviewer": "Heather87",
+    "company_name": "Abernathy - Roberts"
 }
 ```
 
@@ -76,45 +78,82 @@ To get the server running locally:
 
 ```
 {
-  id: UUID
-  organization_id: UUID foreign key in ORGANIZATIONS table
-  first_name: STRING
-  last_name: STRING
-  role: STRING [ 'owner', 'supervisor', 'employee' ]
-  email: STRING
-  phone: STRING
-  cal_visit: BOOLEAN
-  emp_visit: BOOLEAN
-  emailpref: BOOLEAN
-  phonepref: BOOLEAN
+{
+    "id": 8,
+    "username": "Isabella.Hartmann11",
+    "reviews": [
+        {
+            "id": 35,
+            "job_title": "Corporate Configuration Representative",
+            "job_location": "Iowa",
+            "salary": 97000,
+            "interview_review": "Aut esse minima adipisci molestias velit optio dolores. Et dolore dolor iste nisi aut aut beatae voluptatem. Dignissimos quis et omnis sit ut repudiandae rerum ut at. Nihil sed placeat facilis tempora. Architecto ea possimus. Veritatis beatae nemo facilis autem adipisci nihil nesciunt sit.",
+            "interview_rating": 1,
+            "job_review": "Doloribus quis qui quam amet. Non dolores et enim ut sunt. Enim voluptatem quasi et possimus ipsam numquam. Aut laborum doloremque.\n \rSint numquam et qui ea aut mollitia. Provident quia aut. Unde voluptate voluptatem sit sit ut amet.\n \rQuibusdam eum dolore. Nisi sequi ipsa. Facilis nisi enim consequuntur occaecati aut molestiae amet explicabo. Et a accusamus in a quibusdam vitae doloremque corrupti.",
+            "job_rating": 5,
+            "user_id": 8,
+            "company_id": 45
+        },
+        {
+            "id": 42,
+            "job_title": "Customer Directives Supervisor",
+            "job_location": "Colorado",
+            "salary": 65000,
+            "interview_review": "Odio sed quia eum eos error in perferendis qui doloremque. Quis dolores sed dolorum debitis hic id. Modi voluptatibus quasi aut beatae quo.",
+            "interview_rating": 2,
+            "job_review": "Repellat distinctio ut molestiae quo et non. Placeat consequatur placeat. Quia cum corrupti. Non enim quisquam et eum deleniti est cupiditate. Neque possimus quia.\n \rQuo velit et quas dicta officiis. Libero eos sunt ea vitae minus vitae possimus nemo sed. Inventore iure vel consequuntur. Eum nemo et dolorem ipsa qui.\n \rQuos consequatur quod in architecto repellendus sit adipisci. Eveniet dicta sed. Ea magnam doloremque voluptates dolorum fugiat. Quia veniam soluta voluptatem vel. Non sunt minus eligendi numquam animi. Iure suscipit voluptates esse debitis tempore.",
+            "job_rating": 2,
+            "user_id": 8,
+            "company_id": 15
+        }
+    ]
+}
 }
 ```
 
 ## 2️⃣ Actions
 
-🚫 This is an example, replace this with the actions that pertain to your backend
+`findUsers()` -> Returns all users
 
-`getOrgs()` -> Returns all organizations
+`findUsersBy(filter)` -> Returns a single user by specified filter
 
-`getOrg(orgId)` -> Returns a single organization by ID
+`findUserById(userId)` -> Returns all data for a single user by ID (including all reviews)
 
-`addOrg(org)` -> Returns the created org
+`addUser(user object)` -> Creates a new user and returns that user.
 
-`updateOrg(orgId)` -> Update an organization by ID
+`updateUser(userId)` -> Update a single user by ID
 
-`deleteOrg(orgId)` -> Delete an organization by ID
+`deleteUser(userId)` -> Deletes everything dependent on the user
 <br>
 <br>
 <br>
-`getUsers(orgId)` -> if no param all users
+`findCompanies()` -> Retruns a list of all companies
 
-`getUser(userId)` -> Returns a single user by user ID
+`findCompaniesBy(filter)` -> Returns a single company by specified filter
 
-`addUser(user object)` --> Creates a new user and returns that user. Also creates 7 availabilities defaulted to hours of operation for their organization.
+`findCompanyBy(companyId)` -> Returns a single company by ID
 
-`updateUser(userId, changes object)` -> Updates a single user by ID.
+`findCompanyReviews(companyId)` -> Returns all reviews for a specific company
 
-`deleteUser(userId)` -> deletes everything dependent on the user
+`addCompany(company object)` --> Creates a new company and returns that company. If the company already exists the company will not be added.
+
+`updateCompany(userId, changes object)` -> Updates a single company by ID.
+
+`deleteCompany(userId)` -> Deletes the single company
+<br>
+<br>
+<br>
+`getReviews()` -> Returns a list of all reviews
+
+`getReviewsBy(filter)` -> Returns a single review by specified filter
+
+`getReviewsById(reviewId)` -> Returns a single review by review ID including user and company info
+
+`addReview(review object)` --> Creates a new review and returns that review.
+
+`updateReview(reviewId, changes object)` -> Updates a single review by ID.
+
+`deleteReview(reviewId)` -> Deletes the single review
 
 ## 3️⃣ Environment Variables
 
@@ -123,13 +162,13 @@ In order for the app to function correctly, the user must set up their own envir
 create a .env file that includes the following:
 
 🚫 These are just examples, replace them with the specifics for your app
-    
-    *  STAGING_DB - optional development db for using functionality not available in SQLite
-    *  NODE_ENV - set to "development" until ready for "production"
-    *  JWT_SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-*=+)') for i in range(50)])
-    *  SENDGRID_API_KEY - this is generated in your Sendgrid account
-    *  stripe_secret - this is generated in the Stripe dashboard
-    
+
+_ STAGING_DB - optional development db for using functionality not available in SQLite
+_ NODE\*ENV - set to "development" until ready for "production"
+
+- JWT*SECRET - you can generate this by using a python shell and running import random''.join([random.SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#\$%^&amp;*(-_=+)') for i in range(50)])
+  _ SENDGRID_API_KEY - this is generated in your Sendgrid account \* stripe_secret - this is generated in the Stripe dashboard
+
 ## Contributing
 
 When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
@@ -138,11 +177,12 @@ Please note we have a [code of conduct](./code_of_conduct.md). Please follow it 
 
 ### Issue/Bug Request
 
- **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
- - Check first to see if your issue has already been reported.
- - Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
- - Create a live example of the problem.
- - Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes,  where you believe the issue is originating from, and any potential solutions you have considered.
+**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+
+- Check first to see if your issue has already been reported.
+- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
+- Create a live example of the problem.
+- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
 
 ### Feature Requests
 

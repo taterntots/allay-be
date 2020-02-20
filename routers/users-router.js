@@ -1,7 +1,7 @@
-const router = require("express").Router();
+const router = require('express').Router();
 
-const User = require("../helpers/users-model.js");
-const Rev = require("../helpers/reviews-model.js");
+const User = require('../helpers/users-model.js');
+const Rev = require('../helpers/reviews-model.js');
 
 /**************************************************************************/
 
@@ -21,7 +21,7 @@ const Rev = require("../helpers/reviews-model.js");
 // });
 
 //*************** UPDATE USER INFO ******************//
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   const changes = req.body;
   const id = req.user.id;
 
@@ -30,17 +30,17 @@ router.put("/:id", (req, res) => {
       if (info) {
         res.status(200).json({ info: changes });
       } else {
-        res.status(404).json({ message: "Error locating user info" });
+        res.status(404).json({ message: 'Error locating user info' });
       }
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ message: "Error updating user info" });
+      res.status(500).json({ message: 'Error updating user info' });
     });
 });
 
 //****************** DELETE ACCOUNT ********************//
-router.delete("/delete/:id", async (req, res) => {
+router.delete('/delete/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -49,17 +49,17 @@ router.delete("/delete/:id", async (req, res) => {
       const deleted = await User.remove(id);
       res.status(200).json(user);
     } else {
-      res.status(404).json({ message: "Error locating user." });
+      res.status(404).json({ message: 'Error locating user.' });
     }
   } catch {
     res
       .status(500)
-      .json({ message: "There was an error deleting your account." });
+      .json({ message: 'There was an error deleting your account.' });
   }
 });
 
 //***************** ADD NEW REVIEW *******************//
-router.post("/:id/reviews", (req, res) => {
+router.post('/:id/reviews', (req, res) => {
   let review = req.body;
 
   Rev.add(review)
@@ -68,7 +68,7 @@ router.post("/:id/reviews", (req, res) => {
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: "There was an error" });
+      res.status(500).json({ error: 'There was an error' });
     });
 });
 
