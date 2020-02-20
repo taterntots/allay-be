@@ -1,4 +1,5 @@
-const router = require('express').Router();
+const router = require("express").Router();
+const Reviews = require("../helpers/reviews-model");
 
 //Create some routes!
 
