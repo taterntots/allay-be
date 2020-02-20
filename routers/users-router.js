@@ -9,7 +9,7 @@ const Rev = require("../helpers/reviews-model.js");
 
 /**************************************************************************/
 
-//GET USER BY ID
+//*************** GET USER BY ID *****************//
 // router.get("/:id", (req, res) => {
 //   const id = req.user.id;
 
@@ -20,7 +20,7 @@ const Rev = require("../helpers/reviews-model.js");
 //     .catch(err => res.send(err));
 // });
 
-//UPDATE USER INFO
+//*************** UPDATE USER INFO ******************//
 router.put("/:id", (req, res) => {
   const changes = req.body;
   const id = req.user.id;
@@ -39,7 +39,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// DELETE account - User type: parent
+//****************** DELETE ACCOUNT ********************//
 router.delete("/delete/:id", async (req, res) => {
   const { id } = req.params;
 
