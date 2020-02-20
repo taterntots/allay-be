@@ -21,7 +21,11 @@ function findUsersBy(filter) {
   return db('users').where(filter);
 }
 
-// function findUserById(id) {
+// function findBy(filter) {
+//   return db('users').where(filter);
+// }
+
+// function findUser(id) {
 // 	return db("users as u")
 // 		.select("u.id", "u.username")
 // 		.where({ id });
@@ -34,7 +38,7 @@ function findUserById(userId) {
     .select('u.id', 'u.username')
     .then(result => {
       // console.log(result[0].id);
-      return findUserReviews(result[0].id)
+      return findUserReviews(result[0].id) //Having an error with this line when registering new user. Does this matter?
         .then(reviewArray => {
           // console.log(reviewArray)
           return { ...result[0], reviews: reviewArray };
@@ -50,9 +54,9 @@ function findUserReviews(userId) {
 
 function addUser(user) {
   return db('users')
-    .insert(user)
+    .insert(user, 'id')
     .then(([id]) => {
-      return findUserById(id);
+      return findUsersBy({ id });
     });
 }
 
@@ -60,7 +64,7 @@ function updateUser(id, changes) {
   return db('users')
     .where({ id })
     .update(changes)
-    .then(count => (count > 0 ? findUserById(id) : null));
+    .then(count => (count > 0 ? findUsersBy({ id }) : null));
 }
 
 function deleteUser(id) {

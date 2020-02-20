@@ -5,27 +5,48 @@ const Rev = require('../helpers/reviews-model.js');
 
 /**************************************************************************/
 
-//                  for endpoints beginning with /user                    //
+//                  for endpoints beginning with /users                   //
 
 /**************************************************************************/
 
-//*************** GET USER BY ID *****************//
-// router.get("/:id", (req, res) => {
-//   const id = req.user.id;
+//*************** GET ALL USERS *****************//
+router.get('/current', (req, res) => {
+  User.findUsers()
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => res.send(err));
+});
 
-//   User.findById(id)
+// //*************** GET USER BY FILTER *****************//
+// router.get('/filter', (req, res) => {
+//   console.log(req.params, 'req.params ln 23');
+//   const filter = req.params.filter;
+
+//   User.findUsersBy(filter)
 //     .then(user => {
 //       res.json(user);
 //     })
 //     .catch(err => res.send(err));
 // });
 
-//*************** UPDATE USER INFO ******************//
-router.put('/:id', (req, res) => {
-  const changes = req.body;
-  const id = req.user.id;
+//*************** GET USER BY ID *****************//
+router.get('/:userId', (req, res) => {
+  const id = req.params.userId;
 
-  User.edit(id, changes)
+  User.findUserById(id)
+    .then(user => {
+      res.json(user);
+    })
+    .catch(err => res.send(err));
+});
+
+//*************** UPDATE USER INFO ******************//
+router.put('/:userId', (req, res) => {
+  const changes = req.body;
+  const id = req.params.userId;
+
+  User.updateUser(id, changes)
     .then(info => {
       if (info) {
         res.status(200).json({ info: changes });
@@ -40,13 +61,13 @@ router.put('/:id', (req, res) => {
 });
 
 //****************** DELETE ACCOUNT ********************//
-router.delete('/delete/:id', async (req, res) => {
+router.delete('/:userId', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await User.findById(id);
+    const user = await User.findUserById(id);
     if (user) {
-      const deleted = await User.remove(id);
+      const deleted = await User.deleteUser(id);
       res.status(200).json(user);
     } else {
       res.status(404).json({ message: 'Error locating user.' });
@@ -62,7 +83,7 @@ router.delete('/delete/:id', async (req, res) => {
 router.post('/:id/reviews', (req, res) => {
   let review = req.body;
 
-  Rev.add(review)
+  Rev.addReview(review)
     .then(newReview => {
       res.status(201).json(newReview);
     })

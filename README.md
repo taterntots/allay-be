@@ -115,7 +115,7 @@ To get the server running locally:
 
 `findUsers()` -> Returns all users
 
-`findUsersBy(filter)` -> Returns a single user by specified filter
+`findUsersBy({ filter })` -> Returns a single user by specified filter
 
 `findUserById(userId)` -> Returns all data for a single user by ID (including all reviews)
 

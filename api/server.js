@@ -26,8 +26,8 @@ server.get('/', (req, res) => {
 
 //routes with Auth applied
 server.use('/api/auth', authRouter);
-server.use('/api/users', Auth, usersRouter);
-server.use('/api/companies', Auth, companiesRouter);
-server.use('/api/reviews', Auth, reviewsRouter);
+server.use('/api/users', usersRouter);
+server.use('/api/organizations', companiesRouter);
+server.use('/api/reviews', reviewsRouter);
 
 module.exports = server;
