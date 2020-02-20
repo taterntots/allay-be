@@ -6,27 +6,22 @@
 
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [🚫name service here](🚫add URL here) <br>
+#### 1️⃣ Backend delpoyed at [Heroku](https://allay-be-production.herokuapp.com/) <br>
 
 ## 1️⃣ Getting started
 
 To get the server running locally:
 
-🚫 adjust these scripts to match your project
-
 - Clone this repo
 - **npm install** to install all required dependencies
-- **npm server** to start the local server
+- **npm run server** to start the local server
 - **npm test** to start server using testing environment
 
-### Backend framework goes here
+### Backend framework
 
-🚫 Why did you choose this framework?
-
-- Point One
-- Point Two
-- Point Three
-- Point Four
+- Express for flexibility, simple routing, and middleware support
+- Postgres for data persistence
+- Okta for user authentication
 
 ## 2️⃣ Endpoints
 
