@@ -22,6 +22,7 @@ const reviewsRouter = require('../routers/reviews-router.js');
 //endpoints
 server.get('/', (req, res) => {
   res.status(200).json({ welcome: `to the danger zone!` });
+
 });
 
 //routes with Auth applied
