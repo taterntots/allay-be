@@ -4,9 +4,9 @@ const createFakeCompany = () => ({
   name: faker.company.companyName(),
   hq_city: faker.address.city(),
   hq_state: faker.address.state()
-})
+});
 
-exports.seed = function (knex) {
+exports.seed = function(knex) {
   // Creates 50 fake companies
   const fakeCompanies = [];
   const desiredFakeCompanies = 50;
@@ -14,9 +14,10 @@ exports.seed = function (knex) {
     fakeCompanies.push(createFakeCompany());
   }
   // Deletes ALL existing entries
-  return knex('companies').truncate()
-    .then(function () {
+  return knex('companies')
+    .del()
+    .then(function() {
       // Inserts seed entries
-      return knex('companies').insert(fakeCompanies)
-    })
-}
+      return knex('companies').insert(fakeCompanies);
+    });
+};
