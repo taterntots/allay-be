@@ -10,9 +10,9 @@ const createFakeReview = () => ({
   job_rating: Math.floor(1 + Math.random() * 5),
   user_id: Math.floor(1 + Math.random() * 100),
   company_id: Math.floor(1 + Math.random() * 50)
-})
+});
 
-exports.seed = function (knex) {
+exports.seed = function(knex) {
   // Creates 200 fake reviews
   const fakeReviews = [];
   const desiredFakeReviews = 100;
@@ -20,9 +20,10 @@ exports.seed = function (knex) {
     fakeReviews.push(createFakeReview());
   }
   // Deletes ALL existing entries
-  return knex('reviews').truncate()
-    .then(function () {
+  return knex('reviews')
+    .del()
+    .then(function() {
       // Inserts seed entries
-      return knex('reviews').insert(fakeReviews)
-    })
-}
+      return knex('reviews').insert(fakeReviews);
+    });
+};
