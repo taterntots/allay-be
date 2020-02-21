@@ -33,7 +33,7 @@ router.get('/filter', (req, res) => {
 router.get('/:id', (req, res) => {
   const id = req.params.orgId;
 
-  Rev.findReviewsById(id)
+  Rev.findReviewById(id)
     .then(company => {
       res.json(company);
     })

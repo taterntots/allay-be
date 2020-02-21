@@ -9,7 +9,7 @@ const Rev = require('../helpers/reviews-model.js');
 
 /**************************************************************************/
 
-//*************** GET ALL USERS *****************//
+//*************** GET ALL USERS *****************// - Remove for production or create new auth for admin only access to this endpoint
 router.get('/all', (req, res) => {
   User.findUsers()
     .then(user => {
@@ -34,7 +34,7 @@ router.get('/all', (req, res) => {
 router.get('/:id', (req, res) => {
   const id = req.params.userId;
 
-  User.findUserById(id)
+  User.findUsersBy({ id })
     .then(user => {
       res.json(user);
     })

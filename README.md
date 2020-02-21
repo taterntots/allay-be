@@ -43,7 +43,7 @@ To get the server running locally:
 
 | Method | Endpoint             | Access Control       | Description                           |
 | ------ | -------------------- | -------------------- | ------------------------------------- |
-| GET    | `/users`             | all users            | Returns list of all users.            |
+| GET    | `/users/all`         | all users            | Returns list of all users.            |
 | GET    | `/users/:id`         | all users            | Returns info for a single user by id. |
 | POST   | `/users/:id/reviews` | all users            | Post helpful review about a company.  |
 | <!--   | GET                  | `/users/:id/reviews` | all users                             | Returns all reviews posted by user's id. | --> |
