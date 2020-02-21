@@ -30,7 +30,7 @@ router.get('/filter', (req, res) => {
 });
 
 //*************** GET REVIEW BY ID *****************//
-router.get('/:revId', (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.orgId;
 
   Rev.findReviewsById(id)

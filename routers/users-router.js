@@ -10,7 +10,7 @@ const Rev = require('../helpers/reviews-model.js');
 /**************************************************************************/
 
 //*************** GET ALL USERS *****************//
-router.get('/current', (req, res) => {
+router.get('/all', (req, res) => {
   User.findUsers()
     .then(user => {
       res.json(user);
@@ -31,7 +31,7 @@ router.get('/current', (req, res) => {
 // });
 
 //*************** GET USER BY ID *****************//
-router.get('/:userId', (req, res) => {
+router.get('/:id', (req, res) => {
   const id = req.params.userId;
 
   User.findUserById(id)
@@ -42,42 +42,42 @@ router.get('/:userId', (req, res) => {
 });
 
 //*************** UPDATE USER INFO ******************//
-router.put('/:userId', (req, res) => {
-  const changes = req.body;
-  const id = req.params.userId;
+// router.put('/:id', (req, res) => {
+//   const changes = req.body;
+//   const id = req.params.userId;
 
-  User.updateUser(id, changes)
-    .then(info => {
-      if (info) {
-        res.status(200).json({ info: changes });
-      } else {
-        res.status(404).json({ message: 'Error locating user info' });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ message: 'Error updating user info' });
-    });
-});
+//   User.updateUser(id, changes)
+//     .then(info => {
+//       if (info) {
+//         res.status(200).json({ info: changes });
+//       } else {
+//         res.status(404).json({ message: 'Error locating user info' });
+//       }
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({ message: 'Error updating user info' });
+//     });
+// });
 
 //****************** DELETE ACCOUNT ********************//
-router.delete('/:userId', async (req, res) => {
-  const { id } = req.params;
+// router.delete('/:id', async (req, res) => {
+//   const { id } = req.params;
 
-  try {
-    const user = await User.findUserById(id);
-    if (user) {
-      const deleted = await User.deleteUser(id);
-      res.status(200).json(user);
-    } else {
-      res.status(404).json({ message: 'Error locating user.' });
-    }
-  } catch {
-    res
-      .status(500)
-      .json({ message: 'There was an error deleting your account.' });
-  }
-});
+//   try {
+//     const user = await User.findUserById(id);
+//     if (user) {
+//       const deleted = await User.deleteUser(id);
+//       res.status(200).json(user);
+//     } else {
+//       res.status(404).json({ message: 'Error locating user.' });
+//     }
+//   } catch {
+//     res
+//       .status(500)
+//       .json({ message: 'There was an error deleting your account.' });
+//   }
+// });
 
 //***************** ADD NEW REVIEW *******************//
 router.post('/:id/reviews', (req, res) => {
@@ -92,6 +92,20 @@ router.post('/:id/reviews', (req, res) => {
       res.status(500).json({ error: 'There was an error' });
     });
 });
+
+//************* GET ALL REVIEWS FOR USER ID ***************//
+// router.post('/:id/reviews', (req, res) => {
+//   let user = req.params.id;
+
+//   Rev.findReviewsBy(user)
+//     .then(user => {
+//       res.json(user);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({ error: 'There was an error' });
+//     });
+// });
 
 /**************************************************************************/
 
