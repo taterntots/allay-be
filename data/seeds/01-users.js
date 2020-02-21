@@ -14,20 +14,21 @@ exports.seed = function(knex) {
     fakeUsers.push(createFakeUser());
   }
   // // Deletes ALL existing entries
-  // return knex('users').truncate()
-  //   .then(function () {
-  //     // Inserts seed entries
-  //     return knex('users').insert(fakeUsers)
-  //   })
-
-  // Deletes ALL existing entries
-  return knex('reviews')
+  return knex('users')
     .truncate()
-    .then(function() {
-      return knex('users').truncate();
-    })
     .then(function() {
       // Inserts seed entries
       return knex('users').insert(fakeUsers);
     });
+
+  // // Deletes ALL existing entries
+  // return knex('reviews')
+  //   .truncate()
+  //   .then(function() {
+  //     return knex('users').truncate();
+  //   })
+  //   .then(function() {
+  //     // Inserts seed entries
+  //     return knex('users').insert(fakeUsers);
+  //   });
 };

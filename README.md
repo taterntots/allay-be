@@ -32,24 +32,44 @@ To get the server running locally:
 
 🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
 
-#### Organization Routes
+#### Auth Routes
 
-| Method | Endpoint                | Access Control | Description                                  |
-| ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| Method | Endpoint         | Access Control | Description                      |
+| ------ | ---------------- | -------------- | -------------------------------- |
+| POST   | `/auth/register` | all users      | Register a new user account.     |
+| POST   | `/auth/login`    | all users      | Login with a registered account. |
 
-#### User Routes
+#### Users Routes
 
-| Method | Endpoint                | Access Control      | Description                                        |
-| ------ | ----------------------- | ------------------- | -------------------------------------------------- |
-| GET    | `/users/current`        | all users           | Returns info for the logged in user.               |
-| GET    | `/users/org/:userId`    | owners, supervisors | Returns all users for an organization.             |
-| GET    | `/users/:userId`        | owners, supervisors | Returns info for a single user.                    |
-| POST   | `/users/register/owner` | none                | Creates a new user as owner of a new organization. |
-| PUT    | `/users/:userId`        | owners, supervisors |                                                    |
-| DELETE | `/users/:userId`        | owners, supervisors |                                                    |
+| Method | Endpoint             | Access Control       | Description                           |
+| ------ | -------------------- | -------------------- | ------------------------------------- |
+| GET    | `/users`             | all users            | Returns list of all users.            |
+| GET    | `/users/:id`         | all users            | Returns info for a single user by id. |
+| POST   | `/users/:id/reviews` | all users            | Post helpful review about a company.  |
+| <!--   | GET                  | `/users/:id/reviews` | all users                             | Returns all reviews posted by user's id. | --> |
+| <!--   | PUT                  | `/users/:id`         | all users                             | Update user's account info by id. | --> |
+| <!--   | DELETE               | `/users/:id`         | all users                             | Delete user's account by id. | --> |
+
+#### Companies Routes
+
+| Method | Endpoint         | Access Control      | Description                                   |
+| ------ | ---------------- | ------------------- | --------------------------------------------- |
+| GET    | `/companies`     | all users           | Returns list of all companies.                |
+| GET    | `/companies/:id` | all users           | Returns the information for a single company. |
+| POST   | `/companies`     | all users           | Creates a new company.                        |
+| <!--   | GET              | `/companies/filter` | all users                                     | Returns list of all companies matching the filter. | --> |
+| <!--   | PUT              | `/companies/:id`    | all users                                     | Modify an existing organization by id. | --> |
+| <!--   | DELETE           | `/companies/:id`    | all users                                     | Delete a company by id. | --> |
+
+#### Reviews Routes
+
+| Method | Endpoint       | Access Control     | Description                  |
+| ------ | -------------- | ------------------ | ---------------------------- |
+| GET    | `/reviews`     | all users          | Returns list of all reviews. |
+| GET    | `/reviews/:id` | all users          | Returns single review by id. |
+| POST   | `/reviews`     | all users          | Creates a new review.        |
+| <!--   | PUT            | `/reviews/:id`     | all users                    | Updates a review by review id | --> |
+| <!--   | DELETE         | `/reviews/:userId` | all users                    |  | --> |
 
 # Data Model
 
