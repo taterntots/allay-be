@@ -31,7 +31,7 @@ router.get('/filter', (req, res) => {
 
 //*************** GET REVIEW BY ID *****************//
 router.get('/:id', (req, res) => {
-  const id = req.params.orgId;
+  const { id } = req.params;
 
   Rev.findReviewById(id)
     .then(company => {

@@ -32,7 +32,7 @@ router.get('/filter', (req, res) => {
 
 //*************** GET COMPANY BY ID *****************//
 router.get('/:orgId', (req, res) => {
-  const id = req.params.orgId;
+  const { id } = req.params;
 
   Co.findCompanyBy(id)
     .then(company => {
