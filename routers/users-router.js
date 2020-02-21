@@ -32,7 +32,7 @@ router.get('/all', (req, res) => {
 
 //*************** GET USER BY ID *****************//
 router.get('/:id', (req, res) => {
-  const id = req.params.userId;
+  const { id } = req.params;
 
   User.findUsersBy({ id })
     .then(user => {
