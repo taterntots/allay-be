@@ -43,7 +43,7 @@ function addUser(user) {
 	return db('users')
 		.insert(user, 'id')
 		.then(([id]) => {
-			return findUsersById(id);
+			return findUserById(id);
 		});
 }
 
@@ -51,7 +51,7 @@ function updateUser(id, changes) {
 	return db('users')
 		.where({ id })
 		.update(changes)
-		.then(count => (count > 0 ? findUsersBy({ id }) : null));
+		.then(count => (count > 0 ? findUserById(id) : null));
 }
 
 function deleteUser(id) {
