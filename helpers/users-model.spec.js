@@ -22,6 +22,9 @@ describe('server', () => {
 
 // test Users DB
 describe('Users Model', () => {
+	beforeEach(async () => {
+		await db('users').truncate();
+	});
 	// register or add a new user
 	describe('addUser()', () => {
 		it('can add a user to the DB', async () => {
@@ -51,6 +54,37 @@ describe('Users Model', () => {
 			expect(users).toHaveLength(3);
 			// double check db for a specific username
 			expect(users[1].username).toBe(mock_user_2.username);
+		});
+	});
+	describe('findUserById()', () => {
+		it('gets a specific user by id', async () => {
+			const mock_user_1 = {
+				id: 1,
+				email: 'test1@gmail.com',
+				username: 'IronMan',
+				password: 'IAmIronMan'
+			};
+			const mock_user_2 = {
+				id: 2,
+				email: 'test2@gmail.com',
+				username: 'Thor',
+				password: 'GodOfThunder'
+			};
+			const mock_user_3 = {
+				id: 3,
+				email: 'test3@gmail.com',
+				username: 'Rocket',
+				password: 'M3chanic'
+			};
+			// add the user to the db
+			await Users.addUser(mock_user_1);
+			await Users.addUser(mock_user_2);
+			await Users.addUser(mock_user_3);
+			// check the id of the added user
+			await Users.findUserById(1);
+
+			const users = await db('users');
+			expect(users[0].id).toBe(mock_user_1.id);
 		});
 	});
 });
