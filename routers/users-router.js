@@ -11,11 +11,11 @@ const Rev = require('../helpers/reviews-model.js');
 
 //*************** GET ALL USERS *****************// - Remove for production or create new auth for admin only access to this endpoint
 router.get('/all', (req, res) => {
-  User.findUsers()
-    .then(user => {
-      res.json(user);
-    })
-    .catch(err => res.send(err));
+	User.findUsers()
+		.then(user => {
+			res.json(user);
+		})
+		.catch(err => res.send(err));
 });
 
 // //*************** GET USER BY FILTER *****************//
@@ -32,13 +32,13 @@ router.get('/all', (req, res) => {
 
 //*************** GET USER BY ID *****************//
 router.get('/:id', (req, res) => {
-  const { id } = req.params;
+	const { id } = req.params;
 
-  User.findUsersBy({ id })
-    .then(user => {
-      res.json(user);
-    })
-    .catch(err => res.send(err));
+	User.findUserById(id)
+		.then(user => {
+			res.json(user);
+		})
+		.catch(err => res.send(err));
 });
 
 //*************** UPDATE USER INFO ******************//
@@ -81,16 +81,16 @@ router.get('/:id', (req, res) => {
 
 //***************** ADD NEW REVIEW *******************//
 router.post('/:id/reviews', (req, res) => {
-  let review = req.body;
+	let review = req.body;
 
-  Rev.addReview(review)
-    .then(newReview => {
-      res.status(201).json(newReview);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: 'There was an error' });
-    });
+	Rev.addReview(review)
+		.then(newReview => {
+			res.status(201).json(newReview);
+		})
+		.catch(err => {
+			console.log(err);
+			res.status(500).json({ error: 'There was an error' });
+		});
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
