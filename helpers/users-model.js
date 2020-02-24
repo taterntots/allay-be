@@ -43,7 +43,7 @@ function addUser(user) {
 	return db('users')
 		.insert(user, 'id')
 		.then(([id]) => {
-			return findUsersBy({ id });
+			return findUsersById(id);
 		});
 }
 
