@@ -55,7 +55,7 @@ function findReviewById(id) {
 
 function addReview(review) {
 	return db('reviews')
-		.insert(review)
+		.insert(review, 'id')
 		.then(ids => {
 			const [id] = ids;
 			return findReviewById(id);
