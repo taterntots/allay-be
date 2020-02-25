@@ -93,13 +93,12 @@ router.post('/:id/reviews', (req, res) => {
 	// 		console.log(err);
 	// 		res.status(500).json({ error: 'There was an error' });
 	// 	});
-		Rev.addReview(review)
-    .then(response => res.status(201).json(response))
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: 'There was an error' });
-    });
-});
+	Rev.addReview(review)
+		.then(response => res.status(201).json(response))
+		.catch(err => {
+			console.log(err);
+			res.status(500).json({ error: 'There was an error' });
+		});
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
