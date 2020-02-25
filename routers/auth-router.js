@@ -34,7 +34,7 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
-  console.log(req.body, 'req.body ln 36');
+  // console.log(req.body, 'req.body ln 36');
 
   User.findUsersBy({ username })
     .first()
