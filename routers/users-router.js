@@ -96,19 +96,17 @@ router.post('/:id/reviews', (req, res) => {
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
-// router.post('/:id/reviews', (req, res) => {
-//   let user = req.params.id;
-
-//   Rev.findReviewsBy(user)
-//     .then(user => {
-//       res.json(user);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({ error: 'There was an error' });
-//     });
-// });
-
+router.get('/:id/reviews', (req, res) => {
+	let { id } = req.params;
+	User.findUserReviews(id)
+		.then(reviews => {
+			res.status(200).json(reviews);
+		})
+		.catch(err => {
+			console.log(err);
+			res.status(500).json({ error: 'Failed to get reviews' });
+		});
+});
 /**************************************************************************/
 
 module.exports = router;
