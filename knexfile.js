@@ -1,4 +1,5 @@
 // Update with your config settings.
+require('dotenv').config();
 
 module.exports = {
 	development: {
@@ -46,8 +47,8 @@ module.exports = {
 			directory: './data/seeds'
 		},
 		pool: {
-			min: 0,
-			max: 7
+			min: 2,
+			max: 10
 		}
 	},
 
@@ -56,10 +57,6 @@ module.exports = {
 		connection: process.env.DATABASE_URL,
 		migrations: {
 			directory: './data/migrations'
-		},
-		pool: {
-			min: 0,
-			max: 7
 		}
 	}
 };
