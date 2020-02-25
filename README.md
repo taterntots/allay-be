@@ -62,7 +62,6 @@ To get the server running locally:
 | ------ | -------------- | ------------------ | ---------------------------- |
 | GET    | `/reviews`     | all users          | Returns list of all reviews. |
 | GET    | `/reviews/:id` | all users          | Returns single review by id. |
-| POST   | `/reviews`     | all users          | Creates a new review.        |
 | <!--   | PUT            | `/reviews/:id`     | all users                    | Updates a review by review id | --> |
 | <!--   | DELETE         | `/reviews/:userId` | all users                    |  | --> |
 
