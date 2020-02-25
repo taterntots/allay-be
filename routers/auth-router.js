@@ -20,7 +20,8 @@ router.post('/register', (req, res) => {
 
   User.addUser(user)
     .then(newUser => {
-      res.status(201).json(newUser);
+      const token = signToken(newUser);
+      res.status(201).json({ newUser, token });
     })
     .catch(err => {
       console.log(err);
@@ -40,8 +41,9 @@ router.post('/login', (req, res) => {
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = signToken(user);
+        const id = user.id;
 
-        res.status(200).json({ token });
+        res.status(200).json({ token, id });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }
