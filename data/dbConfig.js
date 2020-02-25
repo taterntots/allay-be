@@ -10,7 +10,7 @@
 
 const knex = require('knex');
 const knexfile = require('../knexfile');
-
+// to test locally, change node to DB_ENV
 const env = process.env.NODE_ENV || 'development';
 const configOptions = knexfile[env];
 
