@@ -85,14 +85,21 @@ router.post('/:id/reviews', (req, res) => {
 	let review = req.body;
 	review = { ...review, user_id: id };
 
-	Rev.addReview(review)
-		.then(newReview => {
-			res.status(201).json(newReview);
-		})
-		.catch(err => {
-			console.log(err);
-			res.status(500).json({ error: 'There was an error' });
-		});
+	// Rev.addReview(review)
+	// 	.then(newReview => {
+	// 		res.status(201).json(newReview);
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err);
+	// 		res.status(500).json({ error: 'There was an error' });
+	// 	});
+		Rev.addReview(review)
+    .then(response => res.status(201).json(response))
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({ error: 'There was an error' });
+    });
+});
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
