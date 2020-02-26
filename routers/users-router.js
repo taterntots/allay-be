@@ -2,7 +2,10 @@ const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
 const Rev = require('../helpers/reviews-model.js');
-const { checkForReviewData, validateUserId } = require('../middleware/index.js');
+const {
+	checkForReviewData,
+	validateUserId
+} = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -88,7 +91,11 @@ router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
 
 	Rev.addReview(review)
 		.then(newReview => {
-			res.status(201).json(newReview);
+			if (newReview && Number(req.user.id) === Number(id)) {
+				res.status(201).json(newReview);
+			} else {
+				res.status(404).json({ message: 'Could not create review' });
+			}
 		})
 		.catch(err => {
 			console.log(err);
