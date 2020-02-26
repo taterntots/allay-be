@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secret.js');
 const Users = require('../helpers/users-model.js');
-const Companies = require('../helpers/companies-model.js');
 const Reviews = require('../helpers/reviews-model.js');
+const Companies = require('../helpers/companies-model.js');
 
 module.exports = {
   restricted,

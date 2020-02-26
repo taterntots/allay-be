@@ -23,7 +23,7 @@ const reviewsRouter = require('../routers/reviews-router.js');
 server.get('/', (req, res) => {
 	res.status(200).json({
 		welcome: `to the danger zone!`,
-		environment: process.env.DB_ENV
+		environment: process.env.NODE_ENV
 	});
 });
 
