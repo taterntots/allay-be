@@ -4,8 +4,8 @@ const Company = require('./companies-model');
 
 describe('Reviews Model', () => {
 	beforeEach(async () => {
-		await db('reviews').del();
-		await db('companies').del();
+		await db.raw('truncate table reviews cascade');
+		await db.raw('truncate table companies cascade');
 	});
 	describe('addReview()', () => {
 		it('can add a new review', async () => {

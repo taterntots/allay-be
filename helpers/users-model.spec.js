@@ -6,7 +6,7 @@ const Users = require('./users-model');
 //sanity check
 describe('server', () => {
 	beforeEach(async () => {
-		await db('users').del();
+		await db.raw('truncate table users cascade');
 	});
 	// confirm tests are running
 	it('runs the tests', () => {
@@ -23,7 +23,7 @@ describe('server', () => {
 // test Users DB
 describe('Users Model', () => {
 	beforeEach(async () => {
-		await db('users').del();
+		await db.raw('truncate table users cascade');
 	});
 	// register or add a new user
 	describe('addUser()', () => {
