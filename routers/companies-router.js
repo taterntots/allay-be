@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const Co = require('../helpers/companies-model.js');
 const Rev = require('../helpers/reviews-model.js');
+const { checkForCompanyData } = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -62,7 +63,7 @@ router.get('/:id/reviews', (req, res) => {
 });
 
 //***************** ADD NEW COMPANY *******************//
-router.post('/', (req, res) => {
+router.post('/', checkForCompanyData, (req, res) => {
 	let company = req.body;
 
 	Co.addCompany(company)
@@ -76,7 +77,7 @@ router.post('/', (req, res) => {
 });
 
 //************* UPDATE COMPANY INFO ****************//
-router.put('/', (req, res) => {
+router.put('/', checkForCompanyData, (req, res) => {
 	const changes = req.body;
 	const id = req.company.id;
 
