@@ -5,7 +5,8 @@ module.exports = {
   restricted,
   checkForRegisterData,
   checkForLoginData,
-  checkForCompanyData
+  checkForCompanyData,
+  checkForReviewData
 }
 
 function restricted(req, res, next) {
@@ -50,6 +51,16 @@ function checkForCompanyData(req, res, next) {
     res.status(400).json({ errorMessage: 'body is empty / missing review data' });
   } else if (!req.body.name) {
     res.status(400).json({ errorMessage: 'company name is required' });
+  } else {
+    next();
+  }
+}
+
+function checkForReviewData(req, res, next) {
+  if (Object.keys(req.body).length === 0) {
+    res.status(400).json({ errorMessage: 'body is empty / missing review data' });
+  } else if (!req.body.job_title || !req.body.job_location || !req.body.salary || !req.body.company_id ) {
+    res.status(400).json({ errorMessage: 'job title, job location, salary, and company id are required' });
   } else {
     next();
   }

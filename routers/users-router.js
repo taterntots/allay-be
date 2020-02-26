@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
 const Rev = require('../helpers/reviews-model.js');
+const { checkForReviewData } = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -80,7 +81,7 @@ router.get('/:id', (req, res) => {
 // });
 
 //***************** ADD NEW REVIEW *******************//
-router.post('/:id/reviews', (req, res) => {
+router.post('/:id/reviews', checkForReviewData, (req, res) => {
 	const id = req.params.id;
 	let review = req.body;
 	review = { ...review, user_id: id };
