@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
 const Rev = require('../helpers/reviews-model.js');
-const { checkForReviewData } = require('../middleware/index.js');
+const { checkForReviewData, validateUserId } = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -32,7 +32,7 @@ router.get('/all', (req, res) => {
 // });
 
 //*************** GET USER BY ID *****************//
-router.get('/:id', (req, res) => {
+router.get('/:id', validateUserId, (req, res) => {
 	const { id } = req.params;
 
 	User.findUserById(id)

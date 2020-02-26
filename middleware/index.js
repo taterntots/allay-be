@@ -1,12 +1,14 @@
-const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../config/secret.js");
+const jwt = require('jsonwebtoken');
+const { jwtSecret } = require('../config/secret.js');
+const Users = require('../helpers/users-model.js');
 
 module.exports = {
   restricted,
   checkForRegisterData,
   checkForLoginData,
   checkForCompanyData,
-  checkForReviewData
+  checkForReviewData,
+  validateUserId
 }
 
 function restricted(req, res, next) {
@@ -59,9 +61,24 @@ function checkForCompanyData(req, res, next) {
 function checkForReviewData(req, res, next) {
   if (Object.keys(req.body).length === 0) {
     res.status(400).json({ errorMessage: 'body is empty / missing review data' });
-  } else if (!req.body.job_title || !req.body.job_location || !req.body.salary || !req.body.company_id ) {
+  } else if (!req.body.job_title || !req.body.job_location || !req.body.salary || !req.body.company_id) {
     res.status(400).json({ errorMessage: 'job title, job location, salary, and company id are required' });
   } else {
     next();
   }
+}
+
+function validateUserId(req, res, next) {
+  const id = req.params.id;
+  Users.findUserById(id)
+    .then(user => {
+      if (user) {
+        next();
+      } else {
+        res.status(400).json({ errorMessage: 'The user with the specified ID does not exist' });
+      }
+    })
+    .catch(erorr => {
+      res.status(500).json({ errorMessage: 'Could not validate user information for the specified ID' });
+    })
 }
