@@ -2,6 +2,10 @@ const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
 const Rev = require('../helpers/reviews-model.js');
+const {
+	checkForReviewData,
+	validateUserId
+} = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -31,7 +35,7 @@ router.get('/all', (req, res) => {
 // });
 
 //*************** GET USER BY ID *****************//
-router.get('/:id', (req, res) => {
+router.get('/:id', validateUserId, (req, res) => {
 	const { id } = req.params;
 
 	User.findUserById(id)
@@ -80,14 +84,18 @@ router.get('/:id', (req, res) => {
 // });
 
 //***************** ADD NEW REVIEW *******************//
-router.post('/:id/reviews', (req, res) => {
+router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
 	const id = req.params.id;
 	let review = req.body;
 	review = { ...review, user_id: id };
 
 	Rev.addReview(review)
 		.then(newReview => {
-			res.status(201).json(newReview);
+			if (newReview && Number(req.user.id) === Number(id)) {
+				res.status(201).json(newReview);
+			} else {
+				res.status(404).json({ message: 'Could not create review' });
+			}
 		})
 		.catch(err => {
 			console.log(err);
@@ -96,11 +104,15 @@ router.post('/:id/reviews', (req, res) => {
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
-router.get('/:id/reviews', (req, res) => {
+router.get('/:id/reviews', validateUserId, (req, res) => {
 	let { id } = req.params;
 	User.findUserReviews(id)
 		.then(reviews => {
-			res.status(200).json(reviews);
+			if (reviews.length > 0) {
+				res.status(200).json(reviews);
+			} else {
+				res.status(404).json({ error: 'There are no reviews for this user' });
+			}
 		})
 		.catch(err => {
 			console.log(err);

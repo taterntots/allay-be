@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../helpers/users-model.js');
+const { checkForRegisterData, checkForLoginData } = require('../middleware/index.js');
 
 const { jwtSecret } = require('../config/secret.js');
 
@@ -12,7 +13,7 @@ const { jwtSecret } = require('../config/secret.js');
 
 /*************************** BEGIN REGISTER *******************************/
 
-router.post('/register', (req, res) => {
+router.post('/register', checkForRegisterData, (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 3); //Change in production!!!
 
@@ -32,7 +33,7 @@ router.post('/register', (req, res) => {
 
 /*************************** BEGIN LOGIN *******************************/
 
-router.post('/login', (req, res) => {
+router.post('/login', checkForLoginData, (req, res) => {
   let { username, password } = req.body;
   // console.log(req.body, 'req.body ln 36');
 

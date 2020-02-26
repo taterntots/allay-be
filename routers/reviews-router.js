@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Rev = require('../helpers/reviews-model.js');
+const { validateReviewId } = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -30,7 +31,7 @@ router.get('/filter', (req, res) => {
 });
 
 //*************** GET REVIEW BY ID *****************//
-router.get('/:id', (req, res) => {
+router.get('/:id', validateReviewId, (req, res) => {
   const { id } = req.params;
 
   Rev.findReviewById(id)
@@ -74,7 +75,7 @@ router.put('/', (req, res) => {
 });
 
 //****************** DELETE REVIEW ********************//
-router.delete('/:revId', async (req, res) => {
+router.delete('/:revId', validateReviewId, async (req, res) => {
   const { id } = req.params;
 
   try {
