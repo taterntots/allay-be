@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secret.js');
 const Users = require('../helpers/users-model.js');
 const Companies = require('../helpers/companies-model.js');
-
+const Reviews = require('../helpers/reviews-model.js');
 
 module.exports = {
   restricted,
@@ -11,7 +11,8 @@ module.exports = {
   checkForCompanyData,
   checkForReviewData,
   validateUserId,
-  validateCompanyId
+  validateCompanyId,
+  validateReviewId
 }
 
 function restricted(req, res, next) {
@@ -89,8 +90,8 @@ function validateUserId(req, res, next) {
 function validateCompanyId(req, res, next) {
   const id = req.params.id;
   Companies.findCompanyById(id)
-    .then(user => {
-      if (user) {
+    .then(company => {
+      if (company) {
         next();
       } else {
         res.status(400).json({ errorMessage: 'The company with the specified ID does not exist' });
@@ -98,5 +99,20 @@ function validateCompanyId(req, res, next) {
     })
     .catch(erorr => {
       res.status(500).json({ errorMessage: 'Could not validate company information for the specified ID' });
+    })
+}
+
+function validateReviewId(req, res, next) {
+  const id = req.params.id;
+  Reviews.findReviewById(id)
+    .then(review => {
+      if (review) {
+        next();
+      } else {
+        res.status(400).json({ errorMessage: 'The review with the specified ID does not exist' });
+      }
+    })
+    .catch(erorr => {
+      res.status(500).json({ errorMessage: 'Could not validate review information for the specified ID' });
     })
 }
