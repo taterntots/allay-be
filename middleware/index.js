@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secret.js');
 const Users = require('../helpers/users-model.js');
+const Companies = require('../helpers/companies-model.js');
+
 
 module.exports = {
   restricted,
@@ -8,7 +10,8 @@ module.exports = {
   checkForLoginData,
   checkForCompanyData,
   checkForReviewData,
-  validateUserId
+  validateUserId,
+  validateCompanyId
 }
 
 function restricted(req, res, next) {
@@ -80,5 +83,20 @@ function validateUserId(req, res, next) {
     })
     .catch(erorr => {
       res.status(500).json({ errorMessage: 'Could not validate user information for the specified ID' });
+    })
+}
+
+function validateCompanyId(req, res, next) {
+  const id = req.params.id;
+  Companies.findCompanyById(id)
+    .then(user => {
+      if (user) {
+        next();
+      } else {
+        res.status(400).json({ errorMessage: 'The company with the specified ID does not exist' });
+      }
+    })
+    .catch(erorr => {
+      res.status(500).json({ errorMessage: 'Could not validate company information for the specified ID' });
     })
 }

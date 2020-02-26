@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const Co = require('../helpers/companies-model.js');
 const Rev = require('../helpers/reviews-model.js');
-const { checkForCompanyData } = require('../middleware/index.js');
+const { checkForCompanyData, validateCompanyId } = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -32,7 +32,7 @@ router.get('/filter', (req, res) => {
 });
 
 //*************** GET COMPANY BY ID *****************//
-router.get('/:id', (req, res) => {
+router.get('/:id', validateCompanyId, (req, res) => {
 	const { id } = req.params;
 
 	Co.findCompanyById(id)
@@ -45,7 +45,7 @@ router.get('/:id', (req, res) => {
 //****** GET REVIEWS ASSOCIATED WITH COMPANY NAME ******//
 
 // refactor using findCompanyReviews()
-router.get('/:id/reviews', (req, res) => {
+router.get('/:id/reviews', validateCompanyId, (req, res) => {
 	const id = req.params.orgId;
 
 	Co.findCompanyById(id)
@@ -96,7 +96,7 @@ router.put('/', checkForCompanyData, (req, res) => {
 });
 
 //****************** DELETE COMPANY ********************//
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', validateCompanyId, async (req, res) => {
 	const { id } = req.params;
 
 	try {
