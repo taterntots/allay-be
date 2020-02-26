@@ -11,7 +11,7 @@ server.use(cors()); //middleware that allows cross domain communication from the
 server.use(morgan('tiny')); //logger middleware
 
 //Auth middleware
-const { restricted } = require('../middleware/index.js');
+const restricted = require('../middleware/index.js');
 
 //Router Imports
 const authRouter = require('../routers/auth-router.js');
