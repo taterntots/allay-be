@@ -11,7 +11,7 @@ server.use(cors()); //middleware that allows cross domain communication from the
 server.use(morgan('tiny')); //logger middleware
 
 //Auth middleware
-const Auth = require('../middleware/auth-middle.js');
+const { restricted } = require('../middleware/index.js');
 
 //Router Imports
 const authRouter = require('../routers/auth-router.js');
@@ -29,8 +29,8 @@ server.get('/', (req, res) => {
 
 //routes with Auth applied
 server.use('/api/auth', authRouter);
-server.use('/api/users', Auth, usersRouter);
-server.use('/api/companies', Auth, companiesRouter);
-server.use('/api/reviews', Auth, reviewsRouter);
+server.use('/api/users', restricted, usersRouter);
+server.use('/api/companies', restricted, companiesRouter);
+server.use('/api/reviews', restricted, reviewsRouter);
 
 module.exports = server;
