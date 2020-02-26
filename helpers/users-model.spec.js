@@ -6,7 +6,7 @@ const Users = require('./users-model');
 //sanity check
 describe('server', () => {
 	beforeEach(async () => {
-		await db('users').truncate();
+		await db('users').del();
 	});
 	// confirm tests are running
 	it('runs the tests', () => {
@@ -15,7 +15,7 @@ describe('server', () => {
 	// confirm test env
 	describe('test env', () => {
 		it('should run the testing env', () => {
-			expect(process.env.DB_ENV).toBe('testing');
+			expect(process.env.NODE_ENV).toBe('testing');
 		});
 	});
 });
@@ -23,7 +23,7 @@ describe('server', () => {
 // test Users DB
 describe('Users Model', () => {
 	beforeEach(async () => {
-		await db('users').truncate();
+		await db('users').del();
 	});
 	// register or add a new user
 	describe('addUser()', () => {
