@@ -81,7 +81,7 @@ router.get('/:id', validateUserId, (req, res) => {
 // });
 
 //***************** ADD NEW REVIEW *******************//
-router.post('/:id/reviews', checkForReviewData, (req, res) => {
+router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
 	const id = req.params.id;
 	let review = req.body;
 	review = { ...review, user_id: id };
@@ -97,11 +97,15 @@ router.post('/:id/reviews', checkForReviewData, (req, res) => {
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
-router.get('/:id/reviews', (req, res) => {
+router.get('/:id/reviews', validateUserId, (req, res) => {
 	let { id } = req.params;
 	User.findUserReviews(id)
 		.then(reviews => {
-			res.status(200).json(reviews);
+			if (reviews.length > 0) {
+				res.status(200).json(reviews);
+			} else {
+				res.status(404).json({ error: 'There are no reviews for this user' });
+			}
 		})
 		.catch(err => {
 			console.log(err);

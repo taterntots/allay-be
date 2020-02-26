@@ -74,12 +74,12 @@ function checkForReviewData(req, res, next) {
 
 function validateUserId(req, res, next) {
   const id = req.params.id;
-  Users.findUserById(id)
+  Users.findUsersBy({id})
     .then(user => {
-      if (user) {
+      if (user.length > 0) {
         next();
       } else {
-        res.status(400).json({ errorMessage: 'The user with the specified ID does not exist' });
+        res.status(404).json({ errorMessage: 'The user with the specified ID does not exist' });
       }
     })
     .catch(erorr => {
@@ -94,7 +94,7 @@ function validateCompanyId(req, res, next) {
       if (company) {
         next();
       } else {
-        res.status(400).json({ errorMessage: 'The company with the specified ID does not exist' });
+        res.status(404).json({ errorMessage: 'The company with the specified ID does not exist' });
       }
     })
     .catch(erorr => {
@@ -109,7 +109,7 @@ function validateReviewId(req, res, next) {
       if (review) {
         next();
       } else {
-        res.status(400).json({ errorMessage: 'The review with the specified ID does not exist' });
+        res.status(404).json({ errorMessage: 'The review with the specified ID does not exist' });
       }
     })
     .catch(erorr => {
