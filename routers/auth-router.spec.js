@@ -5,7 +5,9 @@ const db = require('../data/dbConfig');
 
 describe('server.js', () => {
 	beforeEach(async () => {
-		await db('users').truncate(); //clears table for testing purposes before each test
+		await db.raw('truncate table users cascade');
+		await db.raw('truncate table reviews cascade');
+		await db.raw('truncate table companies cascade'); //clears table for testing purposes before each test
 	});
 
 	/*************************** GENERAL *******************************/
@@ -14,7 +16,7 @@ describe('server.js', () => {
 		expect(true).toBe(true);
 	});
 	it('should run the testing environment', () => {
-		expect(process.env.DB_ENV).toBe('testing');
+		expect(process.env.NODE_ENV).toBe('testing');
 	});
 
 	/*************************** REGISTER *******************************/

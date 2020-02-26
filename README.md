@@ -62,7 +62,6 @@ To get the server running locally:
 | ------ | -------------- | ------------------ | ---------------------------- |
 | GET    | `/reviews`     | all users          | Returns list of all reviews. |
 | GET    | `/reviews/:id` | all users          | Returns single review by id. |
-| <!--   | PUT            | `/reviews/:id`     | all users                    | Updates a review by review id | --> |
 | <!--   | DELETE         | `/reviews/:userId` | all users                    |  | --> |
 
 # Data Model
@@ -129,34 +128,38 @@ To get the server running locally:
 
 `findUsers()` -> Returns all users
 
-`findUsersBy({ filter })` -> Returns a single user by specified filter
+`findUsersBy({ filter })` -> Returns a single user by specified filter. Must use {}.
 
-`findUserById(userId)` -> Returns all data for a single user by ID (including all reviews)
+`findUserById(userId)` -> Returns all data for a single user by ID (including all reviews).
+
+`findUserReviews(userId)` => Returns reviews related to a user.
 
 `addUser(user object)` -> Creates a new user and returns that user.
 
-`updateUser(userId)` -> Update a single user by ID
+`updateUser(userId)` -> Update a single user by ID.
 
-`deleteUser(userId)` -> Deletes everything dependent on the user
+`deleteUser(userId)` -> Deletes everything dependent on the user.
 <br>
 <br>
 <br>
-`findCompanies()` -> Retruns a list of all companies
 
-`findCompaniesBy(filter)` -> Returns a single company by specified filter
+`findCompanies()` -> Retruns a list of all companies.
 
-`findCompanyBy(companyId)` -> Returns a single company by ID
+`findCompaniesBy(filter)` -> Returns a single company by specified filter.
 
-`findCompanyReviews(companyId)` -> Returns all reviews for a specific company
+`findCompanyBy(companyId)` -> Returns a single company by ID.
+
+`findCompanyReviews(companyId)` -> Returns all reviews for a specific company.
 
 `addCompany(company object)` --> Creates a new company and returns that company. If the company already exists the company will not be added.
 
 `updateCompany(userId, changes object)` -> Updates a single company by ID.
 
-`deleteCompany(userId)` -> Deletes the single company
+`deleteCompany(userId)` -> Deletes the single company.
 <br>
 <br>
 <br>
+
 `getReviews()` -> Returns a list of all reviews
 
 `getReviewsBy(filter)` -> Returns a single review by specified filter

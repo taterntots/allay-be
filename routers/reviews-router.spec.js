@@ -8,8 +8,8 @@ describe('GET TESTS', () => {
 	 */
 	describe('GET all REVIEWS /api/reviews', () => {
 		beforeEach(async () => {
-			await db('reviews').truncate();
-			await db('users').truncate();
+			await db.raw('truncate table users restart identity cascade');
+			await db.raw('truncate table reviews restart identity cascade');
 		});
 		/*
 		 */
@@ -41,8 +41,8 @@ describe('GET TESTS', () => {
 
 	describe('GET single REVIEW by review id /api/reviews/:id', () => {
 		beforeEach(async () => {
-			await db('reviews').truncate();
-			await db('users').truncate();
+			await db.raw('truncate table users restart identity cascade');
+			await db.raw('truncate table reviews restart identity cascade');
 		});
 		/*
 		 */
@@ -79,8 +79,8 @@ describe('POST TEST', () => {
 	 */
 	describe('add new REVIEW /api/reviews', () => {
 		beforeEach(async () => {
-			await db('reviews').truncate();
-			await db('users').truncate();
+			await db.raw('truncate table users restart identity cascade');
+			await db.raw('truncate table reviews restart identity cascade');
 		});
 		/*
 		 */
