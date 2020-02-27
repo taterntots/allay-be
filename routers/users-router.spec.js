@@ -32,7 +32,6 @@ describe('GET TESTS', () => {
       const res3 = await request(server)
         .get('/api/users/all')
         .set('Authorization', token);
-      // console.log(res3.body, 'res3.body ln 35');
       expect(res3.type).toBe('application/json');
       expect([
         { id: '1' },
@@ -116,24 +115,19 @@ describe('POST TEST', () => {
         .send({ username: 'test', password: '1234' });
       const token = res2.body.token; //store login token
 
+      //make GET request for info
       const res3 = await request(server)
         .get('/api/users/1')
         .set('Authorization', token);
-
-      //make PUT request to update info
-      const res4 = await request(server)
-        .put('/api/users/1')
-        .set('Authorization', token)
-        .send({
-          username: 'test',
-          email: 'edit_test@test.com',
-          password: '1234'
-        });
-      // console.log(res3.body, 'res3.body ln 136');
-      expect(res4.type).toBe('application/json');
-      expect(res4.status).toBe(200);
-      expect([{ email: 'edit_test@test.com' }]).toMatchObject([
-        { email: 'edit_test@test.com' }
+      expect(res3.type).toBe('application/json');
+      expect([
+        { id: '1' },
+        { username: 'test' },
+        { email: 'test@test.com' }
+      ]).toMatchObject([
+        { id: '1' },
+        { username: 'test' },
+        { email: 'test@test.com' }
       ]);
     });
   });
@@ -168,48 +162,23 @@ describe('PUT TEST', () => {
         .send({ username: 'test', password: '1234' });
       const token = res2.body.token; //store login token
 
-      //make POST request to add trip
+      //make GET request to verify user exists
       const res3 = await request(server)
-        .post('/api/users/1/reviews')
+        .get('/api/users/1')
+        .set('Authorization', token);
+
+      //make PUT request to update user info
+      const res4 = await request(server)
+        .put('/api/users/1')
         .set('Authorization', token)
         .send({
-          id: '101',
-          job_title: 'test job title',
-          job_location: 'florida',
-          salary: '100000',
-          interview_review: 'testing interview review',
-          interview_rating: '3',
-          job_review: 'testing job review',
-          job_rating: '4',
-          user_id: '1',
-          company_id: '1'
+          email: 'edit_test@test.com'
         });
-      // console.log(res3.body, 'res3.body ln 136');
-      expect(res3.type).toBe('application/json');
-      expect(res3.status).toBe(201);
-      expect([
-        { id: '101' },
-        { job_title: 'test job title' },
-        { job_location: 'florida' },
-        { salary: '100000' },
-        { interview_review: 'testing interview review' },
-        { interview_rating: '3' },
-        { job_review: 'testing job review' },
-        { job_rating: '4' },
-        { user_id: '1' },
-        { company_id: '1' }
-      ]).toMatchObject([
-        { id: '101' },
-        { job_title: 'test job title' },
-        { job_location: 'florida' },
-        { salary: '100000' },
-        { interview_review: 'testing interview review' },
-        { interview_rating: '3' },
-        { job_review: 'testing job review' },
-        { job_rating: '4' },
-        { user_id: '1' },
-        { company_id: '1' }
-      ]);
+      expect(res4.type).toBe('application/json');
+      expect(res4.status).toBe(200);
+      expect({ email: 'edit_test@test.com' }).toMatchObject({
+        email: 'edit_test@test.com'
+      });
     });
   });
 });

@@ -20,22 +20,10 @@ router.get('/all', (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
-
-// //*************** GET USER BY FILTER *****************//
-// router.get('/filter', (req, res) => {
-//   console.log(req.params, 'req.params ln 23');
-//   const filter = req.params.filter;
-
-//   User.findUsersBy(filter)
-//     .then(user => {
-//       res.json(user);
-//     })
-//     .catch(err => res.send(err));
-// });
 
 //*************** GET USER BY ID *****************//
 router.get('/:id', validateUserId, (req, res) => {
@@ -46,7 +34,7 @@ router.get('/:id', validateUserId, (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({ error: 'There was an error getting user' });
     });
 });
@@ -55,8 +43,11 @@ router.get('/:id', validateUserId, (req, res) => {
 router.put('/:id', validateUserId, (req, res) => {
   const changes = req.body;
   const { id } = req.params;
-  if (!req.body) {
-    //I don't think this if statement is working
+  User.findUsersBy({ id }).then(user => {
+    console.log(user, 'user');
+    console.log(req.body, 'res.body');
+  });
+  if ((req.body = {})) {
     return { message: 'No changes to update' };
   } else {
     User.updateUser(id, changes)
@@ -68,7 +59,7 @@ router.put('/:id', validateUserId, (req, res) => {
         }
       })
       .catch(err => {
-        console.log(err);
+        // console.log(err);
         res.status(500).json({ message: 'Error updating user info' });
       });
   }
@@ -82,7 +73,7 @@ router.delete('/:id', validateUserId, async (req, res) => {
     const user = await User.findUserById(id);
     if (user) {
       const deleted = await User.deleteUser(id);
-      res.status(200).json(user, { user: 'account has been vaporized' });
+      res.status(200).json(user);
     } else {
       res.status(404).json({ message: 'Error locating user.' });
     }
@@ -109,7 +100,7 @@ router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
       }
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
@@ -126,7 +117,7 @@ router.get('/:id/reviews', validateUserId, (req, res) => {
       }
     })
     .catch(err => {
-      console.log(err);
+      // console.log(err);
       res.status(500).json({ error: 'Failed to get reviews' });
     });
 });
