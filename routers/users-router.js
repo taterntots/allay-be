@@ -41,46 +41,48 @@ router.get('/:id', validateUserId, (req, res) => {
 
 //*************** UPDATE USER INFO ******************//
 router.put('/:id', validateUserId, (req, res) => {
-  const changes = req.body;
+  const { email, password, username } = req.body;
   const { id } = req.params;
-  User.findUsersBy({ id }).then(user => {
-    console.log(user, 'user');
-    console.log(req.body, 'res.body');
+  User.findUsersBy({ id }).then(userInfo => {
+    const user = userInfo;
+    if (
+      email === user[0].email &&
+      username === user[0].username &&
+      password === user[0].password
+    ) {
+      return res.status(200).json({ message: 'No changes to update' });
+    } else {
+      User.updateUser(id, { email, password, username })
+        .then(info => {
+          if (info) {
+            res.status(202).json({ info: { email, password, username } });
+          } else {
+            res.status(404).json({ message: 'Error locating user info' });
+          }
+        })
+        .catch(err => {
+          // console.log(err);
+          res.status(500).json({ message: 'Error updating user info' });
+        });
+    }
   });
-  if ((req.body = {})) {
-    return { message: 'No changes to update' };
-  } else {
-    User.updateUser(id, changes)
-      .then(info => {
-        if (info) {
-          res.status(200).json({ info: changes });
-        } else {
-          res.status(404).json({ message: 'Error locating user info' });
-        }
-      })
-      .catch(err => {
-        // console.log(err);
-        res.status(500).json({ message: 'Error updating user info' });
-      });
-  }
 });
 
 //****************** DELETE ACCOUNT ********************//
-router.delete('/:id', validateUserId, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
 
   try {
     const user = await User.findUserById(id);
     if (user) {
       const deleted = await User.deleteUser(id);
-      res.status(200).json(user);
+      res.status(200).json({ message: 'User account deleted' });
     } else {
       res.status(404).json({ message: 'Error locating user.' });
     }
   } catch {
     res.status(500).json({
-      message:
-        'There was an error deleting your account. Please try again later.'
+      message: 'There was an error deleting this account.'
     });
   }
 });
