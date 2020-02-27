@@ -1,63 +1,63 @@
 const db = require('../data/dbConfig.js');
 
 module.exports = {
-	findUsers,
-	findUsersBy,
-	findUserById,
-	findUserReviews,
-	addUser,
-	updateUser,
-	deleteUser
+  findUsers,
+  findUsersBy,
+  findUserById,
+  findUserReviews,
+  addUser,
+  updateUser,
+  deleteUser
 };
 
 //Create some functions!
 
 function findUsers() {
-	return db('users');
+  return db('users');
 }
 
 function findUsersBy(filter) {
-	return db('users').where(filter);
+  return db('users').where(filter);
 }
 
 function findUserById(userId) {
-	return db('users as u')
-		.where('id', userId)
-		.select('u.id', 'u.username', 'u.email')
-		.first()
-		.then(user => {
-			return findUserReviews(user.id).then(userReviews => {
-				return {
-					...user,
-					reviews: userReviews
-				};
-			});
-		});
+  return db('users as u')
+    .where('id', userId)
+    .select('u.id', 'u.username', 'u.email')
+    .first()
+    .then(user => {
+      return findUserReviews(user.id).then(userReviews => {
+        return {
+          ...user,
+          reviews: userReviews
+        };
+      });
+    });
 }
 
 function findUserReviews(userId) {
-	return db('reviews as r').where('r.user_id', userId);
+  return db('reviews as r').where('r.user_id', userId);
 }
 
 function addUser(user) {
-	return db('users')
-		.insert(user, 'id')
-		.then(([id]) => {
-			return findUserById(id);
-		});
+  return db('users')
+    .insert(user, 'id')
+    .then(([id]) => {
+      return findUserById(id);
+    });
 }
 
 function updateUser(id, changes) {
-	return db('users')
-		.where({ id })
-		.update(changes)
-		.then(count => (count > 0 ? findUserById(id) : null));
+  return db('users')
+    .where({ id })
+    .update(changes)
+    .then(count => (count > 0 ? findUserById(id) : null));
 }
 
 function deleteUser(id) {
-	return db('users')
-		.where({ id })
-		.del();
+  return db('users')
+    .where('id', id)
+    .del();
 }
 
 ////// Refactored
