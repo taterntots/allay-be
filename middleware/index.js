@@ -21,14 +21,14 @@ function restricted(req, res, next) {
 		jwt.verify(token, jwtSecret, (err, decodedToken) => {
 			if (err) {
 				//i.e: the token is not valid
-				res.status(401).json({ message: 'The token is missing or invalid' });
+				res.status(401).json({ errorMessage: 'The provided token is invalid / expired' });
 			} else {
 				req.user = { id: decodedToken.id, email: decodedToken.email };
 				next();
 			}
 		});
 	} else {
-		res.status(401).json({ message: 'Must be an authorized user' });
+		res.status(401).json({ errorMessage: 'Must be an authorized user / token is missing' });
 	}
 }
 
