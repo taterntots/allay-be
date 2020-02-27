@@ -26,12 +26,20 @@ function findCompaniesBy(filter) {
 function findCompanyById(id) {
 	return db('companies')
 		.where({ id })
-		.first();
+		.first()
+		.then(company => {
+			return findCompanyReviews(company.id).then(companyReviews => {
+				return {
+					...company,
+					reviews: companyReviews
+				};
+			});
+		});
 }
 
 // FIND ONLY THE REVIEWS ASSOCIATED WITH A COMPANY
 function findCompanyReviews(companyId) {
-	return db('reviews').where('company_id', companyId);
+	return db('reviews as r').where('r.company_id', companyId);
 }
 
 // ADD A COMPANY TO THE DATABASE
