@@ -27,9 +27,7 @@ function findCompanyById(id) {
 }
 
 function findCompanyReviews(companyId) {
-	return db('reviews')
-		.where('company_id', companyId)
-		.then(reviews => reviews.map(review => mappers.reviewToBody(review)));
+	return db('reviews').where('company_id', companyId);
 }
 
 function addCompany(company) {
