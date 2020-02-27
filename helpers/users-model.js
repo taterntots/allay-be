@@ -12,14 +12,17 @@ module.exports = {
 
 //Create some functions!
 
+// FIND ALL USERS
 function findUsers() {
 	return db('users');
 }
 
+// FIND USERS BY A SPECIFIC FILTER (MUST BE A COLUMN IN THE USERS TABLE AND USE {<ARGUMENT>})
 function findUsersBy(filter) {
 	return db('users').where(filter);
 }
 
+// FIND USER BY ID, WILL CONTAIN ANY REVIEWS ASSOCIATED WITH THE USER OR AN EMPTY ARRAY
 function findUserById(userId) {
 	return db('users as u')
 		.where('id', userId)
@@ -35,10 +38,12 @@ function findUserById(userId) {
 		});
 }
 
+// FIND ONLY THE REVIEWS ASSOCIATED WITH A USER
 function findUserReviews(userId) {
 	return db('reviews as r').where('r.user_id', userId);
 }
 
+// ADD A USER TO THE DATABASE
 function addUser(user) {
 	return db('users')
 		.insert(user, 'id')
@@ -47,6 +52,7 @@ function addUser(user) {
 		});
 }
 
+// UPDATE AN EXISTING USER
 function updateUser(id, changes) {
 	return db('users')
 		.where({ id })
@@ -54,26 +60,9 @@ function updateUser(id, changes) {
 		.then(count => (count > 0 ? findUserById(id) : null));
 }
 
+// DELETE AN EXISTING USER
 function deleteUser(id) {
 	return db('users')
 		.where({ id })
 		.del();
 }
-
-////// Refactored
-// function findUserById(userId) {
-// 	return db('reviews as r')
-// 		.where('r.user_id', userId)
-// 		.join('users as u', 'r.user_id', 'u.id')
-// 		.select('u.id', 'u.username')
-// 		.then(result => {
-// 			// console.log(result[0].id);
-// 			return findUserReviews(result[0].id) //Having an error with this line when registering new user. Does this matter?
-// 				.then(reviewArray => {
-// 					// console.log(reviewArray)
-// 					return { ...result[0], reviews: reviewArray };
-// 				})
-// 				.catch(err => console.log(err));
-// 		})
-// 		.catch(err => console.log(err));
-// }
