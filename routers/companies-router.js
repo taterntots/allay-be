@@ -2,7 +2,10 @@ const router = require('express').Router();
 
 const Co = require('../helpers/companies-model.js');
 const Rev = require('../helpers/reviews-model.js');
-const { checkForCompanyData, validateCompanyId } = require('../middleware/index.js');
+const {
+	checkForCompanyData,
+	validateCompanyId
+} = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -44,20 +47,18 @@ router.get('/:id', validateCompanyId, (req, res) => {
 
 //****** GET REVIEWS ASSOCIATED WITH COMPANY NAME ******//
 
-// refactor using findCompanyReviews()
 router.get('/:id/reviews', validateCompanyId, (req, res) => {
-	const id = req.params.orgId;
+	const { id } = req.params;
 
-	Co.findCompanyById(id)
-		.then(company => {
-			res.json(company);
-			const filter = req.params.filter;
-
-			Rev.findReviewsBy(filter)
-				.then(company => {
-					res.json(company);
-				})
-				.catch(err => res.send(err));
+	Co.findCompanyReviews(id)
+		.then(reviews => {
+			if (reviews.length > 0) {
+				res.status(200).json(reviews);
+			} else {
+				res
+					.status(404)
+					.json({ error: 'Can not find any reviews for this company' });
+			}
 		})
 		.catch(err => res.send(err));
 });
