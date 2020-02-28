@@ -1,6 +1,5 @@
 const request = require('supertest');
 const server = require('../api/server');
-const Users = require('../helpers/users-model');
 const db = require('../data/dbConfig');
 const jwt = require('jsonwebtoken');
 
@@ -234,7 +233,6 @@ describe('server.js', () => {
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
-      console.log(res.body);
       // create a review
       res = await request(server)
         .post('/api/users/1/reviews')
@@ -269,7 +267,6 @@ describe('server.js', () => {
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
-      console.log(res.body);
       // create a review
       res = await request(server)
         .post('/api/users/1/reviews')
@@ -304,7 +301,6 @@ describe('server.js', () => {
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
-      console.log(res.body);
       // create a review
       res = await request(server)
         .post('/api/users/1/reviews')
@@ -339,7 +335,6 @@ describe('server.js', () => {
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
-      console.log(res.body);
       // create a review
       res = await request(server)
         .post('/api/users/1/reviews')
@@ -374,7 +369,6 @@ describe('server.js', () => {
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
-      console.log(res.body);
       // create a review
       res = await request(server)
         .post('/api/users/1/reviews')
@@ -387,14 +381,87 @@ describe('server.js', () => {
 
   /*************************** VALIDATE USER BY ID *******************************/
 
-
+  describe('ValidateUserById Middleware', () => {
+    it('should 404 error if the user id does not exist', async () => {
+      // register a new user
+      res = await request(server)
+        .post('/api/auth/register')
+        .send({
+          username: 'mario',
+          password: 'superstar',
+          email: 'mario@gmail.com'
+        })
+      //open the database and see that the new user is there
+      const newUsers = await db('users');
+      expect(newUsers).toHaveLength(1);
+      expect(res.status).toEqual(201);
+      // check token exists
+      const token = res.body.token;
+      expect(token.length).toBeGreaterThan(20);
+      // find a user by id
+      res = await request(server)
+        .get('/api/users/2')
+        .set({ authorization: token, Accept: 'application/json' });
+      expect(res.status).toEqual(404);
+      expect(res.body).toMatchObject({ errorMessage: 'The user with the specified ID does not exist' });
+    });
+  });
 
   /*************************** VALIDATE COMPANY BY ID *******************************/
 
+  describe('ValidateCompanyById Middleware', () => {
+    it('should 404 error if the company id does not exist', async () => {
+      // register a new user
+      res = await request(server)
+        .post('/api/auth/register')
+        .send({
+          username: 'mario',
+          password: 'superstar',
+          email: 'mario@gmail.com'
+        })
+      //open the database and see that the new user is there
+      const newUsers = await db('users');
+      expect(newUsers).toHaveLength(1);
+      expect(res.status).toEqual(201);
+      // check token exists
+      const token = res.body.token;
+      expect(token.length).toBeGreaterThan(20);
+      // find a company by id
+      res = await request(server)
+        .get('/api/companies/1')
+        .set({ authorization: token, Accept: 'application/json' });
+      expect(res.status).toEqual(404);
+      expect(res.body).toMatchObject({ errorMessage: 'The company with the specified ID does not exist' });
+    });
+  });
 
 
   /*************************** VALIDATE REVIEW BY ID *******************************/
 
-
+  describe('ValidateReviewById Middleware', () => {
+    it('should 404 error if the review id does not exist', async () => {
+      // register a new user
+      res = await request(server)
+        .post('/api/auth/register')
+        .send({
+          username: 'mario',
+          password: 'superstar',
+          email: 'mario@gmail.com'
+        })
+      //open the database and see that the new user is there
+      const newUsers = await db('users');
+      expect(newUsers).toHaveLength(1);
+      expect(res.status).toEqual(201);
+      // check token exists
+      const token = res.body.token;
+      expect(token.length).toBeGreaterThan(20);
+      // find a review by id
+      res = await request(server)
+        .get('/api/reviews/1')
+        .set({ authorization: token, Accept: 'application/json' });
+      expect(res.status).toEqual(404);
+      expect(res.body).toMatchObject({ errorMessage: 'The review with the specified ID does not exist' });
+    });
+  });
 
 });
