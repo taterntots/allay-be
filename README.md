@@ -34,33 +34,29 @@ To get the server running locally:
 
 #### Users Routes
 
-| Method | Endpoint             | Access Control       | Description                           |
-| ------ | -------------------- | -------------------- | ------------------------------------- |
-| GET    | `/users/all`         | all users            | Returns list of all users.            |
-| GET    | `/users/:id`         | all users            | Returns info for a single user by id. |
-| POST   | `/users/:id/reviews` | all users            | Post helpful review about a company.  |
-| <!--   | GET                  | `/users/:id/reviews` | all users                             | Returns all reviews posted by user's id. | --> |
-| <!--   | PUT                  | `/users/:id`         | all users                             | Update user's account info by id. | --> |
-| <!--   | DELETE               | `/users/:id`         | all users                             | Delete user's account by id. | --> |
+| Method | Endpoint             | Access Control | Description                           |
+| ------ | -------------------- | -------------- | ------------------------------------- |
+| GET    | `/users/all`         | all users      | Returns list of all users.            |
+| GET    | `/users/:id`         | all users      | Returns info for a single user by id. |
+| POST   | `/users/:id/reviews` | all users      | Post helpful review about a company.  |
+| GET    | `/users/:id/reviews` | all users      | Returns all reviews the user posted.  |
+| PUT    | `/users/:id`         | all users      | Update user's account info by id.     |
+| DELETE | `/users/:id`         | all users      | Delete user's account by id.          |
 
 #### Companies Routes
 
-| Method | Endpoint         | Access Control      | Description                                   |
-| ------ | ---------------- | ------------------- | --------------------------------------------- |
-| GET    | `/companies`     | all users           | Returns list of all companies.                |
-| GET    | `/companies/:id` | all users           | Returns the information for a single company. |
-| POST   | `/companies`     | all users           | Creates a new company.                        |
-| <!--   | GET              | `/companies/filter` | all users                                     | Returns list of all companies matching the filter. | --> |
-| <!--   | PUT              | `/companies/:id`    | all users                                     | Modify an existing organization by id. | --> |
-| <!--   | DELETE           | `/companies/:id`    | all users                                     | Delete a company by id. | --> |
+| Method | Endpoint         | Access Control | Description                                   |
+| ------ | ---------------- | -------------- | --------------------------------------------- |
+| GET    | `/companies`     | all users      | Returns list of all companies.                |
+| GET    | `/companies/:id` | all users      | Returns the information for a single company. |
+| POST   | `/companies`     | all users      | Creates a new company.                        |
 
 #### Reviews Routes
 
-| Method | Endpoint       | Access Control     | Description                  |
-| ------ | -------------- | ------------------ | ---------------------------- |
-| GET    | `/reviews`     | all users          | Returns list of all reviews. |
-| GET    | `/reviews/:id` | all users          | Returns single review by id. |
-| <!--   | DELETE         | `/reviews/:userId` | all users                    |  | --> |
+| Method | Endpoint       | Access Control | Description                  |
+| ------ | -------------- | -------------- | ---------------------------- |
+| GET    | `/reviews`     | all users      | Returns list of all reviews. |
+| GET    | `/reviews/:id` | all users      | Returns single review by id. |
 
 # Data Model
 
