@@ -21,14 +21,14 @@ function restricted(req, res, next) {
 		jwt.verify(token, jwtSecret, (err, decodedToken) => {
 			if (err) {
 				//i.e: the token is not valid
-				res.status(401).json({ message: 'The token is missing or invalid' });
+				res.status(401).json({ errorMessage: 'The provided token is invalid / expired' });
 			} else {
 				req.user = { id: decodedToken.id, email: decodedToken.email };
 				next();
 			}
 		});
 	} else {
-		res.status(401).json({ message: 'Must be an authorized user' });
+		res.status(401).json({ errorMessage: 'Must be an authorized user / token is missing' });
 	}
 }
 
@@ -66,7 +66,7 @@ function checkForCompanyData(req, res, next) {
 	if (Object.keys(req.body).length === 0) {
 		res
 			.status(400)
-			.json({ errorMessage: 'body is empty / missing review data' });
+			.json({ errorMessage: 'body is empty / missing company data' });
 	} else if (!req.body.name) {
 		res.status(400).json({ errorMessage: 'company name is required' });
 	} else {
@@ -167,4 +167,3 @@ function validateReviewId(req, res, next) {
 				});
 		});
 }
-// test note
