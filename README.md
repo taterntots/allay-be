@@ -124,6 +124,19 @@ To get the server running locally:
 }
 ```
 
+#### COMPANIES
+
+---
+
+```
+{
+    "id": 14,
+    "name": "Google",
+    "hq_city": "Mountain View",
+    "hq_state": "CA"
+}
+```
+
 ## 2️⃣ Actions
 
 `findUsers()` -> Returns all users
