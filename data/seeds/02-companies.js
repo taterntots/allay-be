@@ -1,9 +1,16 @@
-const seeder = require('knex-csv-seeder');
+const csv = require('csvtojson');
 
-exports.seed = seeder({
-  table: 'companies',
-  file: '../list-of-companies.csv'
-})
+exports.seed = (knex, Promise) => {
+	return csv({
+        trim: true,
+        headers: ['name'],
+        delimiter: '%'
+	})
+		.fromFile('./data/seeds/list-of-companies.csv')
+		.then(jsonObj => {
+			return knex('companies').insert(jsonObj);
+		});
+};
 
 // exports.seed = function (knex) {
 //   // Deletes ALL existing entries
