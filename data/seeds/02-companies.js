@@ -2,9 +2,9 @@ const csv = require('csvtojson');
 
 exports.seed = (knex, Promise) => {
 	return csv({
-        trim: true,
-        headers: ['name'],
-        delimiter: '%'
+		trim: true,
+		headers: ['name'],
+		delimiter: '%'
 	})
 		.fromFile('./data/seeds/list-of-companies3.csv')
 		.then(jsonObj => {
