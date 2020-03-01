@@ -6,7 +6,7 @@ exports.seed = (knex, Promise) => {
         headers: ['name'],
         delimiter: '%'
 	})
-		.fromFile('./data/seeds/list-of-companies.csv')
+		.fromFile('./data/seeds/list-of-companies3.csv')
 		.then(jsonObj => {
 			return knex('companies').insert(jsonObj);
 		});
