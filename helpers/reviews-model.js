@@ -28,7 +28,8 @@ function findReviews() {
 			'c.id as company_id'
 		)
 		.join('users as u', 'r.user_id', 'u.id')
-		.join('companies as c', 'r.company_id', 'c.id');
+		.join('companies as c', 'r.company_id', 'c.id')
+		.orderBy('r.id', 'desc');
 }
 
 // FIND REVIEWS BY A SPECIFIC FILTER (MUST BE A COLUMN IN THE REVIEWS TABLE AND USE {<ARGUMENT>})
