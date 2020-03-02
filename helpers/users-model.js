@@ -40,7 +40,22 @@ function findUserById(userId) {
 
 // FIND ONLY THE REVIEWS ASSOCIATED WITH A USER
 function findUserReviews(userId) {
-  return db('reviews as r').where('r.user_id', userId);
+  return db('reviews as r').select(
+    'r.id',
+    'r.job_title',
+    'r.job_location',
+    'r.salary',
+    'r.interview_review',
+    'r.interview_rating',
+    'r.job_review',
+    'r.job_rating',
+    'u.username as reviewer',
+    'c.name as company_name',
+    'c.id as company_id'
+  )
+    .where('r.user_id', userId)
+    .join('users as u', 'r.user_id', 'u.id')
+    .join('companies as c', 'r.company_id', 'c.id');
 }
 
 // ADD A USER TO THE DATABASE
