@@ -48,6 +48,7 @@ function findReviewById(id) {
 			'r.interview_rating',
 			'r.job_review',
 			'r.job_rating',
+			'u.id as user_id',
 			'u.username as reviewer',
 			'c.name as company_name'
 		)
