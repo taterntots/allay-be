@@ -24,7 +24,8 @@ function findReviews() {
 			'r.job_review',
 			'r.job_rating',
 			'u.username as reviewer',
-			'c.name as company_name'
+			'c.name as company_name',
+			'c.id as company_id'
 		)
 		.join('users as u', 'r.user_id', 'u.id')
 		.join('companies as c', 'r.company_id', 'c.id');
