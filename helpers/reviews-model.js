@@ -23,6 +23,9 @@ function findReviews() {
 			'r.interview_rating',
 			'r.job_review',
 			'r.job_rating',
+			'r.tagline',
+			'r.offer_received',
+			'r.offer_accepted',
 			'u.username as reviewer',
 			'c.name as company_name',
 			'c.id as company_id'
@@ -49,6 +52,9 @@ function findReviewById(id) {
 			'r.interview_rating',
 			'r.job_review',
 			'r.job_rating',
+			'r.tagline',
+			'r.offer_received',
+			'r.offer_accepted',
 			'u.id as user_id',
 			'u.username as reviewer',
 			'c.name as company_name'
