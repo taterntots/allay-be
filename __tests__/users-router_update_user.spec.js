@@ -2,14 +2,14 @@ const request = require('supertest');
 const server = require('../api/server.js');
 const db = require('../data/dbConfig.js');
 
-/************** BEGIN GET TEST *****************/
-describe('GET TEST', () => {
+/************** BEGIN PUT TEST *****************/
+describe('PUT TEST', () => {
   /*
    */
-  describe('GET single USER by user id /api/users/:id', () => {
-    beforeEach(async () => {
-      await db.raw('truncate table users restart identity cascade');
-    });
+  beforeEach(async () => {
+    await db.raw('truncate table users restart identity cascade');
+  });
+  describe('update USER /api/users/:id', () => {
     /*
      */
     //make POST request to register
@@ -28,21 +28,25 @@ describe('GET TEST', () => {
         .send({ username: 'test', password: '1234' });
       const token = res2.body.token; //store login token
 
-      //make GET request for info
+      //make GET request to verify user exists
       const res3 = await request(server)
         .get('/api/users/1')
         .set('Authorization', token);
-      expect(res3.type).toBe('application/json');
-      expect([
-        { id: '1' },
-        { username: 'test' },
-        { email: 'test@test.com' }
-      ]).toMatchObject([
-        { id: '1' },
-        { username: 'test' },
-        { email: 'test@test.com' }
-      ]);
+
+      //make PUT request to update user info
+      const res4 = await request(server)
+        .put('/api/users/1')
+        .set('Authorization', token)
+        .send({
+          email: 'edit_test@test.com'
+        });
+      expect(res4.type).toBe('application/json');
+      expect(res4.status).toBe(200);
+      expect({ email: 'edit_test@test.com' }).toMatchObject({
+        email: 'edit_test@test.com'
+      });
     });
   });
 });
-/************** END GET TEST *****************/
+
+/************** END PUT TESTS *****************/

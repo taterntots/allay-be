@@ -2,14 +2,14 @@ const request = require('supertest');
 const server = require('../api/server.js');
 const db = require('../data/dbConfig.js');
 
-/************** BEGIN GET TEST *****************/
-describe('GET TEST', () => {
+/************** BEGIN POST TEST *****************/
+describe('POST TEST', () => {
   /*
    */
-  describe('GET single USER by user id /api/users/:id', () => {
-    beforeEach(async () => {
-      await db.raw('truncate table users restart identity cascade');
-    });
+  beforeEach(async () => {
+    await db.raw('truncate table users restart identity cascade');
+  });
+  describe('add USER Profile /api/users/:id', () => {
     /*
      */
     //make POST request to register
@@ -45,4 +45,5 @@ describe('GET TEST', () => {
     });
   });
 });
-/************** END GET TEST *****************/
+
+/************** END POST TESTS *****************/

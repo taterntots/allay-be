@@ -2,8 +2,8 @@ const request = require('supertest');
 const server = require('../api/server.js');
 const db = require('../data/dbConfig.js');
 
-/************** BEGIN GET TESTS *****************/
-describe('GET TESTS', () => {
+/************** BEGIN GET TEST *****************/
+describe('GET TEST', () => {
   /*
    */
   describe('GET all USERS /api/users/all', () => {
@@ -46,4 +46,4 @@ describe('GET TESTS', () => {
   });
 });
 
-/************** END PUT TESTS *****************/
+/************** END GET TEST *****************/
