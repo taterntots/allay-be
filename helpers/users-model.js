@@ -54,7 +54,8 @@ function findUserReviews(userId) {
     'r.offer_accepted',
     'u.username as reviewer',
     'c.name as company_name',
-    'c.id as company_id'
+    'c.id as company_id',
+    'c.domain'
   )
     .where('r.user_id', userId)
     .join('users as u', 'r.user_id', 'u.id')
