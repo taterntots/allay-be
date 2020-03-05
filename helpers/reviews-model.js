@@ -28,7 +28,8 @@ function findReviews() {
 			'r.offer_accepted',
 			'u.username as reviewer',
 			'c.name as company_name',
-			'c.id as company_id'
+			'c.id as company_id',
+			'c.domain'
 		)
 		.join('users as u', 'r.user_id', 'u.id')
 		.join('companies as c', 'r.company_id', 'c.id')
@@ -57,7 +58,8 @@ function findReviewById(id) {
 			'r.offer_accepted',
 			'u.id as user_id',
 			'u.username as reviewer',
-			'c.name as company_name'
+			'c.name as company_name',
+			'c.domain'
 		)
 		.join('users as u', 'r.user_id', 'u.id')
 		.join('companies as c', 'r.company_id', 'c.id')
