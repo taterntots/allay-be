@@ -1,14 +1,8 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline. Feel free to add your own flare to it.
-
-🚫 The numbers 1️⃣ through 3️⃣ next to each item represent the week that part of the docs needs to be comepleted by. Make sure to delete the numbers by the end of Labs.
-
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
-
 # API Documentation
 
-#### 1️⃣ Backend delpoyed at [Heroku](https://allay-be-production.herokuapp.com/) <br>
+#### Backend delpoyed at [Heroku](https://allay-be-production.herokuapp.com/) <br>
 
-## 1️⃣ Getting started
+## Getting started
 
 To get the server running locally:
 
@@ -23,7 +17,7 @@ To get the server running locally:
 - Postgres for data persistence
 - Okta for user authentication
 
-## 2️⃣ Endpoints
+## Endpoints
 
 #### Auth Routes
 
@@ -60,7 +54,7 @@ To get the server running locally:
 
 # Data Model
 
-#### 2️⃣ REVIEWS
+#### REVIEWS
 
 ---
 
@@ -74,6 +68,9 @@ To get the server running locally:
     "interview_rating": 2,
     "job_review": "Odit iusto expedita vel sunt impedit cum soluta est eaque. Enim hic voluptates quisquam et non. Et quod fuga ut repellat et.\n \rSit quod incidunt. Suscipit modi impedit est eligendi voluptatem et. Nesciunt velit voluptates. Est molestiae qui et aut possimus facere ut id aut. Non in dolores. Dicta natus porro ad rerum ratione ipsam totam.\n \rAd cumque a dolore dicta rerum et qui. At et impedit omnis officiis. Modi reiciendis repellat commodi sunt. Officia non nemo est aut. Voluptatum ut veniam assumenda temporibus.",
     "job_rating": 2,
+    "tagline": "The best job interview I ever had!",
+    "offer_received": "true",
+    "offer_accepted": "false",
     "reviewer": "Heather87",
     "company_name": "Abernathy - Roberts"
 }
@@ -98,6 +95,9 @@ To get the server running locally:
             "interview_rating": 1,
             "job_review": "Doloribus quis qui quam amet. Non dolores et enim ut sunt. Enim voluptatem quasi et possimus ipsam numquam. Aut laborum doloremque.\n \rSint numquam et qui ea aut mollitia. Provident quia aut. Unde voluptate voluptatem sit sit ut amet.\n \rQuibusdam eum dolore. Nisi sequi ipsa. Facilis nisi enim consequuntur occaecati aut molestiae amet explicabo. Et a accusamus in a quibusdam vitae doloremque corrupti.",
             "job_rating": 5,
+            "tagline": "The best job interview I ever had!",
+            "offer_received": "true",
+            "offer_accepted": "false",
             "user_id": 8,
             "company_id": 45
         },
@@ -110,6 +110,9 @@ To get the server running locally:
             "interview_rating": 2,
             "job_review": "Repellat distinctio ut molestiae quo et non. Placeat consequatur placeat. Quia cum corrupti. Non enim quisquam et eum deleniti est cupiditate. Neque possimus quia.\n \rQuo velit et quas dicta officiis. Libero eos sunt ea vitae minus vitae possimus nemo sed. Inventore iure vel consequuntur. Eum nemo et dolorem ipsa qui.\n \rQuos consequatur quod in architecto repellendus sit adipisci. Eveniet dicta sed. Ea magnam doloremque voluptates dolorum fugiat. Quia veniam soluta voluptatem vel. Non sunt minus eligendi numquam animi. Iure suscipit voluptates esse debitis tempore.",
             "job_rating": 2,
+            "tagline": "The best job interview I ever had!",
+            "offer_received": "true",
+            "offer_accepted": "false",
             "user_id": 8,
             "company_id": 15
         }
@@ -131,7 +134,7 @@ To get the server running locally:
 }
 ```
 
-## 2️⃣ Actions
+## Actions
 
 `findUsers()` -> Returns all users
 
@@ -179,7 +182,7 @@ To get the server running locally:
 
 `deleteReview(reviewId)` -> Deletes the single review
 
-## 3️⃣ Environment Variables
+## Environment Variables
 
 In order for the app to function correctly, the user must set up their own environment variables.
 
@@ -232,5 +235,4 @@ These contribution guidelines have been adapted from [this good-Contributing.md-
 
 ## Documentation
 
-See [Frontend Documentation](🚫link to your frontend readme here) for details on the fronend of our project.
-🚫 Add DS iOS and/or Andriod links here if applicable.
+See [Frontend Documentation](https://github.com/Lambda-School-Labs/allay-fe) for details on the frontend of our project.
