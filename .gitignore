@@ -80,4 +80,4 @@ typings/
 .dynamodb/
 
 # JWT Secret
-.secret.js
+config/secret.js
