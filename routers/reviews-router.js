@@ -42,18 +42,7 @@ router.get('/:id', validateReviewId, (req, res) => {
 });
 
 //***************** ADD NEW REVIEW *******************//
-// router.post('/', (req, res) => {
-//   let review = req.body;
-
-//   Rev.addReview(review)
-//     .then(newReview => {
-//       res.status(201).json(newReview);
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(500).json({ error: 'There was an error' });
-//     });
-// });
+// This is done in the users_router
 
 //************* UPDATE REVIEW ****************//
 router.put('/', (req, res) => {
