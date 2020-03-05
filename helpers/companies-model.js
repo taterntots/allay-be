@@ -10,8 +10,6 @@ module.exports = {
 	deleteCompany
 };
 
-//Create some functions!
-
 // FIND ALL COMPANIES
 function findCompanies() {
 	return db('companies');
