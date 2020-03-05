@@ -72,7 +72,10 @@ To get the server running locally:
     "offer_received": "true",
     "offer_accepted": "false",
     "reviewer": "Heather87",
-    "company_name": "Abernathy - Roberts"
+    "company_name": "Abernathy - Roberts",
+    "company_id": 45,
+    "domain": "abernathyroberts.com"
+    
 }
 ```
 
@@ -85,6 +88,7 @@ To get the server running locally:
 {
     "id": 8,
     "username": "Isabella.Hartmann11",
+    "email": "isabella@gmail.com"
     "reviews": [
         {
             "id": 35,
@@ -98,8 +102,10 @@ To get the server running locally:
             "tagline": "The best job interview I ever had!",
             "offer_received": "true",
             "offer_accepted": "false",
-            "user_id": 8,
-            "company_id": 45
+            "reviewer": "Isabella.Hartmann11",
+            "company_name": "Google",
+            "company_id": 2,
+            "domain": "google.com"
         },
         {
             "id": 42,
@@ -113,8 +119,10 @@ To get the server running locally:
             "tagline": "The best job interview I ever had!",
             "offer_received": "true",
             "offer_accepted": "false",
-            "user_id": 8,
-            "company_id": 15
+            "reviewer": "Isabella.Hartmann11",
+            "company_name": "Uber",
+            "company_id": 87,
+            "domain": "uber.com"
         }
     ]
 }
@@ -127,10 +135,14 @@ To get the server running locally:
 
 ```
 {
-    "id": 14,
-    "name": "Google",
-    "hq_city": "Mountain View",
-    "hq_state": "CA"
+    "id": 45024,
+    "name": "Github",
+    "hq_state": "San Francisco",
+    "hq_city": "CA",
+    "domain": "github.com",
+    "industry_name": "Computer Software",
+    "size_range": "1001 - 5000",
+    "linkedin_url": "linkedin.com/company/github"
 }
 ```
 
