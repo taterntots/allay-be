@@ -44,7 +44,7 @@ describe('PUT TEST', () => {
           email: 'edit_test@test.com'
         });
       expect(res4.type).toBe('application/json');
-      expect(res4.status).toBe(200);
+      expect(res4.status).toBe(202);
       expect({ email: 'edit_test@test.com' }).toMatchObject({
         email: 'edit_test@test.com'
       });

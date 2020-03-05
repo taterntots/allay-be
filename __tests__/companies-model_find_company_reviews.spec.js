@@ -20,6 +20,7 @@ describe('Companies Model', () => {
         interview_rating: 1,
         job_review: 'more info',
         job_rating: 5,
+        tagline: 'The Best Interview Ever!',
         user_id: 1,
         company_id: 1
       };

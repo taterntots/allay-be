@@ -18,6 +18,7 @@ describe('Reviews Model', () => {
         interview_rating: 3,
         job_review: 'more info',
         job_rating: 2,
+        tagline: 'The Best Interview Ever!',
         user_id: 1,
         company_id: 1
       };
@@ -31,6 +32,7 @@ describe('Reviews Model', () => {
         interview_rating: 3,
         job_review: 'more info',
         job_rating: 2,
+        tagline: 'The Best Interview Ever!',
         user_id: 1,
         company_id: 1
       };

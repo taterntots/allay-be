@@ -6,6 +6,7 @@ const db = require('../data/dbConfig.js');
 describe('test company endpoints', () => {
   beforeEach(async () => {
     await db.raw('truncate table users restart identity cascade');
+    await db.raw('truncate table companies restart identity cascade');
   });
 
   // ********************** GET company by ID *******************************
@@ -50,7 +51,7 @@ describe('test company endpoints', () => {
                 expect(res_post.body.name).toBe(new_company.name);
                 expect(res_post.body.hq_state).toBe(new_company.hq_state);
                 expect(res_post.body.hq_city).toBe(new_company.hq_city);
-                console.log('post new company succesful');
+                console.log('post new company successful');
 
                 return request(server)
                   .get('/api/companies/1')
