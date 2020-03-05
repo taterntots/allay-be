@@ -20,7 +20,6 @@ router.get('/all', (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      // console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
@@ -34,7 +33,6 @@ router.get('/:id', validateUserId, (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      // console.log(err);
       res.status(500).json({ error: 'There was an error getting user' });
     });
 });
@@ -101,7 +99,6 @@ router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
       }
     })
     .catch(err => {
-      // console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
@@ -118,7 +115,6 @@ router.get('/:id/reviews', validateUserId, (req, res) => {
       }
     })
     .catch(err => {
-      // console.log(err);
       res.status(500).json({ error: 'Failed to get reviews' });
     });
 });

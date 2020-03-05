@@ -1,6 +1,7 @@
 const db = require('../data/dbConfig');
 const Reviews = require('../helpers/reviews-model');
 const Company = require('../helpers/companies-model');
+const User = require('../helpers/users-model');
 
 describe('Reviews Model', () => {
   beforeEach(async () => {
@@ -10,8 +11,14 @@ describe('Reviews Model', () => {
   });
   describe('updateReview()', () => {
     it('can update a review', async () => {
+
+      const user_1 = {
+        username: 'ignacio',
+        email: 'ignacio@gmail.com',
+        password: 'ignacio'
+      };
+
       const review_1 = {
-        id: 1,
         job_title: 'engineer',
         job_location: 'Tennessee',
         salary: 500,
@@ -25,7 +32,6 @@ describe('Reviews Model', () => {
       };
 
       const review_1_update = {
-        id: 1,
         job_title: 'engineer',
         job_location: 'Tennessee',
         salary: 5500,
@@ -38,18 +44,18 @@ describe('Reviews Model', () => {
         company_id: 1
       };
       const company_1 = {
-        id: 1,
         name: 'Ignacio Test Company',
         hq_state: 'California',
         hq_city: 'San Diego'
       };
 
+      // add the user
+      await User.addUser(user_1);
       // add the companies
       await Company.addCompany(company_1);
-
       // add the reviews
       await Reviews.addReview(review_1);
-
+      // update the reviews
       await Reviews.updateReview(1, review_1_update);
 
       const reviews = await db('reviews');

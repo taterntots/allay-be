@@ -1,6 +1,7 @@
 const db = require('../data/dbConfig');
 const Reviews = require('../helpers/reviews-model');
 const Company = require('../helpers/companies-model');
+const User = require('../helpers/users-model');
 
 describe('Reviews Model', () => {
   beforeEach(async () => {
@@ -10,6 +11,11 @@ describe('Reviews Model', () => {
   });
   describe('addReview()', () => {
     it('can add a new review', async () => {
+      const user_1 = {
+        username: 'ignacio',
+        email: 'ignacio@gmail.com',
+        password: 'ignacio'
+      };
       const review_1 = {
         job_title: 'engineer',
         job_location: 'Tennessee',
@@ -23,17 +29,20 @@ describe('Reviews Model', () => {
         company_id: 1
       };
       const company_1 = {
-        id: 1,
         name: 'Ignacio Test Company',
         hq_state: 'California',
         hq_city: 'San Diego'
       };
+
+      // add the user
+      await User.addUser(user_1);
       // add the company
       await Company.addCompany(company_1);
       // add the review
       await Reviews.addReview(review_1);
       // grab the db
       const reviews = await db('reviews');
+
       //test
       expect(reviews).toHaveLength(1);
       expect(reviews[0].user_id).toBe(review_1.user_id);

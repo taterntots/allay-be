@@ -1,6 +1,7 @@
 const db = require('../data/dbConfig');
 const Reviews = require('../helpers/reviews-model');
 const Company = require('../helpers/companies-model');
+const User = require('../helpers/users-model');
 
 describe('Companies Model', () => {
   beforeEach(async () => {
@@ -11,9 +12,15 @@ describe('Companies Model', () => {
 
   describe('findCompanyReviews()', () => {
     it('can add a new company, submit a new review, then find reviews associated with a company', async () => {
+      // POST new user
+      const user_1 = {
+        username: 'ignacio',
+        email: 'ignacio@gmail.com',
+        password: 'ignacio'
+      };
+
       // POST new company
       const review_1 = {
-        id: 1,
         job_title: 'engineer',
         job_location: 'Tennessee',
         salary: 500,
@@ -27,12 +34,13 @@ describe('Companies Model', () => {
       };
 
       const company_1 = {
-        id: 1,
         name: 'Ignacio Test Company',
         hq_state: 'California',
         hq_city: 'San Diego'
       };
 
+      // add the user
+      await User.addUser(user_1);
       // add the companies
       await Company.addCompany(company_1);
       // add review for the company
