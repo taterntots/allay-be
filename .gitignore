@@ -78,3 +78,6 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# JWT Secret
+config/secret.js
