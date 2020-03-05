@@ -42,18 +42,18 @@ router.get('/:id', validateReviewId, (req, res) => {
 });
 
 //***************** ADD NEW REVIEW *******************//
-router.post('/', (req, res) => {
-  let review = req.body;
+// router.post('/', (req, res) => {
+//   let review = req.body;
 
-  Rev.addReview(review)
-    .then(newReview => {
-      res.status(201).json(newReview);
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: 'There was an error' });
-    });
-});
+//   Rev.addReview(review)
+//     .then(newReview => {
+//       res.status(201).json(newReview);
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       res.status(500).json({ error: 'There was an error' });
+//     });
+// });
 
 //************* UPDATE REVIEW ****************//
 router.put('/', (req, res) => {

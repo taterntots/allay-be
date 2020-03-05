@@ -102,7 +102,6 @@ router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
       }
     })
     .catch(err => {
-      // console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
