@@ -23,6 +23,7 @@ describe('POST TEST', () => {
           email: 'test@test.com',
           password: '1234'
         });
+      expect(res.status).toBe(201);
 
       //make POST request to login and get token
       const res2 = await request(server)
@@ -31,10 +32,23 @@ describe('POST TEST', () => {
           username: 'test',
           password: '1234'
         });
+      expect(res2.status).toBe(200);
       const token = res2.body.token; //store login token
 
-      //make POST request to add trip
+      //make POST request to add company
       const res3 = await request(server)
+        .post('/api/companies')
+        .set('Authorization', token)
+        .send({
+          name: 'Ignacio Test Company',
+          hq_state: 'California',
+          hq_city: 'San Diego'
+        });
+      expect(res3.status).toBe(201);
+
+
+      //make POST request to add review
+      const res4 = await request(server)
         .post('/api/reviews')
         .set('Authorization', token)
         .send({
@@ -50,8 +64,8 @@ describe('POST TEST', () => {
           user_id: '1',
           company_id: '1'
         });
-      expect(res3.type).toBe('application/json');
-      expect(res3.status).toBe(201);
+      expect(res4.type).toBe('application/json');
+      expect(res4.status).toBe(201);
     });
   });
 });

@@ -1,6 +1,7 @@
 const db = require('../data/dbConfig');
 const Reviews = require('../helpers/reviews-model');
 const Company = require('../helpers/companies-model');
+const User = require('../helpers/users-model');
 
 describe('Reviews Model', () => {
   beforeEach(async () => {
@@ -57,9 +58,18 @@ describe('Reviews Model', () => {
         hq_city: 'San Diego'
       };
 
+      const user_1 = {
+        id: 1,
+        username: 'ignacio',
+        email: 'ignacio@gmail.com',
+        password: 'ignacio'
+      };
+
+      // add user
+      await User.addUser(user_1);
       // add the companies
       await Company.addCompany(company_1);
-
+      // add the reviews
       await Reviews.addReview(review_1);
       await Reviews.addReview(review_2);
       await Reviews.addReview(review_3);
