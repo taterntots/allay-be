@@ -24,7 +24,6 @@ router.get('/', (req, res) => {
 
 //*************** GET COMPANIES BY FILTER *****************//
 router.get('/filter', (req, res) => {
-	console.log(req.params, 'req.params ln 23');
 	const filter = req.params.filter;
 
 	Co.findCompaniesBy(filter)
@@ -72,7 +71,6 @@ router.post('/', checkForCompanyData, (req, res) => {
 			res.status(201).json(newCompany);
 		})
 		.catch(err => {
-			console.log(err);
 			res.status(500).json({ error: 'There was an error' });
 		});
 });
@@ -91,7 +89,6 @@ router.put('/', checkForCompanyData, (req, res) => {
 			}
 		})
 		.catch(err => {
-			console.log(err);
 			res.status(500).json({ message: 'Error updating company info' });
 		});
 });

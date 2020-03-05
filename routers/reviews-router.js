@@ -20,7 +20,6 @@ router.get('/', (req, res) => {
 
 //*************** GET REVIEWS BY FILTER *****************//
 router.get('/filter', (req, res) => {
-  console.log(req.params, 'req.params ln 23');
   const filter = req.params.filter;
 
   Rev.findReviewsBy(filter)
@@ -50,7 +49,6 @@ router.post('/', (req, res) => {
       res.status(201).json(newReview);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
@@ -69,7 +67,6 @@ router.put('/', (req, res) => {
       }
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ message: 'Error updating review info' });
     });
 });

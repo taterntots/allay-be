@@ -25,7 +25,6 @@ router.post('/register', checkForRegisterData, (req, res) => {
       res.status(201).json({ newUser, token });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });
@@ -50,7 +49,6 @@ router.post('/login', checkForLoginData, (req, res) => {
       }
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ error: 'There was an error' });
     });
 });

@@ -9,8 +9,6 @@ module.exports = {
 	deleteReview
 };
 
-//Create some functions!
-
 // FIND ALL REVIEWS
 function findReviews() {
 	return db('reviews as r')
