@@ -6,5 +6,7 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropColumn('tagline')
+  return knex.schema.table('reviews', function(tbl) {
+    tbl.dropColumn('tagline');
+  })
 };

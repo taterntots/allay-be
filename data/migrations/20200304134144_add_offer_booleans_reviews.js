@@ -8,6 +8,8 @@ exports.up = function (knex) {
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropColumn('offer_received')
-    .dropColumn('offer_accepted');
+  return knex.schema.table('reviews', function (tbl) {
+    tbl.dropColumn('offer_received')
+      .dropColumn('offer_accepted');
+  })
 };
