@@ -4,8 +4,10 @@ const Company = require('../helpers/companies-model');
 
 describe('Companies Model', () => {
   beforeEach(async () => {
-    await db.raw('truncate table reviews cascade');
-    await db.raw('truncate table companies restart identity cascade ');
+    await db.raw('truncate table reviews restart identity cascade');
+    await db.raw('truncate table companies restart identity cascade');
+    await db.raw('truncate table users restart identity cascade');
+    
   });
   describe('findCompanies()', () => {
     it('can add a few companies then find all companies', async () => {

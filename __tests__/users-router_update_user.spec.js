@@ -7,6 +7,8 @@ describe('PUT TEST', () => {
   /*
    */
   beforeEach(async () => {
+    await db.raw('truncate table reviews restart identity cascade');
+    await db.raw('truncate table companies restart identity cascade');
     await db.raw('truncate table users restart identity cascade');
   });
   describe('update USER /api/users/:id', () => {

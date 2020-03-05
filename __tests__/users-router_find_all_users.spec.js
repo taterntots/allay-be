@@ -8,6 +8,8 @@ describe('GET TEST', () => {
    */
   describe('GET all USERS /api/users/all', () => {
     beforeEach(async () => {
+      await db.raw('truncate table reviews restart identity cascade');
+      await db.raw('truncate table companies restart identity cascade');
       await db.raw('truncate table users restart identity cascade');
     });
     /*

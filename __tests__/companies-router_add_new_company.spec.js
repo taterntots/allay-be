@@ -6,9 +6,9 @@ const db = require('../data/dbConfig.js');
 
 describe('test company endpoints', () => {
   beforeEach(async () => {
-    await db.raw('truncate table users restart identity cascade');
     await db.raw('truncate table reviews restart identity cascade');
     await db.raw('truncate table companies restart identity cascade');
+    await db.raw('truncate table users restart identity cascade');
   });
 
   // ********************** POST new company *******************************

@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
 
 describe('server.js', () => {
   beforeEach(async () => {
-    await db.raw('truncate table users cascade');
-    await db.raw('truncate table reviews cascade');
-    await db.raw('truncate table companies cascade'); //clears table for testing purposes before each test
+    await db.raw('truncate table reviews restart identity cascade');
+    await db.raw('truncate table companies restart identity cascade');
+    await db.raw('truncate table users restart identity cascade');
   });
 
   /*************************** VALIDATE COMPANY BY ID *******************************/

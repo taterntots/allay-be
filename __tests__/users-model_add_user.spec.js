@@ -6,7 +6,9 @@ const Users = require('../helpers/users-model');
 // test Users DB
 describe('Users Model', () => {
   beforeEach(async () => {
-    await db.raw('truncate table users cascade');
+    await db.raw('truncate table reviews restart identity cascade');
+    await db.raw('truncate table companies restart identity cascade');
+    await db.raw('truncate table users restart identity cascade');
   });
   // register or add a new user
   describe('addUser()', () => {

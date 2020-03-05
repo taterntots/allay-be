@@ -4,8 +4,9 @@ const Company = require('../helpers/companies-model');
 
 describe('Reviews Model', () => {
   beforeEach(async () => {
-    await db.raw('truncate table reviews cascade');
-    await db.raw('truncate table companies cascade');
+    await db.raw('truncate table reviews restart identity cascade');
+    await db.raw('truncate table companies restart identity cascade');
+    await db.raw('truncate table users restart identity cascade');
   });
   describe('updateReview()', () => {
     it('can update a review', async () => {
