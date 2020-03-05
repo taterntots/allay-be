@@ -25,7 +25,10 @@ describe('POST TEST', () => {
       //make POST request to login and get token
       const res2 = await request(server)
         .post('/api/auth/login')
-        .send({ username: 'test', password: '1234' });
+        .send({
+          username: 'test',
+          password: '1234'
+        });
       const token = res2.body.token; //store login token
 
       //make GET request for info

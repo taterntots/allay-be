@@ -61,7 +61,6 @@ router.put('/:id', validateUserId, (req, res) => {
           }
         })
         .catch(err => {
-          // console.log(err);
           res.status(500).json({ message: 'Error updating user info' });
         });
     }
