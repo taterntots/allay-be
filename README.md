@@ -31,11 +31,11 @@ To get the server running locally:
 | Method | Endpoint             | Access Control | Description                           |
 | ------ | -------------------- | -------------- | ------------------------------------- |
 | GET    | `/users/all`         | all users      | Returns list of all users.            |
-| GET    | `/users/:id`         | all users      | Returns info for a single user by id. |
+| GET    | `/users/:id`         | all users      | Returns info for a single user by ID. |
 | POST   | `/users/:id/reviews` | all users      | Post helpful review about a company.  |
 | GET    | `/users/:id/reviews` | all users      | Returns all reviews the user posted.  |
-| PUT    | `/users/:id`         | all users      | Update user's account info by id.     |
-| DELETE | `/users/:id`         | all users      | Delete user's account by id.          |
+| PUT    | `/users/:id`         | all users      | Update user's account info by ID.     |
+| DELETE | `/users/:id`         | all users      | Delete user's account by ID.          |
 
 #### Companies Routes
 
@@ -50,7 +50,9 @@ To get the server running locally:
 | Method | Endpoint       | Access Control | Description                  |
 | ------ | -------------- | -------------- | ---------------------------- |
 | GET    | `/reviews`     | all users      | Returns list of all reviews. |
-| GET    | `/reviews/:id` | all users      | Returns single review by id. |
+| GET    | `/reviews/:id` | all users      | Returns single review by ID. |
+| POST   | `/reviews/:id` | all users      | Returns single review by ID. |
+| DELETE | `/reviews/:id` | all users      | Delete user's review by ID.  |
 
 # Data Model
 
@@ -75,7 +77,7 @@ To get the server running locally:
     "company_name": "Abernathy - Roberts",
     "company_id": 45,
     "domain": "abernathyroberts.com"
-    
+
 }
 ```
 
@@ -192,7 +194,7 @@ To get the server running locally:
 
 `updateReview(reviewId, changes object)` -> Updates a single review by ID.
 
-`deleteReview(reviewId)` -> Deletes the single review
+`deleteReview(reviewId)` -> Deletes the single review by ID.
 
 ## Environment Variables
 
