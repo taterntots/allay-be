@@ -41,6 +41,8 @@ router.get('/:id', validateReviewId, (req, res) => {
 });
 
 //***************** ADD NEW REVIEW *******************//
+
+// This is done in the users_router
 router.post('/', (req, res) => {
   let review = req.body;
 

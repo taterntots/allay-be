@@ -90,17 +90,17 @@ router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
   let review = req.body;
   review = { ...review, user_id: id };
 
-  Rev.addReview(review)
-    .then(newReview => {
-      if (newReview && Number(req.user.id) === Number(id)) {
+  if (Number(req.user.id) === Number(id)) {
+    Rev.addReview(review)
+      .then(newReview => {
         res.status(201).json(newReview);
-      } else {
-        res.status(404).json({ message: 'Could not create review' });
-      }
-    })
-    .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
-    });
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'There was an error' });
+      });
+  } else {
+    return res.status(404).json({ error: 'Wrong user' });
+  }
 });
 
 //************* GET ALL REVIEWS FOR USER ID ***************//
