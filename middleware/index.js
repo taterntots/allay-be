@@ -122,9 +122,9 @@ function validateUserId(req, res, next) {
 
 function validateCompanyId(req, res, next) {
 	const id = req.params.id;
-	Companies.findCompanyById(id)
+	Companies.findCompaniesBy({ id })
 		.then(company => {
-			if (company) {
+			if (company.length > 0) {
 				next();
 			} else {
 				res

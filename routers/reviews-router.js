@@ -20,7 +20,6 @@ router.get('/', (req, res) => {
 
 //*************** GET REVIEWS BY FILTER *****************//
 router.get('/filter', (req, res) => {
-  console.log(req.params, 'req.params ln 23');
   const filter = req.params.filter;
 
   Rev.findReviewsBy(filter)
@@ -42,7 +41,19 @@ router.get('/:id', validateReviewId, (req, res) => {
 });
 
 //***************** ADD NEW REVIEW *******************//
+
 // This is done in the users_router
+router.post('/', (req, res) => {
+  let review = req.body;
+
+  Rev.addReview(review)
+    .then(newReview => {
+      res.status(201).json(newReview);
+    })
+    .catch(err => {
+      res.status(500).json({ error: 'There was an error' });
+    });
+});
 
 //************* UPDATE REVIEW ****************//
 router.put('/', (req, res) => {
@@ -58,7 +69,6 @@ router.put('/', (req, res) => {
       }
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({ message: 'Error updating review info' });
     });
 });

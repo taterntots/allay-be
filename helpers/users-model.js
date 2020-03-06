@@ -10,8 +10,6 @@ module.exports = {
   deleteUser
 };
 
-//Create some functions!
-
 // FIND ALL USERS
 function findUsers() {
   return db('users');
