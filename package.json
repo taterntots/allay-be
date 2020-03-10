@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node index.js",
 		"server": "nodemon index.js",
-		"test": "cross-env NODE_ENV=testing jest --watch --runInBand",
+		"test": "jest --detectOpenHandles --forceExit",
 		"coverage": "jest --coverage --detectOpenHandles --forceExit || true"
 	},
 	"repository": {
@@ -36,17 +36,17 @@
 		"pg": "^7.18.1"
 	},
 	"jest": {
-		"testEnvironment": "node"
+		"testEnvironment": "node",
+		"collectCoverageFrom": [
+			"**/*.{js,jsx}",
+			"!**/node_modules/**",
+			"!**/vendor/**",
+			"!**/__tests__/**"
+		]
 	},
 	"devDependencies": {
 		"jest": "^25.1.0",
 		"supertest": "^4.0.2",
 		"cross-env": "^7.0.0"
-	},
-	"collectCoverageFrom": [
-		"**/*.{js,jsx}",
-		"!**/node_modules/**",
-		"!**/vendor/**",
-		"!**/__tests__/**"
-	]
+	}
 }
