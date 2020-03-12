@@ -41,6 +41,8 @@ router.get('/:id', validateReviewId, (req, res) => {
 });
 
 //***************** ADD NEW REVIEW *******************//
+
+// This is done in the users_router
 router.post('/', (req, res) => {
   let review = req.body;
 
@@ -54,21 +56,29 @@ router.post('/', (req, res) => {
 });
 
 //************* UPDATE REVIEW ****************//
-router.put('/', (req, res) => {
+router.put('/:id', validateReviewId, (req, res) => {
   const changes = req.body;
-  const id = req.review.id;
-
-  Rev.updateReview(id, changes)
-    .then(review => {
-      if (review) {
-        res.status(200).json({ review: changes });
-      } else {
-        res.status(404).json({ message: 'Error locating review' });
-      }
-    })
-    .catch(err => {
-      res.status(500).json({ message: 'Error updating review info' });
-    });
+  const { id } = req.params;
+  Rev.findReviewsBy({ id }).then(reviewInfo => {
+    const review = reviewInfo;
+    if (
+      changes === review[0].changes
+    ) {
+      return res.status(200).json({ message: 'No changes to update' });
+    } else {
+      Rev.updateReview(id, changes)
+        .then(info => {
+          if (info) {
+            res.status(202).json({ info: changes });
+          } else {
+            res.status(404).json({ message: 'Error locating review info' });
+          }
+        })
+        .catch(err => {
+          res.status(500).json({ message: 'Error updating review info' });
+        });
+    }
+  });
 });
 
 //****************** DELETE REVIEW ********************//
