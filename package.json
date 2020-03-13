@@ -33,15 +33,14 @@
 		"knex-cleaner": "^1.3.0",
 		"morgan": "^1.9.1",
 		"nodemon": "^2.0.2",
-		"pg": "^7.18.1"
+		"pg": "^7.18.2"
 	},
 	"jest": {
 		"testEnvironment": "node",
 		"collectCoverageFrom": [
 			"**/*.{js,jsx}",
 			"!**/node_modules/**",
-			"!**/vendor/**",
-			"!**/__tests__/**"
+			"!**/vendor/**"
 		]
 	},
 	"devDependencies": {
