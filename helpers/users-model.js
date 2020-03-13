@@ -37,6 +37,7 @@ function findUserById(userId) {
 }
 
 // FIND ONLY THE REVIEWS ASSOCIATED WITH A USER
+//====== needs update========//
 function findUserReviews(userId) {
   return db('reviews as r')
     .select(

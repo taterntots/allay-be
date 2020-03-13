@@ -39,6 +39,11 @@ exports.up = function(knex, Promise) {
       .inTable('states')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    tbl
+      .timestamp('created_at')
+      .notNullable()
+      .defaultTo(knex.raw('now()'));
+    tbl.timestamp('updated_at');
   });
 };
 
