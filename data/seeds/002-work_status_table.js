@@ -1,13 +1,25 @@
-
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('table_name').del()
-    .then(function () {
+  return knex('work_status')
+    .truncate()
+    .then(function() {
       // Inserts seed entries
-      return knex('table_name').insert([
-        {id: 1, colName: 'rowValue1'},
-        {id: 2, colName: 'rowValue2'},
-        {id: 3, colName: 'rowValue3'}
+      return knex('work_status').insert([
+        {
+          work_status: 'Current Employee'
+        },
+        {
+          work_status: 'Former Employee'
+        },
+        {
+          work_status: 'Full Time'
+        },
+        {
+          work_status: 'Part Time'
+        },
+        {
+          work_status: 'Intern'
+        }
       ]);
     });
 };
