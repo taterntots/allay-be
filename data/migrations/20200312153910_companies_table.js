@@ -6,18 +6,18 @@ exports.up = function(knex, Promise) {
       .notNullable()
       .unique();
     tbl.string('hq_city').notNullable();
-    tbl.string('hq_state');
-    tbl.string('domain');
-    tbl.string('industry_name');
-    tbl.string('size_range');
-    tbl.string('linkedin_url');
     tbl
       .integer('state_id')
       .unsigned()
+      .notNullable()
       .references('id')
       .inTable('states')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    tbl.string('domain');
+    tbl.string('industry_name');
+    tbl.string('size_range');
+    tbl.string('linkedin_url');
   });
 };
 
