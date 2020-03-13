@@ -1,18 +1,18 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('types')
-    .truncate()
+    .del()
     .then(function() {
       // Inserts seed entries
       return knex('types').insert([
         {
-          type: 'Onsite Interview'
+          type: 'Onsite'
         },
         {
-          type: 'Presite Interview'
+          type: 'Presite'
         },
         {
-          type: 'Both Onsite and Presite Interviews'
+          type: 'Both Onsite and Presite'
         }
       ]);
     });

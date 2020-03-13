@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('states')
-    .truncate()
+    .del()
     .then(function() {
       // Inserts seed entries
       return knex('states').insert([
@@ -154,6 +154,12 @@ exports.seed = function(knex) {
         },
         {
           abbreviation: 'WY'
+        },
+        {
+          abbreviation: 'Remote'
+        },
+        {
+          abbreviation: 'Unknown'
         }
       ]);
     });
