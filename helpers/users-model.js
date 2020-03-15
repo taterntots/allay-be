@@ -24,16 +24,16 @@ function findUsersBy(filter) {
 function findUserById(userId) {
   return db('users as u')
     .where('id', userId)
-    .select('u.id', 'u.username', 'u.email')
-    .first()
-    .then(user => {
-      return findUserReviews(user.id).then(userReviews => {
-        return {
-          ...user,
-          reviews: userReviews
-        };
-      });
-    });
+    .select('u.id', 'u.username', 'u.email', 'u.track_id')
+    .first();
+  // .then(user => {
+  //   return findUserReviews(user.id).then(userReviews => {
+  //     return {
+  //       ...user,
+  //       reviews: userReviews
+  //     };
+  //   });
+  // });
 }
 
 // FIND ONLY THE REVIEWS ASSOCIATED WITH A USER
