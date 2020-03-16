@@ -36,7 +36,11 @@ server.use(
   // restricted,
   usersRouter
 );
-server.use('/api/companies', restricted, companiesRouter);
+server.use(
+  '/api/companies',
+  //  restricted,
+  companiesRouter
+);
 server.use('/api/reviews', restricted, reviewsRouter);
 server.use(
   '/api/company-reviews',

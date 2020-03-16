@@ -28,7 +28,7 @@ To get the server running locally:
 | POST   | `/auth/register` | all users      | Register a new user account.     |
 | POST   | `/auth/login`    | all users      | Login with a registered account. |
 
-#### Users Routes
+#### Old Users Routes
 
 | Method | Endpoint             | Access Control | Description                           |
 | ------ | -------------------- | -------------- | ------------------------------------- |
@@ -39,13 +39,31 @@ To get the server running locally:
 | PUT    | `/users/:id`         | all users      | Update user's account info by id.     |
 | DELETE | `/users/:id`         | all users      | Delete user's account by id.          |
 
-#### Companies Routes
+#### New Users Routes
+
+| Method | Endpoint                    | Access Control | Description                           |
+| ------ | --------------------------- | -------------- | ------------------------------------- |
+| GET    | `/users/all`                | all users      | Returns list of all users.            |
+| PUT    | `/users/:id`                | all users      | Update user's account info by id.     |
+| DELETE | `/users/:id`                | all users      | Delete user's account by id.          |
+| GET    | `/users/:id`                | all users      | Returns info for a single user by id. |
+| POST   | `/users/:id/company-review` | all users      | Post helpful review about a company.  |
+
+#### Company Routes
 
 | Method | Endpoint         | Access Control | Description                                   |
 | ------ | ---------------- | -------------- | --------------------------------------------- |
 | GET    | `/companies`     | all users      | Returns list of all companies.                |
 | GET    | `/companies/:id` | all users      | Returns the information for a single company. |
 | POST   | `/companies`     | all users      | Creates a new company.                        |
+
+#### Company Reviews Routes
+
+| Method | Endpoint               | Access Control | Description                          |
+| ------ | ---------------------- | -------------- | ------------------------------------ |
+| GET    | `/company-reviews`     | all users      | Returns list of all company reviews. |
+| GET    | `/company-reviews/:id` | all users      | Returns a single company review.     |
+
 
 #### Reviews Routes
 
@@ -137,14 +155,7 @@ To get the server running locally:
 
 ```
 {
-    "id": 45024,
-    "name": "Github",
-    "hq_state": "San Francisco",
-    "hq_city": "CA",
-    "domain": "github.com",
-    "industry_name": "Computer Software",
-    "size_range": "1001 - 5000",
-    "linkedin_url": "linkedin.com/company/github"
+  
 }
 ```
 
