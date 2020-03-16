@@ -41,13 +41,20 @@ To get the server running locally:
 
 #### New Users Routes
 
-| Method | Endpoint                    | Access Control | Description                           |
-| ------ | --------------------------- | -------------- | ------------------------------------- |
-| GET    | `/users/all`                | all users      | Returns list of all users.            |
-| PUT    | `/users/:id`                | all users      | Update user's account info by id.     |
-| DELETE | `/users/:id`                | all users      | Delete user's account by id.          |
-| GET    | `/users/:id`                | all users      | Returns info for a single user by id. |
-| POST   | `/users/:id/company-review` | all users      | Post helpful review about a company.  |
+| Method | Endpoint                              | Access Control | Description                                          |
+| ------ | ------------------------------------- | -------------- | ---------------------------------------------------- |
+| GET    | `/users/all`                          | all users      | Returns list of all users.                           |
+| GET    | `/users/:id`                          | all users      | Returns info for a single user by id.                |
+| PUT    | `/users/:id`                          | all users      | Update user's account info by id.                    |
+| DELETE | `/users/:id`                          | all users      | Delete user's account by id.                         |
+| GET    | `/users/:id/company-reviews`          | all users      | Returns a list of review about a company by user.    |
+| POST   | `/users/:id/add-company-review`       | all users      | Post helpful review about a company.                 |
+| PUT    | `/users/:id/add-company-review/:id`   | all users      | Update a review about a company by id.               |
+| DELETE | `/users/:id/add-company-review/:id`   | all users      | Delete a review about a company by id.               |
+| GET    | `/users/:id/interview-reviews`        | all users      | Returns a list of review about an interview by user. |
+| POST   | `/users/:id/add-interview-review`     | all users      | Post helpful review about an interview.              |
+| PUT    | `/users/:id/add-interview-review/:id` | all users      | Update a review about an interview by id.            |
+| DELETE | `/users/:id/add-interview-review/:id` | all users      | Delete a review about an interview by id.            |
 
 #### Company Routes
 
@@ -64,6 +71,13 @@ To get the server running locally:
 | GET    | `/company-reviews`     | all users      | Returns list of all company reviews. |
 | GET    | `/company-reviews/:id` | all users      | Returns a single company review.     |
 
+#### Interview Reviews Routes
+
+| Method | Endpoint                 | Access Control | Description                            |
+| ------ | ------------------------ | -------------- | -------------------------------------- |
+| GET    | `/interview-reviews`     | all users      | Returns list of all interview reviews. |
+| GET    | `/interview-reviews/:id` | all users      | Returns single interview review by id. |
+
 #### Reviews Routes
 
 | Method | Endpoint       | Access Control | Description                  |
@@ -73,14 +87,27 @@ To get the server running locally:
 
 # Data Model
 
-#### REVIEWS
+#### COMPANY REVIEW
 
 ---
 
 ```
 {
-
-
+    "company_review_id": 7,
+    "job_title": "Full Stack WEB Engineer",
+    "start_date": 2012,
+    "end_date": 2028,
+    "comment": "TEST *** There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage **TEST *** n-characteristic words etc.",
+    "typical_hours": 30,
+    "salary": 15000,
+    "job_rating": 3,
+    "username": "aaron",
+    "company_name": "1 Million Cups Organizer",
+    "logo": "1millioncups.com",
+    "work_status": "Former Employee",
+    "user_id": 4,
+    "created_at": "2020-03-16T15:45:51.249Z",
+    "updated_at": null
 }
 ```
 
@@ -112,6 +139,28 @@ To get the server running locally:
             "updated_at": null
         }
     ]
+}
+```
+
+#### Interview Review
+
+---
+
+```
+{
+    "interview_review_id": 1,
+    "job_title": "WEB DEV",
+    "interview_rounds": "2",
+    "overall_rating": "5",
+    "difficulty_rating": "5",
+    "salary": 134000,
+    "username": "aaron",
+    "company_name": "1 Million Cups Organizer",
+    "offer_status": "Offer Accepted",
+    "abbreviation": "CA",
+    "user_id": 4,
+    "created_at": "2020-03-16T20:33:41.126Z",
+    "updated_at": null
 }
 ```
 

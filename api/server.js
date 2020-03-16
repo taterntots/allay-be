@@ -19,7 +19,7 @@ const usersRouter = require('../routers/users-router.js');
 const companiesRouter = require('../routers/companies-router.js');
 const reviewsRouter = require('../routers/reviews-router.js');
 const companyReviewsRouter = require('../routers/company-reviews-router.js');
-// const interviewReviewsRouter = require('../routers/interview-reviews-router.js');
+const interviewReviewsRouter = require('../routers/interview-reviews-router.js');
 
 //endpoints
 server.get('/', (req, res) => {
@@ -47,10 +47,10 @@ server.use(
   // restricted,
   companyReviewsRouter
 );
-// server.use(
-//   '/api/interview-reviews',
-//   //  restricted,
-//   interviewReviewsRouter
-// );
+server.use(
+  '/api/interview-reviews',
+  //  restricted,
+  interviewReviewsRouter
+);
 
 module.exports = server;
