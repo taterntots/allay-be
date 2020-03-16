@@ -33,6 +33,35 @@
 - [x] interview review router
 - [x] company review router
 
-localhost:3333/api/users/2/company-review
-localhost:3333/api/users/2/interview-review
-localhost:3333/api/users/2/reviews/all
+localhost:3333/api/company-reviews/2
+localhost:3333/api/interview-reviews
+localhost:3333/api/users/2/company-review/50
+
+
+## files needing to get looked at before checking them off
+- users router 
+  - post/put/delete (still needs to get update)
+  - [x]check the errors for accuracy readings
+  - setting up middleware
+  - [x] add comments
+
+- company-reviews-router.js
+  - [x] add comments
+  - add middleware
+  - [x] add proper errors
+
+- reviews-router.js
+  - delete updated changes
+  - make sure we are no longer using it
+
+- users-model
+  - needs more functions added
+  - add crud for both 
+    - [x] company reviews 
+    - interview reviews
+
+- company-reviews-model
+  - [x] finished model
+  - [x] add comments
+  - double check work
+
