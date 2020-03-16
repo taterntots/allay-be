@@ -2,6 +2,7 @@ const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
 const Rev = require('../helpers/reviews-model.js');
+const IRevs = require('../helpers/interview-reviews-model');
 const CRevs = require('../helpers/company-reviews-model.js');
 const {
   checkForReviewData,
@@ -10,7 +11,7 @@ const {
 
 /**************************************************************************/
 
-//                  for endpoints beginning with /users                   //
+//                  for users endpoints beginning with /users                   //
 
 /**************************************************************************/
 
@@ -89,11 +90,11 @@ router.delete('/:id', async (req, res) => {
 
 /**************************************************************************/
 
-//                  for endpoints beginning with /users/:id                   //
+//        for company interview endpoints beginning with /users/:id                   //
 
 /**************************************************************************/
 
-//***************** GET USERS COMPANY REVIEW *******************//
+//***************** GET USERS COMPANY REVIEWS *******************//
 
 router.get(
   '/:id/company-reviews',
@@ -108,6 +109,25 @@ router.get(
       .catch(err => {
         res.status(500).json(err, {
           error: 'There was an error getting user company reviews'
+        });
+      });
+  }
+);
+
+//***************** GET USERS SINGLE COMPANY REVIEW BY ID*******************//
+router.get(
+  '/:id/company-review/:id',
+  // validateUserId,
+  (req, res) => {
+    const { id } = req.params;
+
+    User.findUserCompanyReviewById(id)
+      .then(userReview => {
+        res.status(200).json(userReview);
+      })
+      .catch(err => {
+        res.status(500).json(err, {
+          error: 'There was an error getting a single user company review'
         });
       });
   }
@@ -139,7 +159,7 @@ router.post(
     //   }
   }
 );
-//************* EDIT A REVIEW WITH USER ID ***************//
+//************* EDIT A COMPANY REVIEW WITH USER ID ***************//
 
 router.put('/:id/company-reviews/:id', (req, res) => {
   const { id } = req.params;
@@ -152,7 +172,7 @@ router.put('/:id/company-reviews/:id', (req, res) => {
         res.status(200).json({ updatedReview: changes });
       } else {
         res.status(404).json(err, {
-          error: 'could not find a valid review'
+          error: 'could not find a valid company review'
         });
       }
     })
@@ -171,7 +191,117 @@ router.delete('/:id/company-reviews/:id', (req, res) => {
     })
     .catch(err => {
       res.status(500).json(err, {
-        error: ' was not able to delete review'
+        error: ' was not able to delete company review'
+      });
+    });
+});
+
+/**************************************************************************/
+
+//           for interview review endpoints beginning with /users/:id                   //
+
+/**************************************************************************/
+
+//***************** GET USERS INTERVIEW REVIEWS *******************//
+
+router.get(
+  '/:id/interview-reviews',
+  // validateUserId,
+  (req, res) => {
+    const { id } = req.params;
+
+    User.findUserInterviewReviews(id)
+      .then(user => {
+        res.status(200).json(user);
+      })
+      .catch(err => {
+        res.status(500).json(err, {
+          error: 'There was an error getting user interview reviews'
+        });
+      });
+  }
+);
+
+//************* GET A SINGLE REVIEW BY USER ID ***************//
+
+router.get(
+  '/:id/interview-review/:id',
+  // validateUserId,
+  (req, res) => {
+    const { id } = req.params;
+
+    User.findUserInterviewReviewById(id)
+      .then(userReview => {
+        res.status(200).json(userReview);
+      })
+      .catch(err => {
+        res.status(500).json(err, {
+          error: 'There was an error getting a single user interview review'
+        });
+      });
+  }
+);
+
+//***************** ADD NEW INTERVIEW REVIEW *******************// ===== make sure to update the if else statement====
+router.post(
+  '/:id/add-interview-review',
+  //  checkForReviewData,
+  // validateUserId,
+  (req, res) => {
+    const { id } = req.params;
+    console.log(req.user);
+    let interviewReview = req.body;
+    interviewReview = { ...interviewReview, user_id: id };
+
+    // if (Number(req.user.id) === Number(id)) {
+    IRevs.addInterviewReview(interviewReview)
+      .then(newReview => {
+        res.status(201).json(newReview);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json(err, { error: 'There was an error check id or review fields' });
+      });
+    //   } else {
+    //     return res.status(404).json({ error: 'Wrong user' });
+    //   }
+  }
+);
+
+//************* EDIT A INTERVIEW REVIEW WITH USER ID ***************//
+
+router.put('/:id/interview-reviews/:id', (req, res) => {
+  const { id } = req.params;
+
+  const changes = req.body;
+
+  IRevs.updateInterviewReview(id, changes)
+    .then(updatedReview => {
+      if (updatedReview) {
+        res.status(200).json({ updatedReview: changes });
+      } else {
+        res.status(404).json(err, {
+          error: 'could not find a valid interview review'
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).json(err, { error: 'can not edit interview review' });
+    });
+});
+
+//************* DELETE A COMPANY REVIEW BY USER ID ***************//
+
+router.delete('/:id/interview-reviews/:id', (req, res) => {
+  const { id } = req.params;
+  IRevs.deleteInterviewReview(id)
+    .then(deleted => {
+      res.status(200).json(deleted);
+    })
+    .catch(err => {
+      res.status(500).json(err, {
+        error: ' was not able to delete interview review'
       });
     });
 });

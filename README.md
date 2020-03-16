@@ -148,20 +148,20 @@ To get the server running locally:
 
 ```
 {
-    "interview_review_id": 1,
-    "job_title": "WEB DEV",
-    "interview_rounds": "2",
-    "overall_rating": "5",
-    "difficulty_rating": "5",
-    "salary": 134000,
-    "username": "aaron",
-    "company_name": "1 Million Cups Organizer",
-    "offer_status": "Offer Accepted",
-    "abbreviation": "CA",
-    "user_id": 4,
-    "created_at": "2020-03-16T20:33:41.126Z",
-    "updated_at": null
-}
+        "interview_review_id": 1,
+        "job_title": "WEB DEV",
+        "interview_rounds": "2",
+        "overall_rating": "5",
+        "difficulty_rating": "5",
+        "salary": 134000,
+        "username": "aaron",
+        "company_name": "1 Million Cups Organizer",
+        "offer_status": "Offer Accepted",
+        "city": "Los Angeles",
+        "abbreviation": "CA",
+        "created_at": "2020-03-16T20:33:41.126Z",
+        "updated_at": null
+    }
 ```
 
 #### COMPANIES

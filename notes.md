@@ -34,9 +34,12 @@
 - [x] interview review router
 - [x] company review router
 
-localhost:3333/api/company-reviews/2
-localhost:3333/api/interview-reviews
-localhost:3333/api/users/2/company-review/50
+* localhost:3333/api/users/3
+  - /company-review/50
+  - /interview-review/5
+
+- localhost:3333/api/company-reviews/2
+- localhost:3333/api/interview-reviews
 
 ## files needing to get looked at before checking them off
 
@@ -86,3 +89,11 @@ localhost:3333/api/users/2/company-review/50
 - add comments
 - implement middleware
 - trello update
+
+# Bugs
+
+1. (users-router) get(/:id/company-`review`/:id)
+
+- we had to make sure it is singular because if the url was plural (reviews) postman throws a 404 error.
+
+2. Double check migrations table that appropriate input fields are integers instead of strings. (Top Priority)

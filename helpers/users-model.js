@@ -5,6 +5,9 @@ module.exports = {
   findUsersBy,
   findUserById,
   findUserCompanyReviews,
+  findUserCompanyReviewById,
+  findUserInterviewReviews,
+  findUserInterviewReviewById,
   addUser,
   updateUser,
   deleteUser
@@ -31,6 +34,14 @@ function findUserById(userId) {
         return {
           ...user,
           company_reviews: userReviews
+        };
+      });
+    })
+    .then(user => {
+      return findUserInterviewReviews(user.id).then(userReviews => {
+        return {
+          ...user,
+          interview_reviews: userReviews
         };
       });
     });
@@ -62,7 +73,86 @@ function findUserCompanyReviews(userId) {
     .join('work_status as ws', 'cr.work_status_id', 'ws.id');
 }
 
+// FIND A SINGLE COMPANY REVIEW ASSOCIATED WITH A USER
+
+function findUserCompanyReviewById(revId) {
+  return db('company_reviews as cr')
+    .select(
+      'cr.id as company_review_id',
+      'cr.job_title',
+      'cr.start_date',
+      'cr.end_date',
+      'cr.comment',
+      'cr.typical_hours',
+      'cr.salary',
+      'cr.job_rating',
+      'u.username as username',
+      'c.company_name',
+      'c.domain as logo',
+      'ws.work_status ',
+      'cr.created_at',
+      'cr.updated_at'
+    )
+    .where('cr.id', revId)
+    .join('users as u', 'cr.user_id', 'u.id')
+    .join('companies as c', 'cr.company_id', 'c.id')
+    .join('work_status as ws', 'cr.work_status_id', 'ws.id');
+}
+
+// FIND ONLY THE INTERVIEW REVIEWS ASSOCIATED WITH A USER
+
+function findUserInterviewReviews(userId) {
+  return db('interview_reviews as ir')
+    .select(
+      'ir.id as interview_review_id',
+      'ir.job_title',
+      'ir.interview_rounds',
+      'ir.overall_rating',
+      'ir.difficulty_rating',
+      'ir.salary',
+      'u.username as username',
+      'c.company_name',
+      'os.offer_status',
+      'ir.city',
+      's.abbreviation',
+      'ir.created_at',
+      'ir.updated_at'
+    )
+    .where('ir.user_id', userId)
+    .join('users as u', 'ir.user_id', 'u.id')
+    .join('companies as c', 'ir.company_id', 'c.id')
+    .join('offer_status as os', 'ir.offer_status_id', 'os.id')
+    .join('states as s', 'ir.state_id', 's.id');
+}
+
+// FIND A SINGLE INTERVIEW REVIEW ASSOCIATED WITH A USER
+
+function findUserInterviewReviewById(id) {
+  return db('interview_reviews as ir')
+    .select(
+      'ir.id as interview_review_id',
+      'ir.job_title',
+      'ir.interview_rounds',
+      'ir.overall_rating',
+      'ir.difficulty_rating',
+      'ir.salary',
+      'u.username as username',
+      'c.company_name',
+      'os.offer_status',
+      'ir.city',
+      's.abbreviation',
+      'ir.created_at',
+      'ir.updated_at'
+    )
+    .where('ir.id', id)
+    .join('users as u', 'ir.user_id', 'u.id')
+    .join('companies as c', 'ir.company_id', 'c.id')
+    .join('offer_status as os', 'ir.offer_status_id', 'os.id')
+    .join('states as s', 'ir.state_id', 's.id');
+}
+
 // ADD A USER TO THE DATABASE
+
 function addUser(user) {
   return db('users')
     .insert(user, 'id')
@@ -72,6 +162,7 @@ function addUser(user) {
 }
 
 // UPDATE AN EXISTING USER
+
 function updateUser(id, changes) {
   return db('users')
     .where({ id })
@@ -80,6 +171,7 @@ function updateUser(id, changes) {
 }
 
 // DELETE AN EXISTING USER
+
 function deleteUser(id) {
   return db('users')
     .where({ id })
