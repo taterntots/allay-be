@@ -21,11 +21,9 @@ router.get('/all', (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      res
-        .status(500)
-        .json(err, {
-          error: 'There was an error getting all users to dsiplay'
-        });
+      res.status(500).json(err, {
+        error: 'There was an error getting all users to dsiplay'
+      });
     });
 });
 
@@ -102,7 +100,6 @@ router.get(
   // validateUserId,
   (req, res) => {
     const { id } = req.params;
-    console.log({ id });
 
     User.findUserCompanyReviews(id)
       .then(user => {

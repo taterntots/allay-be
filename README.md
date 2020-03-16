@@ -64,7 +64,6 @@ To get the server running locally:
 | GET    | `/company-reviews`     | all users      | Returns list of all company reviews. |
 | GET    | `/company-reviews/:id` | all users      | Returns a single company review.     |
 
-
 #### Reviews Routes
 
 | Method | Endpoint       | Access Control | Description                  |
@@ -80,22 +79,8 @@ To get the server running locally:
 
 ```
 {
-    "id": 2,
-    "job_title": "National Factors Consultant",
-    "job_location": "Iowa",
-    "salary": 87000,
-    "interview_review": "Nisi itaque natus atque. Voluptatum laudantium temporibus aut enim officia quasi. Quasi dolorum minus repellat est doloremque. Laboriosam hic ducimus facilis. Et esse minus qui et maiores. Eos laudantium maiores optio ut voluptate.",
-    "interview_rating": 2,
-    "job_review": "Odit iusto expedita vel sunt impedit cum soluta est eaque. Enim hic voluptates quisquam et non. Et quod fuga ut repellat et.\n \rSit quod incidunt. Suscipit modi impedit est eligendi voluptatem et. Nesciunt velit voluptates. Est molestiae qui et aut possimus facere ut id aut. Non in dolores. Dicta natus porro ad rerum ratione ipsam totam.\n \rAd cumque a dolore dicta rerum et qui. At et impedit omnis officiis. Modi reiciendis repellat commodi sunt. Officia non nemo est aut. Voluptatum ut veniam assumenda temporibus.",
-    "job_rating": 2,
-    "tagline": "The best job interview I ever had!",
-    "offer_received": "true",
-    "offer_accepted": "false",
-    "reviewer": "Heather87",
-    "company_name": "Abernathy - Roberts",
-    "company_id": 45,
-    "domain": "abernathyroberts.com"
-    
+
+
 }
 ```
 
@@ -105,47 +90,28 @@ To get the server running locally:
 
 ```
 {
-{
-    "id": 8,
-    "username": "Isabella.Hartmann11",
-    "email": "isabella@gmail.com"
-    "reviews": [
+    "id": 4,
+    "username": "aaron",
+    "email": "ap@test.email.com",
+    "track_id": 3,
+    "company_reviews": [
         {
-            "id": 35,
-            "job_title": "Corporate Configuration Representative",
-            "job_location": "Iowa",
-            "salary": 97000,
-            "interview_review": "Aut esse minima adipisci molestias velit optio dolores. Et dolore dolor iste nisi aut aut beatae voluptatem. Dignissimos quis et omnis sit ut repudiandae rerum ut at. Nihil sed placeat facilis tempora. Architecto ea possimus. Veritatis beatae nemo facilis autem adipisci nihil nesciunt sit.",
-            "interview_rating": 1,
-            "job_review": "Doloribus quis qui quam amet. Non dolores et enim ut sunt. Enim voluptatem quasi et possimus ipsam numquam. Aut laborum doloremque.\n \rSint numquam et qui ea aut mollitia. Provident quia aut. Unde voluptate voluptatem sit sit ut amet.\n \rQuibusdam eum dolore. Nisi sequi ipsa. Facilis nisi enim consequuntur occaecati aut molestiae amet explicabo. Et a accusamus in a quibusdam vitae doloremque corrupti.",
-            "job_rating": 5,
-            "tagline": "The best job interview I ever had!",
-            "offer_received": "true",
-            "offer_accepted": "false",
-            "reviewer": "Isabella.Hartmann11",
-            "company_name": "Google",
-            "company_id": 2,
-            "domain": "google.com"
-        },
-        {
-            "id": 42,
-            "job_title": "Customer Directives Supervisor",
-            "job_location": "Colorado",
-            "salary": 65000,
-            "interview_review": "Odio sed quia eum eos error in perferendis qui doloremque. Quis dolores sed dolorum debitis hic id. Modi voluptatibus quasi aut beatae quo.",
-            "interview_rating": 2,
-            "job_review": "Repellat distinctio ut molestiae quo et non. Placeat consequatur placeat. Quia cum corrupti. Non enim quisquam et eum deleniti est cupiditate. Neque possimus quia.\n \rQuo velit et quas dicta officiis. Libero eos sunt ea vitae minus vitae possimus nemo sed. Inventore iure vel consequuntur. Eum nemo et dolorem ipsa qui.\n \rQuos consequatur quod in architecto repellendus sit adipisci. Eveniet dicta sed. Ea magnam doloremque voluptates dolorum fugiat. Quia veniam soluta voluptatem vel. Non sunt minus eligendi numquam animi. Iure suscipit voluptates esse debitis tempore.",
-            "job_rating": 2,
-            "tagline": "The best job interview I ever had!",
-            "offer_received": "true",
-            "offer_accepted": "false",
-            "reviewer": "Isabella.Hartmann11",
-            "company_name": "Uber",
-            "company_id": 87,
-            "domain": "uber.com"
+            "company_review_id": 7,
+            "job_title": "Full Stack WEB Engineer",
+            "start_date": 2012,
+            "end_date": 2028,
+            "comment": "TEST *** There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage **TEST *** n-characteristic words etc.",
+            "typical_hours": 30,
+            "salary": 15000,
+            "job_rating": 3,
+            "username": "aaron",
+            "company_name": "1 Million Cups Organizer",
+            "logo": "1millioncups.com",
+            "work_status": "Former Employee",
+            "created_at": "2020-03-16T15:45:51.249Z",
+            "updated_at": null
         }
     ]
-}
 }
 ```
 
@@ -155,7 +121,15 @@ To get the server running locally:
 
 ```
 {
-  
+    "id": 12,
+    "company_name": "1 Million Cups Organizer",
+    "hq_city": "Kansas City",
+    "state_id": 25,
+    "domain": "1millioncups.com",
+    "industry_name": "Philanthropy",
+    "size_range": "51 - 200",
+    "linkedin_url": "linkedin.com/company/1-million-cups-organizer",
+    "reviews": []
 }
 ```
 
