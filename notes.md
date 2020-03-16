@@ -27,3 +27,62 @@
 - [x] company_review
 - [x] interview_review
 - [x] topic_by_interview
+
+## What tables are you changing currently
+
+- [x] users-model (adding functions for interview and company review)
+- [x] interview review router
+- [x] company review router
+
+localhost:3333/api/company-reviews/2
+localhost:3333/api/interview-reviews
+localhost:3333/api/users/2/company-review/50
+
+## files needing to get looked at before checking them off
+
+### users-router
+
+- post/put/delete (still needs to get update)
+  - [x]company-reviews
+  - interview-reviews
+- [x]check the errors for accuracy readings
+- setting up middleware
+- [x] add comments
+
+### company-reviews-router.js
+
+- [x] add comments
+- add middleware
+- [x] add proper errors
+
+### interview-reviews-router
+
+- needs new routes (all crud)
+- added comments
+- setup/create middleware
+- trello update
+
+### reviews-router.js
+
+- delete updated changes
+- make sure we are no longer using it
+
+### users-model
+
+- needs more functions added
+- add crud for both
+  - [x] company reviews
+  - interview reviews
+
+### company-reviews-model
+
+- [x] finished model
+- [x] add comments
+- double check work
+
+### interview-reviews-model
+
+- all new functions are performing crud
+- add comments
+- implement middleware
+- trello update
