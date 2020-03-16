@@ -6,13 +6,28 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('topics').insert([
         {
-          topic: ''
+          topic: 'Phone Interview'
         },
         {
-          topic: ''
+          topic: 'Resume Review'
         },
         {
-          topic: ''
+          topic: 'Take-Home Assignments'
+        },
+        {
+          topic: 'Online Coding Tests'
+        },
+        {
+          topic: 'Portfolio Review'
+        },
+        {
+          topic: 'Screen Share'
+        },
+        {
+          topic: 'Open Source Contribution'
+        },
+        {
+          topic: 'Side Projects'
         }
       ]);
     });
