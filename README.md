@@ -87,30 +87,6 @@ To get the server running locally:
 
 # Data Model
 
-#### COMPANY REVIEW
-
----
-
-```
-{
-    "company_review_id": 7,
-    "job_title": "Full Stack WEB Engineer",
-    "start_date": 2012,
-    "end_date": 2028,
-    "comment": "TEST *** There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage **TEST *** n-characteristic words etc.",
-    "typical_hours": 30,
-    "salary": 15000,
-    "job_rating": 3,
-    "username": "aaron",
-    "company_name": "1 Million Cups Organizer",
-    "logo": "1millioncups.com",
-    "work_status": "Former Employee",
-    "user_id": 4,
-    "created_at": "2020-03-16T15:45:51.249Z",
-    "updated_at": null
-}
-```
-
 #### USERS
 
 ---
@@ -142,26 +118,45 @@ To get the server running locally:
 }
 ```
 
+#### COMPANY REVIEW
+
+---
+
+```
+{
+    "job_title": "Full Stack WEB Engineer",
+    "start_date": 2012,
+    "end_date": 2028,
+    "comment": "TEST *** There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage **TEST *** n-characteristic words etc.",
+    "typical_hours": 30,
+    "salary": 15000,
+    "job_rating": 3,
+    "company_id: 12,
+    "work_status_id": 1,
+    "created_at": "2020-03-16T15:45:51.249Z",
+    "updated_at": null
+}
+```
+
 #### Interview Review
 
 ---
 
 ```
 {
-    "interview_review_id": 1,
-    "job_title": "WEB DEV",
-    "interview_rounds": "2",
-    "overall_rating": "5",
-    "difficulty_rating": "5",
-    "salary": 134000,
-    "username": "aaron",
-    "company_name": "1 Million Cups Organizer",
-    "offer_status": "Offer Accepted",
-    "abbreviation": "CA",
-    "user_id": 4,
-    "created_at": "2020-03-16T20:33:41.126Z",
-    "updated_at": null
-}
+        "interview_review_id": 1,
+        "job_title": "Web Developer",
+        "interview_rounds": 2,
+        "overall_rating": 5,
+        "difficulty_rating": 5,
+        "salary": 134000,
+        "company_id: 12,
+        "offer_status_id": 2,
+        "city": "Los Angeles",
+        "state_id": 3,
+        "created_at": "2020-03-16T20:33:41.126Z",
+        "updated_at": null
+    }
 ```
 
 #### COMPANIES
@@ -188,9 +183,15 @@ To get the server running locally:
 
 `findUsersBy({ filter })` -> Returns a single user by specified filter. Must use {}.
 
-`findUserById(userId)` -> Returns all data for a single user by ID (including all reviews).
+`findUserById(userId)` -> Returns all data for a single user by ID (including all company and interview).
 
-`findUserReviews(userId)` => Returns reviews related to a user.
+`findUserCompanyReviews(userId)` => Returns company reviews related to a user.
+
+`findUserCompanyReviewById(revId)` => Returns a single company review related to a user.
+
+`findUserInterviewReviews(userId)` => Returns interview reviews related to a user.
+
+`findUserInterviewReviewById(revId)` => Returns a single interview review related to a user.
 
 `addUser(user object)` -> Creates a new user and returns that user.
 
@@ -218,17 +219,32 @@ To get the server running locally:
 <br>
 <br>
 
-`getReviews()` -> Returns a list of all reviews
+`findCompanyReviews()` -> Returns a list of all company reviews.
 
-`getReviewsBy(filter)` -> Returns a single review by specified filter
+`findCompanyReviewBy(filter)` -> Returns a single company review by specified filter.
 
-`getReviewsById(reviewId)` -> Returns a single review by review ID including user and company info
+`findCompanyReviewById(id)` -> Returns a single review by review ID.
 
-`addReview(review object)` --> Creates a new review and returns that review.
+`addCompanyReview(newReview)` --> Creates a new company review and returns that review.
 
-`updateReview(reviewId, changes object)` -> Updates a single review by ID.
+`updateReview(id, changes)` -> Updates a single company review by ID.
 
-`deleteReview(reviewId)` -> Deletes the single review
+`deleteCompanyReview(id)` -> Deletes a single company review by ID.
+<br>
+<br>
+<br>
+
+`findInterviewReviews()` -> Returns a list of all interview reviews.
+
+`findInterviewReviewBy(filter)` -> Returns a single interview review by specified filter.
+
+`findInterviewReviewById(id)` -> Returns a single interview review by review ID.
+
+`addInterviewReview(newReview)` --> Creates a new interview review and returns that review.
+
+`updateInterviewReview(id, changes)` -> Updates a single interview review by ID.
+
+`deleteInterviewReview(id)` -> Deletes a single interview review by ID.
 
 ## Environment Variables
 

@@ -10,16 +10,19 @@ module.exports = {
 };
 
 // FIND ALL INTERVIEW REVIEWS
+
 function findInterviewReviews() {
   return db('interview_reviews');
 }
 
 // FIND INTERVIEW REVIEWS BY A SPECIFIC FILTER
+
 function findInterviewReviewBy(filter) {
   return db('interview_reviews').where(filter);
 }
 
 // FIND INTERVIEW REVIEW BY ID
+
 function findInterviewReviewById(id) {
   return db('interview_reviews as ir')
     .select(
@@ -32,6 +35,7 @@ function findInterviewReviewById(id) {
       'u.username as username',
       'c.company_name',
       'os.offer_status',
+      'ir.city',
       's.abbreviation',
       'u.id as user_id',
       'ir.created_at',
@@ -46,6 +50,7 @@ function findInterviewReviewById(id) {
 }
 
 // ADD A NEW INTERVIEW REVIEW
+
 function addInterviewReview(newReview) {
   return db('interview_reviews')
     .insert(newReview, 'id')
@@ -55,6 +60,7 @@ function addInterviewReview(newReview) {
 }
 
 // UPDATE AN EXISTING INTERVIEW REVIEW
+
 function updateInterviewReview(id, changes) {
   return db('interview_reviews')
     .where({ id })
@@ -63,6 +69,7 @@ function updateInterviewReview(id, changes) {
 }
 
 // DELETE AN EXISTING INTERVIEW REVIEW
+
 function deleteInterviewReview(id) {
   return db('interview_reviews')
     .where({ id })
