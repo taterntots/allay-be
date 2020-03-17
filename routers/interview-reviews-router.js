@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const IRevs = require('../helpers/interview-reviews-model');
 
+const { validateInterviewReviewId } = require('../middleware/index.js');
+
 //************* GET ALL COMPANY REVIEWS ***************//
 router.get('/', (req, res) => {
   IRevs.findInterviewReviews()
@@ -32,10 +34,10 @@ router.get('/filter', (req, res) => {
 
 //************* GET ALL COMPANY REVIEW BY USER ID ***************//
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
+router.get('/:revId', validateInterviewReviewId, (req, res) => {
+  const { revId } = req.params;
 
-  IRevs.findInterviewReviewById(id)
+  IRevs.findInterviewReviewById(revId)
     .then(userReview => {
       res.json(userReview);
     })

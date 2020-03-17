@@ -9,6 +9,18 @@ const { validateReviewId } = require('../middleware/index.js');
 
 /**************************************************************************/
 
+//================================================================
+
+router.get('/filter', (req, res) => {
+  const filter = req.params.filter;
+  console.log(filter);
+  Rev.findAllReviews(filter)
+    .then(company => {
+      res.json(company);
+    })
+    .catch(err => res.send(err));
+});
+//================================================================
 //************** GET ALL REVIEWS ****************//
 router.get('/', (req, res) => {
   Rev.findReviews()

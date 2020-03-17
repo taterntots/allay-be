@@ -3,7 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../helpers/users-model.js');
-const { checkForRegisterData, checkForLoginData } = require('../middleware/index.js');
+const {
+  checkForRegisterData,
+  checkForLoginData
+} = require('../middleware/index.js');
 
 const { jwtSecret } = require('../config/secret.js');
 
@@ -25,7 +28,7 @@ router.post('/register', checkForRegisterData, (req, res) => {
       res.status(201).json({ newUser, token });
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      res.status(500).json({ error: 'There was an error signing up.' });
     });
 });
 /*************************** END REGISTER *******************************/
@@ -49,7 +52,7 @@ router.post('/login', checkForLoginData, (req, res) => {
       }
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      res.status(500).json({ error: 'There was an error signing in' });
     });
 });
 
