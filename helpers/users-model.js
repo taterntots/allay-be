@@ -127,7 +127,7 @@ function findUserInterviewReviews(userId) {
 
 // FIND A SINGLE INTERVIEW REVIEW ASSOCIATED WITH A USER
 
-function findUserInterviewReviewById(id) {
+function findUserInterviewReviewById(revId) {
   return db('interview_reviews as ir')
     .select(
       'ir.id as interview_review_id',
@@ -144,7 +144,7 @@ function findUserInterviewReviewById(id) {
       'ir.created_at',
       'ir.updated_at'
     )
-    .where('ir.id', id)
+    .where('ir.id', revId)
     .join('users as u', 'ir.user_id', 'u.id')
     .join('companies as c', 'ir.company_id', 'c.id')
     .join('offer_status as os', 'ir.offer_status_id', 'os.id')

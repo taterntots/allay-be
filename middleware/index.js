@@ -147,6 +147,7 @@ function checkForCompanyReviewData(req, res, next) {
   } else if (
     !req.body.job_title ||
     !req.body.start_date ||
+    !req.body.job_rating ||
     !req.body.end_date ||
     !req.body.salary ||
     !req.body.typical_hours ||
@@ -155,20 +156,80 @@ function checkForCompanyReviewData(req, res, next) {
   ) {
     res.status(400).json({
       errorMessage:
-        'job title, job location, salary, and company id are required'
+        'job title, job location, salary, start end and end dates, typical hours, work status id, and company id are required'
     });
   } else {
     next();
   }
 }
 
-function validateCompanyReviewId(req, res, next) {}
+function validateCompanyReviewId(req, res, next) {
+  const { revId } = req.params;
+  CRevs.findCompanyReviewById(revId)
+    .then(review => {
+      if (review) {
+        next();
+      } else {
+        res.status(404).json({
+          errorMessage:
+            'The company review with the specified ID does not exist'
+        });
+      }
+    })
+    .catch(erorr => {
+      res.status(500).json({
+        errorMessage:
+          'Could not validate company review information for the specified ID'
+      });
+    });
+}
 
 // Interview Reviews Router
 
-function checkForInterviewReviewData(req, res, next) {}
+function checkForInterviewReviewData(req, res, next) {
+  if (Object.keys(req.body).length === 0) {
+    res
+      .status(400)
+      .json({ errorMessage: 'body is empty / missing review data' });
+  } else if (
+    !req.body.job_title ||
+    !req.body.overall_rating ||
+    !req.body.salary ||
+    !req.body.city ||
+    !req.body.state_id ||
+    !req.body.interview_rounds ||
+    !req.body.offer_status_id ||
+    !req.body.company_id
+  ) {
+    res.status(400).json({
+      errorMessage:
+        'job title, interview location, salary, overall rating, interview rounds, work status id, and company id are required'
+    });
+  } else {
+    next();
+  }
+}
 
-function validateInterviewReviewId(req, res, next) {}
+function validateInterviewReviewId(req, res, next) {
+  const { revId } = req.params;
+  IRevs.findInterviewReviewById(revId)
+    .then(review => {
+      if (review) {
+        next();
+      } else {
+        res.status(404).json({
+          errorMessage:
+            'The interview review with the specified ID does not exist'
+        });
+      }
+    })
+    .catch(erorr => {
+      res.status(500).json({
+        errorMessage:
+          'Could not validate interview review information for the specified ID'
+      });
+    });
+}
 
 function checkForReviewData(req, res, next) {
   if (Object.keys(req.body).length === 0) {

@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const CRevs = require('../helpers/company-reviews-model');
 
+const { validateCompanyReviewId } = require('../middleware/index.js');
+
 //************* GET ALL COMPANY REVIEWS ***************//
 router.get('/', (req, res) => {
   CRevs.findCompanyReviews()
@@ -30,18 +32,18 @@ router.get('/filter', (req, res) => {
     });
 });
 
-//************* GET ALL COMPANY REVIEW BY USER ID ***************//
+//************* GET A SINGLE COMPANY REVIEW BY ID ***************//
 
-router.get('/:id', (req, res) => {
-  const { id } = req.params;
+router.get('/:revId', validateCompanyReviewId, (req, res) => {
+  const { revId } = req.params;
 
-  CRevs.findCompanyReviewById(id)
+  CRevs.findCompanyReviewById(revId)
     .then(userReview => {
       res.json(userReview);
     })
     .catch(err => {
       res.status(500).json({
-        error: 'Error getting comany review by user ID.'
+        error: 'Error getting comany review by company review ID.'
       });
     });
 });
