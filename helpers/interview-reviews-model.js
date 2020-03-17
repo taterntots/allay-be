@@ -12,7 +12,27 @@ module.exports = {
 // FIND ALL INTERVIEW REVIEWS
 
 function findInterviewReviews() {
-  return db('interview_reviews');
+  return db('interview_reviews as ir')
+    .select(
+      'ir.id as interview_review_id',
+      'ir.job_title',
+      'ir.interview_rounds',
+      'ir.overall_rating',
+      'ir.difficulty_rating',
+      'ir.salary',
+      'u.username as username',
+      'c.company_name',
+      'os.offer_status',
+      'ir.city',
+      's.abbreviation',
+      'u.id as user_id',
+      'ir.created_at',
+      'ir.updated_at'
+    )
+    .join('users as u', 'ir.user_id', 'u.id')
+    .join('companies as c', 'ir.company_id', 'c.id')
+    .join('offer_status as os', 'ir.offer_status_id', 'os.id')
+    .join('states as s', 'ir.state_id', 's.id');
 }
 
 // FIND INTERVIEW REVIEWS BY A SPECIFIC FILTER

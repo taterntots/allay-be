@@ -1,6 +1,10 @@
 const db = require('../data/dbConfig.js');
 
+const CRevs = require('../helpers/company-reviews-model');
+const IRevs = require('../helpers/interview-reviews-model');
+
 module.exports = {
+  findAllReviews,
   findReviews,
   findReviewsBy,
   findReviewById,
@@ -88,4 +92,19 @@ function deleteReview(id) {
   return db('reviews')
     .where({ id })
     .del();
+}
+
+// ===================== TEST TRIAL FOR REVIEWS ========================
+
+function findAllReviews(filter) {
+  return db('users as u').then(() => {
+    return CRevs.findCompanyReviewBy({ filter }).then(allCompanyReviews => {
+      return allCompanyReviews;
+    });
+  });
+  // .then(() => {
+  //   return IRevs.findInterviewReviews().then(allInterviewReviews => {
+  //     return allInterviewReviews;
+  //   });
+  // });
 }
