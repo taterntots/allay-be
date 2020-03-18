@@ -28,15 +28,15 @@ function findUserById(userId) {
   return db('users as u')
     .where('id', userId)
     .select('u.id', 'u.username', 'u.email', 'u.track_name')
-    .first();
-  // .then(user => {
-  //   return findUserCompanyReviews(user.id).then(userReviews => {
-  //     return {
-  //       ...user,
-  //       company_reviews: userReviews
-  //     };
-  //   });
-  // })
+    .first()
+    .then(user => {
+      return findUserCompanyReviews(user.id).then(userReviews => {
+        return {
+          ...user,
+          company_reviews: userReviews
+        };
+      });
+    });
   // .then(user => {
   //   return findUserInterviewReviews(user.id).then(userReviews => {
   //     return {
