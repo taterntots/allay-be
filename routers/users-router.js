@@ -4,7 +4,6 @@ const User = require('../helpers/users-model.js');
 const IRevs = require('../helpers/interview-reviews-model');
 const CRevs = require('../helpers/company-reviews-model.js');
 const {
-  checkForReviewData,
   validateUserId,
   checkForCompanyReviewData,
   validateCompanyReviewId,
@@ -140,6 +139,7 @@ router.post(
   checkForCompanyReviewData,
   validateUserId,
   (req, res) => {
+    console.log(req.body);
     const { userId } = req.params;
 
     let companyReview = req.body;
@@ -148,6 +148,7 @@ router.post(
     // if (Number(req.user.id) === Number(id)) {
     CRevs.addCompanyReview(companyReview)
       .then(newReview => {
+        console.log(newReview);
         res.status(201).json(newReview);
       })
       .catch(err => {

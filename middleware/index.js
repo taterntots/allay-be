@@ -141,20 +141,21 @@ function checkForCompanyReviewData(req, res, next) {
   if (Object.keys(req.body).length === 0) {
     res
       .status(400)
-      .json({ errorMessage: 'body is empty / missing review data' });
+      .json({ errorMessage: 'body is empty / missing company review data' });
   } else if (
     !req.body.job_title ||
     !req.body.start_date ||
     !req.body.job_rating ||
     !req.body.end_date ||
     !req.body.salary ||
+    !req.body.comment ||
     !req.body.typical_hours ||
-    !req.body.work_status_id ||
-    !req.body.company_id
+    !req.body.work_status ||
+    !req.body.company_name
   ) {
     res.status(400).json({
       errorMessage:
-        'job title, job location, salary, start end and end dates, typical hours, work status id, and company id are required'
+        'job title, job location, salary, start end and end dates, typical hours, work status, and company name are required'
     });
   } else {
     next();

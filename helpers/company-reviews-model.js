@@ -61,14 +61,14 @@ function findCompanyReviewById(revId) {
     )
     .where('cr.id', revId)
     .join('users as u', 'cr.user_id', 'u.id')
-    .join('companies as c', 'cr.company_id', 'c.id')
-    .join('work_status as ws', 'cr.work_status_id', 'ws.id')
+    .join('companies as c', 'cr.company_name', 'c.company_name')
+    .join('work_status as ws', 'cr.work_status', 'ws.work_status')
     .first();
 }
 
 // ADD A NEW COMPANY REVIEW
 function addCompanyReview(newReview) {
-  return db('company_reviews as cr')
+  return db('company_reviews')
     .insert(newReview, 'id')
     .then(([id]) => {
       return findCompanyReviewById(id);
