@@ -1,7 +1,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('work_status', tbl => {
     tbl.increments();
-    tbl.string('work_status').notNullable();
+    tbl
+      .string('work_status')
+      .notNullable()
+      .unique();
   });
 };
 

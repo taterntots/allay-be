@@ -1,7 +1,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('states', tbl => {
     tbl.increments();
-    tbl.string('abbreviation').notNullable();
+    tbl
+      .string('abbreviation')
+      .notNullable()
+      .unique();
   });
 };
 

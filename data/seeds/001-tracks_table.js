@@ -6,6 +6,9 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('tracks').insert([
         {
+          track_name: 'Android Development'
+        },
+        {
           track_name: 'Data Science'
         },
         {

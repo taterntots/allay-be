@@ -25,10 +25,10 @@ exports.up = function(knex, Promise) {
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     tbl
-      .integer('work_status_id')
+      .string('work_status')
       .unsigned()
       .notNullable()
-      .references('id')
+      .references('work_status')
       .inTable('work_status')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');

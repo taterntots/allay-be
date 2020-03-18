@@ -1,7 +1,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('offer_status', tbl => {
     tbl.increments();
-    tbl.string('offer_status').notNullable();
+    tbl
+      .string('offer_status')
+      .notNullable()
+      .unique();
   });
 };
 
