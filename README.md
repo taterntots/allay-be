@@ -102,11 +102,39 @@ To get the server running locally:
 }
 ```
 
-#### COMPANY REVIEW
+### MAKE SURE THERE ARE NO TYPOS
 
----
+##### TRACKS TABLE
 
-EXPECTS
+| id  | track_name                 |
+| --- | -------------------------- |
+| 1   | Android Development        |
+| 2   | Data Science               |
+| 3   | Full Stack Web Development |
+| 4   | iOS Development            |
+| 5   | UX Design                  |
+
+##### WORK STATUS TABLE
+
+| id  | work_status      |
+| --- | ---------------- |
+| 1   | Current Employee |
+| 2   | Former Employee  |
+| 3   | Full Time        |
+| 4   | Part Time        |
+| 5   | Intern           |
+
+##### OFFER STATUS TABLE
+
+| id  | work_status    |
+| --- | -------------- |
+| 1   | No Offer       |
+| 2   | Offer Accepted |
+| 3   | Offer Declined |
+
+## COMPANY REVIEW
+
+### EXPECTS
 
 ```
 {
@@ -121,36 +149,38 @@ EXPECTS
 }
 ```
 
-RETURNS
+### RETURNS
 
+```
 {
-"company_review_id": 1,
-"job_title": "Full Stack Developer",
-"start_date": 2010,
-"end_date": 2020,
-"comment": "Lorem ipsum",
-"typical_hours": 40,
-"salary": 50000,
-"job_rating": 1,
-"username": "nasra5",
-"company_name": "Google",
-"logo": "google.com",
-"work_status": "Intern",
-"created_at": "2020-03-18T20:29:40.711Z",
-"updated_at": "2020-03-18T20:29:40.711Z"
+    "company_review_id": 1,
+    "job_title": "Full Stack Developer",
+    "start_date": 2010,
+    "end_date": 2020,
+    "comment": "Lorem ipsum",
+    "typical_hours": 40,
+    "salary": 50000,
+    "job_rating": 1,
+    "username": "nasra5",
+    "company_name": "Google",
+    "logo": "google.com",
+    "work_status": "Intern",
+    "created_at": "2020-03-18T20:29:40.711Z",
+    "updated_at": "2020-03-18T20:29:40.711Z"
 }
+```
 
-#### INTERVIEW REVIEW
+## INTERVIEW REVIEW
 
 ---
 
 ```
 {
-    S
+    Coming soon to you live! in action! seriously be patient.
     }
 ```
 
-#### COMPANIES
+## COMPANIES
 
 ---
 
@@ -169,6 +199,8 @@ RETURNS
 ```
 
 ## Actions
+
+---
 
 `findUsers()` -> Returns all users
 
