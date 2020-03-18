@@ -17,10 +17,10 @@ exports.up = function(knex, Promise) {
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     tbl
-      .integer('company_id')
+      .string('company_name')
       .unsigned()
       .notNullable()
-      .references('id')
+      .references('company_name')
       .inTable('companies')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
@@ -36,7 +36,10 @@ exports.up = function(knex, Promise) {
       .timestamp('created_at')
       .notNullable()
       .defaultTo(knex.raw('now()'));
-    tbl.timestamp('updated_at');
+    tbl
+      .timestamp('updated_at')
+      .notNullable()
+      .defaultTo(knex.raw('now()'));
   });
 };
 

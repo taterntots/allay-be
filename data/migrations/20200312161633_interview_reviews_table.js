@@ -10,32 +10,32 @@ exports.up = function(knex, Promise) {
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     tbl
-      .integer('company_id')
+      .string('company_name')
       .unsigned()
       .notNullable()
-      .references('id')
+      .references('company_name')
       .inTable('companies')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     tbl.string('job_title').notNullable();
-    tbl.string('interview_rounds');
-    tbl.string('overall_rating');
-    tbl.string('difficulty_rating');
+    tbl.integer('interview_rounds');
+    tbl.integer('overall_rating');
+    tbl.integer('difficulty_rating');
     tbl.integer('salary');
     tbl
-      .integer('offer_status_id')
+      .string('offer_status')
       .unsigned()
       .notNullable()
-      .references('id')
+      .references('offer_status')
       .inTable('offer_status')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
     tbl.string('city');
     tbl
-      .integer('state_id')
+      .string('abbreviation')
       .unsigned()
       .notNullable()
-      .references('id')
+      .references('abbreviation')
       .inTable('states')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
@@ -43,7 +43,10 @@ exports.up = function(knex, Promise) {
       .timestamp('created_at')
       .notNullable()
       .defaultTo(knex.raw('now()'));
-    tbl.timestamp('updated_at');
+    tbl
+      .timestamp('updated_at')
+      .notNullable()
+      .defaultTo(knex.raw('now()'));
   });
 };
 
