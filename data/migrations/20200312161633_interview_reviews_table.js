@@ -22,6 +22,14 @@ exports.up = function(knex, Promise) {
     tbl.integer('overall_rating');
     tbl.integer('difficulty_rating');
     tbl.integer('salary');
+    tbl.boolean('phone_interview').defaultTo(false);
+    tbl.boolean('resume_review').defaultTo(false);
+    tbl.boolean('take_home_assignments').defaultTo(false);
+    tbl.boolean('online_coding_assignments').defaultTo(false);
+    tbl.boolean('portfolio_review').defaultTo(false);
+    tbl.boolean('screen_share').defaultTo(false);
+    tbl.boolean('open_source_contribution').defaultTo(false);
+    tbl.boolean('side_projects').defaultTo(false);
     tbl
       .string('offer_status')
       .unsigned()
