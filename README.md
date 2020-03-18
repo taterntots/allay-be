@@ -124,21 +124,18 @@ To get the server running locally:
 
 ```
 {
-    "job_title": "Full Stack WEB Engineer",
-    "start_date": 2012,
-    "end_date": 2028,
-    "comment": "TEST *** There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage **TEST *** n-characteristic words etc.",
-    "typical_hours": 30,
-    "salary": 15000,
-    "job_rating": 3,
-    "company_id: 12,
-    "work_status_id": 1,
-    "created_at": "2020-03-16T15:45:51.249Z",
-    "updated_at": null
+  job_title: 'Full Stack Developer',
+  start_date: 2010,
+  end_date: 2020,
+  comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words.',
+  typical_hours: 40,
+  salary: 50000,
+  job_rating: 1,
+  company_name: 'Google'
 }
 ```
 
-#### Interview Review
+#### INTERVIEW REVIEW
 
 ---
 
