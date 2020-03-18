@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secret.js');
 const Users = require('../helpers/users-model.js');
-const Reviews = require('../helpers/reviews-model.js');
 const Companies = require('../helpers/companies-model.js');
 const CRevs = require('../helpers/company-reviews-model.js');
 const IRevs = require('../helpers/interview-reviews-model.js');
@@ -17,8 +16,7 @@ module.exports = {
   validateCompanyReviewId,
   checkForInterviewReviewData,
   validateInterviewReviewId,
-  checkForReviewData,
-  validateReviewId
+  checkForReviewData
 };
 
 // Auth Router
@@ -53,7 +51,7 @@ function checkForRegisterData(req, res, next) {
     !req.body.username ||
     !req.body.password ||
     !req.body.email ||
-    !req.body.track_id
+    !req.body.track_name
   ) {
     res.status(400).json({
       errorMessage: 'username, password, email, and track fields are required'
@@ -249,24 +247,4 @@ function checkForReviewData(req, res, next) {
   } else {
     next();
   }
-}
-
-function validateReviewId(req, res, next) {
-  const id = req.params.id;
-  Reviews.findReviewById(id)
-    .then(review => {
-      if (review) {
-        next();
-      } else {
-        res.status(404).json({
-          errorMessage: 'The review with the specified ID does not exist'
-        });
-      }
-    })
-    .catch(erorr => {
-      res.status(500).json({
-        errorMessage:
-          'Could not validate review information for the specified ID'
-      });
-    });
 }

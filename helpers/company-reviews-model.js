@@ -30,8 +30,8 @@ function findCompanyReviews() {
       'cr.updated_at'
     )
     .join('users as u', 'cr.user_id', 'u.id')
-    .join('companies as c', 'cr.company_id', 'c.id')
-    .join('work_status as ws', 'cr.work_status_id', 'ws.id');
+    .join('companies as c', 'cr.company_name', 'c.company_name')
+    .join('work_status as ws', 'cr.work_status', 'ws.work_status');
 }
 
 // FIND COMPANY REVIEWS BY A SPECIFIC FILTER

@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
-const Rev = require('../helpers/reviews-model.js');
 const IRevs = require('../helpers/interview-reviews-model');
 const CRevs = require('../helpers/company-reviews-model.js');
 const {

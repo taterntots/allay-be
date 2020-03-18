@@ -1,7 +1,6 @@
 const router = require('express').Router();
 
 const Co = require('../helpers/companies-model.js');
-const Rev = require('../helpers/reviews-model.js');
 const {
   checkForCompanyData,
   validateCompanyId

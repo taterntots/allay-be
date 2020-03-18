@@ -28,7 +28,7 @@ router.post('/register', checkForRegisterData, (req, res) => {
       res.status(201).json({ newUser, token });
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error signing up.' });
+      res.status(500).json(err, { error: 'There was an error signing up.' });
     });
 });
 /*************************** END REGISTER *******************************/
