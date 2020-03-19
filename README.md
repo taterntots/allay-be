@@ -202,6 +202,8 @@ To get the server running locally:
 
 #### COMPANY REVIEW
 
+---
+
 ##### EXPECTS
 
 ```
