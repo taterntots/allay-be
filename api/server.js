@@ -16,6 +16,7 @@ const { restricted } = require('../middleware/index.js');
 //Router Imports
 const authRouter = require('../routers/auth-router.js');
 const usersRouter = require('../routers/users-router.js');
+const reviewsRouter = require('../routers/reviews-router');
 const companiesRouter = require('../routers/companies-router.js');
 const companyReviewsRouter = require('../routers/company-reviews-router.js');
 const interviewReviewsRouter = require('../routers/interview-reviews-router.js');
@@ -31,6 +32,11 @@ server.get('/', (req, res) => {
 //routes with Auth applied
 server.use('/api/auth', authRouter);
 server.use('/api/users', restricted, usersRouter);
+server.use(
+  '/api/reviews',
+  //  restricted,
+  reviewsRouter
+);
 server.use('/api/companies', restricted, companiesRouter);
 server.use('/api/company-reviews', restricted, companyReviewsRouter);
 server.use('/api/interview-reviews', restricted, interviewReviewsRouter);

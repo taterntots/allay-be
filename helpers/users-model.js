@@ -4,10 +4,8 @@ module.exports = {
   findUsers,
   findUsersBy,
   findUserById,
-  findUserCompanyReviews,
-  findUserCompanyReviewById,
-  findUserInterviewReviews,
-  findUserInterviewReviewById,
+  findUserReviews,
+  findUserReviewById,
   addUser,
   updateUser,
   deleteUser
@@ -27,21 +25,13 @@ function findUsersBy(filter) {
 function findUserById(userId) {
   return db('users as u')
     .where('id', userId)
-    .select('u.id', 'u.username', 'u.email', 'u.track_name')
+    .select('u.id', 'u.username', 'u.email', 'u.track_id')
     .first()
     .then(user => {
-      return findUserCompanyReviews(user.id).then(userReviews => {
+      return findUserReviews(user.id).then(userReviews => {
         return {
           ...user,
-          company_reviews: userReviews
-        };
-      });
-    })
-    .then(user => {
-      return findUserInterviewReviews(user.id).then(userReviews => {
-        return {
-          ...user,
-          interview_reviews: userReviews
+          reviews: userReviews
         };
       });
     });
@@ -49,126 +39,94 @@ function findUserById(userId) {
 
 // FIND ONLY THE COMPANY REVIEWS ASSOCIATED WITH A USER
 
-function findUserCompanyReviews(userId) {
-  return db('company_reviews as cr')
+function findUserReviews(userId) {
+  return db('reviews as r')
     .select(
-      'cr.id as company_review_id',
-      'cr.job_title',
-      'cr.start_date',
-      'cr.end_date',
-      'cr.comment',
-      'cr.typical_hours',
-      'cr.salary',
-      'cr.job_rating',
-      'u.username as username',
+      'r.id as review_id',
+      'r.job_title',
+      'r.overall_rating',
+      'r.difficulty_rating',
+      'r.start_date',
+      'r.end_date',
+      'r.comment',
+      'r.typical_hours',
+      'r.salary',
+      'r.job_rating',
+      'r.city',
+      's.state_name',
+      'u.username',
       'c.company_name',
       'c.domain as logo',
       'ws.work_status ',
-      'cr.created_at',
-      'cr.updated_at'
+      'os.offer_status',
+      'u.id as user_id',
+      'rt.review_type',
+      'r.phone_interview',
+      'r.resume_review',
+      'r.take_home_assignments',
+      'r.online_coding_assignments',
+      'r.portfolio_review',
+      'r.screen_share',
+      'r.open_source_contribution',
+      'r.side_projects',
+      'r.online_coding_assignments',
+      'r.interview_rounds',
+      'r.created_at',
+      'r.updated_at'
     )
-    .where('cr.user_id', userId)
-    .join('users as u', 'cr.user_id', 'u.id')
-    .join('companies as c', 'cr.company_name', 'c.company_name')
-    .join('work_status as ws', 'cr.work_status', 'ws.work_status');
+    .where('r.user_id', userId)
+    .join('users as u', 'r.user_id', 'u.id')
+    .join('companies as c', 'r.company_name', 'c.company_name')
+    .join('work_status as ws', 'r.work_status_id', 'ws.id')
+    .join('offer_status as os', 'r.offer_status_id', 'os.id')
+    .join('states as s', 'r.state_id', 's.id')
+    .join('review_types as rt', 'r.review_type_id', 'rt.id');
 }
 
 // FIND A SINGLE COMPANY REVIEW ASSOCIATED WITH A USER
 
-function findUserCompanyReviewById(revId) {
+function findUserReviewById(revId) {
   return db('company_reviews as cr')
     .select(
-      'cr.id as company_review_id',
-      'cr.job_title',
-      'cr.start_date',
-      'cr.end_date',
-      'cr.comment',
-      'cr.typical_hours',
-      'cr.salary',
-      'cr.job_rating',
-      'u.username as username',
+      'r.id as review_id',
+      'r.job_title',
+      'r.overall_rating',
+      'r.difficulty_rating',
+      'r.start_date',
+      'r.end_date',
+      'r.comment',
+      'r.typical_hours',
+      'r.salary',
+      'r.job_rating',
+      'r.city',
+      's.state_name',
+      'u.username',
       'c.company_name',
       'c.domain as logo',
       'ws.work_status ',
-      'cr.created_at',
-      'cr.updated_at'
-    )
-    .where('cr.id', revId)
-    .join('users as u', 'cr.user_id', 'u.id')
-    .join('companies as c', 'cr.company_name', 'c.company_name')
-    .join('work_status as ws', 'cr.work_status', 'ws.work_status');
-}
-
-// FIND ONLY THE INTERVIEW REVIEWS ASSOCIATED WITH A USER
-
-function findUserInterviewReviews(userId) {
-  return db('interview_reviews as ir')
-    .select(
-      'ir.id as interview_review_id',
-      'ir.job_title',
-      'ir.interview_rounds',
-      'ir.overall_rating',
-      'ir.difficulty_rating',
-      'ir.salary',
-      'u.username as username',
-      'c.company_name',
       'os.offer_status',
-      'ir.city',
-      's.abbreviation',
       'u.id as user_id',
-      'ir.phone_interview',
-      'ir.resume_review',
-      'ir.take_home_assignments',
-      'ir.online_coding_assignments',
-      'ir.portfolio_review',
-      'ir.screen_share',
-      'ir.open_source_contribution',
-      'ir.side_projects',
-      'ir.comment',
-      'ir.created_at',
-      'ir.updated_at'
+      'rt.review_type',
+      'r.phone_interview',
+      'r.resume_review',
+      'r.take_home_assignments',
+      'r.online_coding_assignments',
+      'r.portfolio_review',
+      'r.screen_share',
+      'r.open_source_contribution',
+      'r.side_projects',
+      'r.online_coding_assignments',
+      'r.interview_rounds',
+      'r.created_at',
+      'r.updated_at'
     )
-    .where('ir.user_id', userId)
-    .join('users as u', 'ir.user_id', 'u.id')
-    .join('companies as c', 'ir.company_name', 'c.company_name')
-    .join('offer_status as os', 'ir.offer_status', 'os.offer_status')
-    .join('states as s', 'ir.abbreviation', 's.abbreviation');
-}
-
-// FIND A SINGLE INTERVIEW REVIEW ASSOCIATED WITH A USER
-
-function findUserInterviewReviewById(revId) {
-  return db('interview_reviews as ir')
-    .select(
-      'ir.id as interview_review_id',
-      'ir.job_title',
-      'ir.interview_rounds',
-      'ir.overall_rating',
-      'ir.difficulty_rating',
-      'ir.salary',
-      'u.username as username',
-      'c.company_name',
-      'os.offer_status',
-      'ir.city',
-      's.abbreviation',
-      'u.id as user_id',
-      'ir.phone_interview',
-      'ir.resume_review',
-      'ir.take_home_assignments',
-      'ir.online_coding_assignments',
-      'ir.portfolio_review',
-      'ir.screen_share',
-      'ir.open_source_contribution',
-      'ir.side_projects',
-      'ir.comment',
-      'ir.created_at',
-      'ir.updated_at'
-    )
-    .where('ir.id', revId)
-    .join('users as u', 'ir.user_id', 'u.id')
-    .join('companies as c', 'ir.company_name', 'c.company_name')
-    .join('offer_status as os', 'ir.offer_status', 'os.offer_status')
-    .join('states as s', 'ir.abbreviation', 's.abbreviation');
+    .where('r.id', revId)
+    .join('users as u', 'r.user_id', 'u.id')
+    .join('companies as c', 'r.company_name', 'c.company_name')
+    .join('work_status as ws', 'r.work_status_id', 'ws.id')
+    .join('offer_status as os', 'r.offer_status_id', 'os.id')
+    .join('states as s', 'r.state_id', 's.id')
+    .join('review_types as rt', 'r.review_type_id', 'rt.id');
 }
 
 // ADD A USER TO THE DATABASE

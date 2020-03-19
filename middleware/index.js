@@ -51,7 +51,7 @@ function checkForRegisterData(req, res, next) {
     !req.body.username ||
     !req.body.password ||
     !req.body.email ||
-    !req.body.track_name
+    !req.body.track_id
   ) {
     res.status(400).json({
       errorMessage: 'username, password, email, and track fields are required'

@@ -337,4 +337,102 @@ router.delete(
 
 /**************************************************************************/
 
+//        for all review endpoints beginning with /users/:id                   //
+
+/**************************************************************************/
+
+//***************** GET USERS COMPANY REVIEWS *******************//
+
+router.get('/:userId/reviews', validateUserId, (req, res) => {
+  const { userId } = req.params;
+});
+
+//************* GET A SINGLE REVIEW BY USER ID ***************//
+
+router.get(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  validateInterviewReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+  }
+);
+
+//***************** ADD NEW INTERVIEW REVIEW *******************// ===== make sure to update the if else statement====
+router.post(
+  '/:userId/add-review',
+  //  checkForReviewData,
+  // checkForInterviewReviewData,
+  validateUserId,
+  (req, res) => {
+    const { userId } = req.params;
+
+    let review = req.body;
+    review = { ...review, user_id: userId };
+
+    // if (Number(req.user.id) === Number(id)) {
+    // IRevs.addInterviewReview(interviewReview)
+    //   .then(newReview => {
+    //     res.status(201).json(newReview);
+    //   })
+    //   .catch(err => {
+    //     res
+    //       .status(500)
+    //       .json({ error: 'There was an error check id or review fields' });
+    //   });
+    //   } else {
+    //     return res.status(404).json({ error: 'Wrong user' });
+    //   }
+  }
+);
+
+//************* EDIT A REVIEW WITH USER ID ***************//
+
+router.put(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  // validateInterviewReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+
+    const changes = req.body;
+
+    // IRevs.updateInterviewReview(revId, changes)
+    //   .then(updatedReview => {
+    //     if (updatedReview) {
+    //       res.status(200).json({ updatedReview: changes });
+    //     } else {
+    //       res.status(404).json(err, {
+    //         error: 'could not find a valid interview review'
+    //       });
+    //     }
+    //   })
+    //   .catch(err => {
+    //     res.status(500).json(err, { error: 'can not edit interview review' });
+    //   });
+  }
+);
+
+//************* DELETE A REVIEW BY USER ID ***************//
+
+router.delete(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  // validateInterviewReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+    // IRevs.deleteInterviewReview(revId)
+    //   .then(deleted => {
+    //     res.status(200).json(deleted);
+    //   })
+    //   .catch(err => {
+    //     res.status(500).json(err, {
+    //       error: ' was not able to delete interview review'
+    //     });
+    //   });
+  }
+);
+
+/**************************************************************************/
+
 module.exports = router;
