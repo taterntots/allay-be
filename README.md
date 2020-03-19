@@ -161,14 +161,7 @@ To get the server running locally:
 
 ```
 {
-  job_title: 'Full Stack Developer',
-  start_date: 2010,
-  end_date: 2020,
-  comment: 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words.',
-  typical_hours: 40,
-  salary: 50000,
-  job_rating: 1,
-  company_name: 'Google'
+
 }
 ```
 
@@ -176,20 +169,7 @@ To get the server running locally:
 
 ```
 {
-    "company_review_id": 1,
-    "job_title": "Full Stack Developer",
-    "start_date": 2010,
-    "end_date": 2020,
-    "comment": "Lorem ipsum",
-    "typical_hours": 40,
-    "salary": 50000,
-    "job_rating": 1,
-    "username": "nasra5",
-    "company_name": "Google",
-    "logo": "google.com",
-    "work_status": "Intern",
-    "created_at": "2020-03-18T20:29:40.711Z",
-    "updated_at": "2020-03-18T20:29:40.711Z"
+
 }
 ```
 
@@ -201,24 +181,7 @@ To get the server running locally:
 
 ```
 {
-    "job_title": "Software Engineer",
-    "interview_rounds": 4,
-    "overall_rating": 5,
-    "difficulty_rating": 5,
-    "salary": 120000,
-    "company_name": "Google",
-    "offer_status": "Offer Accepted",
-    "city": "New York",
-    "abbreviation": "NY",
-    "phone_interview": true,
-    "resume_review": true,
-    "take_home_assignments": false,
-    "online_coding_assignments": true,
-    "portfolio_review": false,
-    "screen_share": true,
-    "open_source_contribution": false,
-    "side_projects": false,
-    "comment": "Non diam phasellus vestibulum lorem sed risus. Quam vulputate dignissim suspendisse in est. In nibh mauris cursus mattis. Id faucibus nisl tincidunt eget nullam non nisi est sit. Elit ullamcorper dignissim cras tincidunt. Semper risus in hendrerit gravida rutrum. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Turpis massa sed elementum tempus. "
+
 }
 ```
 
@@ -226,29 +189,7 @@ To get the server running locally:
 
 ```
 {
-    "interview_review_id": 1,
-    "job_title": "Software Engineer",
-    "interview_rounds": 4,
-    "overall_rating": 5,
-    "difficulty_rating": 5,
-    "salary": 120000,
-    "username": "nasra555",
-    "company_name": "Google",
-    "offer_status": "Offer Accepted",
-    "city": "New York",
-    "abbreviation": "NY",
-    "user_id": 1,
-    "phone_interview": true,
-    "resume_review": true,
-    "take_home_assignments": false,
-    "online_coding_assignments": true,
-    "portfolio_review": false,
-    "screen_share": true,
-    "open_source_contribution": false,
-    "side_projects": false,
-    "comment": "Non diam phasellus vestibulum lorem sed risus. Quam vulputate dignissim suspendisse in est. In nibh mauris cursus mattis. Id faucibus nisl tincidunt eget nullam non nisi est sit. Elit ullamcorper dignissim cras tincidunt. Semper risus in hendrerit gravida rutrum. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Turpis massa sed elementum tempus. ",
-    "created_at": "2020-03-19T14:09:11.762Z",
-    "updated_at": "2020-03-19T14:09:11.762Z"
+
 }
 
 ```

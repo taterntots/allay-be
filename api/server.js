@@ -18,8 +18,6 @@ const authRouter = require('../routers/auth-router.js');
 const usersRouter = require('../routers/users-router.js');
 const reviewsRouter = require('../routers/reviews-router');
 const companiesRouter = require('../routers/companies-router.js');
-const companyReviewsRouter = require('../routers/company-reviews-router.js');
-const interviewReviewsRouter = require('../routers/interview-reviews-router.js');
 
 //endpoints
 server.get('/', (req, res) => {
@@ -38,7 +36,5 @@ server.use(
   reviewsRouter
 );
 server.use('/api/companies', restricted, companiesRouter);
-server.use('/api/company-reviews', restricted, companyReviewsRouter);
-server.use('/api/interview-reviews', restricted, interviewReviewsRouter);
 
 module.exports = server;

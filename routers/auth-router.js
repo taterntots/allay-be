@@ -21,7 +21,7 @@ router.post('/register', checkForRegisterData, (req, res) => {
   const hash = bcrypt.hashSync(user.password, 3); //Change in production!!!
 
   user.password = hash;
-
+  console.log(req.body);
   User.addUser(user)
     .then(newUser => {
       const token = signToken(newUser);
