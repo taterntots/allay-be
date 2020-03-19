@@ -78,28 +78,95 @@ To get the server running locally:
 ```
 {
     "id": 1,
-    "username": "nasra5",
-    "email": "nasra5@nasra.com",
+    "username": "nasra555",
+    "email": "nasra555@nasra.com",
     "track_name": "Data Science",
     "company_reviews": [
         {
             "company_review_id": 1,
-            "job_title": "Full Stack Developer",
-            "start_date": 2010,
+            "job_title": "Software Engineer",
+            "start_date": 2018,
             "end_date": 2020,
-            "comment": "Lorem ipsum",
+            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
             "typical_hours": 40,
-            "salary": 50000,
-            "job_rating": 1,
-            "username": "nasra5",
+            "salary": 120000,
+            "job_rating": 5,
+            "username": "nasra555",
             "company_name": "Google",
             "logo": "google.com",
-            "work_status": "Intern",
-            "created_at": "2020-03-18T20:29:40.711Z",
-            "updated_at": "2020-03-18T20:29:40.711Z"
+            "work_status": "Former Employee",
+            "created_at": "2020-03-19T14:04:55.537Z",
+            "updated_at": "2020-03-19T14:04:55.537Z"
+        },
+        {
+            "company_review_id": 2,
+            "job_title": "Full Stack Web Developer",
+            "start_date": 2020,
+            "end_date": 2020,
+            "comment": "Gravida dictum fusce ut placerat orci. Lacus sed turpis tincidunt id aliquet risus feugiat. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Vitae semper quis lectus nulla at volutpat diam. In massa tempor nec feugiat nisl pretium fusce id velit. Risus feugiat in ante metus dictum at. ",
+            "typical_hours": 30,
+            "salary": 150000,
+            "job_rating": 4,
+            "username": "nasra555",
+            "company_name": "1 Hotels",
+            "logo": "1hotels.com",
+            "work_status": "Current Employee",
+            "created_at": "2020-03-19T14:06:15.079Z",
+            "updated_at": "2020-03-19T14:06:15.079Z"
+        }
+    ],
+    "interview_reviews": [
+        {
+            "interview_review_id": 2,
+            "job_title": "Full Stack Web Developer",
+            "interview_rounds": 3,
+            "overall_rating": 5,
+            "difficulty_rating": 3,
+            "salary": 150000,
+            "username": "nasra555",
+            "company_name": "1 Hotels",
+            "offer_status": "Offer Accepted",
+            "city": "Miami",
+            "abbreviation": "FL",
+            "user_id": 1,
+            "phone_interview": true,
+            "resume_review": false,
+            "take_home_assignments": true,
+            "online_coding_assignments": false,
+            "portfolio_review": true,
+            "screen_share": false,
+            "open_source_contribution": false,
+            "side_projects": true,
+            "comment": "Penatibus et magnis dis parturient montes nascetur ridiculus. Proin libero nunc consequat interdum varius sit. Adipiscing bibendum est ultricies integer quis auctor elit. Pellentesque pulvinar pellentesque habitant morbi tristique. Sagittis nisl rhoncus mattis rhoncus urna. Ligula ullamcorper malesuada proin libero. ",
+            "created_at": "2020-03-19T14:09:11.762Z",
+            "updated_at": "2020-03-19T14:09:11.762Z"
+        },
+        {
+            "interview_review_id": 1,
+            "job_title": "Software Engineer",
+            "interview_rounds": 4,
+            "overall_rating": 5,
+            "difficulty_rating": 5,
+            "salary": 120000,
+            "username": "nasra555",
+            "company_name": "Google",
+            "offer_status": "Offer Accepted",
+            "city": "New York",
+            "abbreviation": "NY",
+            "user_id": 1,
+            "phone_interview": true,
+            "resume_review": true,
+            "take_home_assignments": false,
+            "online_coding_assignments": true,
+            "portfolio_review": false,
+            "screen_share": true,
+            "open_source_contribution": false,
+            "side_projects": false,
+            "comment": "Non diam phasellus vestibulum lorem sed risus. Quam vulputate dignissim suspendisse in est. In nibh mauris cursus mattis. Id faucibus nisl tincidunt eget nullam non nisi est sit. Elit ullamcorper dignissim cras tincidunt. Semper risus in hendrerit gravida rutrum. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Turpis massa sed elementum tempus. ",
+            "created_at": "2020-03-19T14:09:11.762Z",
+            "updated_at": "2020-03-19T14:09:11.762Z"
         }
     ]
-    "interview_reviews": []
 }
 ```
 

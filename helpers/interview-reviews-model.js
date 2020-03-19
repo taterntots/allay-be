@@ -26,13 +26,22 @@ function findInterviewReviews() {
       'ir.city',
       's.abbreviation',
       'u.id as user_id',
+      'ir.phone_interview',
+      'ir.resume_review',
+      'ir.take_home_assignments',
+      'ir.online_coding_assignments',
+      'ir.portfolio_review',
+      'ir.screen_share',
+      'ir.open_source_contribution',
+      'ir.side_projects',
+      'ir.comment',
       'ir.created_at',
       'ir.updated_at'
     )
     .join('users as u', 'ir.user_id', 'u.id')
-    .join('companies as c', 'ir.company_id', 'c.id')
-    .join('offer_status as os', 'ir.offer_status_id', 'os.id')
-    .join('states as s', 'ir.state_id', 's.id');
+    .join('companies as c', 'ir.company_name', 'c.company_name')
+    .join('offer_status as os', 'ir.offer_status', 'os.offer_status')
+    .join('states as s', 'ir.abbreviation', 's.abbreviation');
 }
 
 // FIND INTERVIEW REVIEWS BY A SPECIFIC FILTER
@@ -58,14 +67,23 @@ function findInterviewReviewById(id) {
       'ir.city',
       's.abbreviation',
       'u.id as user_id',
+      'ir.phone_interview',
+      'ir.resume_review',
+      'ir.take_home_assignments',
+      'ir.online_coding_assignments',
+      'ir.portfolio_review',
+      'ir.screen_share',
+      'ir.open_source_contribution',
+      'ir.side_projects',
+      'ir.comment',
       'ir.created_at',
       'ir.updated_at'
     )
     .where('ir.id', id)
     .join('users as u', 'ir.user_id', 'u.id')
-    .join('companies as c', 'ir.company_id', 'c.id')
-    .join('offer_status as os', 'ir.offer_status_id', 'os.id')
-    .join('states as s', 'ir.state_id', 's.id')
+    .join('companies as c', 'ir.company_name', 'c.company_name')
+    .join('offer_status as os', 'ir.offer_status', 'os.offer_status')
+    .join('states as s', 'ir.abbreviation', 's.abbreviation')
     .first();
 }
 

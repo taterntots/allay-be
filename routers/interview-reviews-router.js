@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       res.json(reviews);
     })
     .catch(err => {
-      res.status(500).json({
+      res.status(500).json(err, {
         error: 'Error getting all interview reviews.'
       });
     });

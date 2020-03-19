@@ -63,7 +63,7 @@ router.put('/:userId', validateUserId, (req, res) => {
           if (info) {
             res
               .status(202)
-              .json({ info: { email, password, username, track_name } });
+              .json({ info: { email, password, username, track_namei } });
           } else {
             res.status(404).json({ message: 'Error locating user info' });
           }
@@ -118,7 +118,7 @@ router.get('/:userId/company-reviews', validateUserId, (req, res) => {
 
 //***************** GET USERS SINGLE COMPANY REVIEW BY ID*******************//
 router.get(
-  '/:userId/company-review/:revId',
+  '/:userId/company-reviews/:revId',
   validateUserId,
   validateCompanyReviewId,
   (req, res) => {
@@ -242,7 +242,7 @@ router.get(
 //************* GET A SINGLE REVIEW BY USER ID ***************//
 
 router.get(
-  '/:userId/interview-review/:revId',
+  '/:userId/interview-reviews/:revId',
   validateUserId,
   validateInterviewReviewId,
   (req, res) => {
@@ -280,7 +280,7 @@ router.post(
       .catch(err => {
         res
           .status(500)
-          .json(err, { error: 'There was an error check id or review fields' });
+          .json({ error: 'There was an error check id or review fields' });
       });
     //   } else {
     //     return res.status(404).json({ error: 'Wrong user' });
