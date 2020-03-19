@@ -321,8 +321,6 @@ To get the server running locally:
 
 ---
 
-<br />
-
 ### Users Actions
 
 `findUsers()` -> Returns all users
@@ -345,7 +343,6 @@ To get the server running locally:
 
 `deleteUser(userId)` -> Deletes everything dependent on the user.
 <br />
-<br />
 
 ### Company Actions
 
@@ -363,7 +360,6 @@ To get the server running locally:
 
 `deleteCompany(userId)` -> Deletes the single company.
 <br>
-<br>
 
 ### Company Reviews Actions
 
@@ -379,7 +375,6 @@ To get the server running locally:
 
 `deleteCompanyReview(id)` -> Deletes a single company review by ID.
 <br>
-<br>
 
 ### Interview Reviews Actions
 
@@ -394,7 +389,6 @@ To get the server running locally:
 `updateInterviewReview(id, changes)` -> Updates a single interview review by ID.
 
 `deleteInterviewReview(id)` -> Deletes a single interview review by ID.
-<br>
 <br>
 
 ## Environment Variables
