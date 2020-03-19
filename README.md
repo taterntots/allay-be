@@ -37,13 +37,13 @@ To get the server running locally:
 | PUT    | `/users/:userId`                          | all users      | Update user's account info by id.                    |
 | DELETE | `/users/:userId`                          | all users      | Delete user's account by id.                         |
 | GET    | `/users/:userId/company-reviews`          | all users      | Returns a list of review about a company by user.    |
-| GET    | `/users/:userId/company-review/revId`     | all users      | Returns a single review about a company by user.     |
+| GET    | `/users/:userId/company-reviews/revId`    | all users      | Returns a single review about a company by user.     |
 | POST   | `/users/:userId/add-company-review`       | all users      | Post helpful review about a company.                 |
 | PUT    | `/users/:userId/company-reviews/:revId`   | all users      | Update a review about a company by id.               |
 | DELETE | `/users/:userId/company-reviews/:revId`   | all users      | Delete a review about a company by id.               |
 | GET    | `/users/:userId/interview-reviews`        | all users      | Returns a list of review about an interview by user. |
-| GET    | `/users/:userId/interview-review/revId`   | all users      | Returns a single review about an interview by user.  |
-| POST   | `/users/:userId/add-interview-review`     | all users      | Post helpful review about an interview.              |
+| GET    | `/users/:userId/interview-reviews/revId`  | all users      | Returns a single review about an interview by user.  |
+| POST   | `/users/:userId/add-interview-reviews`    | all users      | Post helpful review about an interview.              |
 | PUT    | `/users/:userId/interview-reviews/:revId` | all users      | Update a review about an interview by id.            |
 | DELETE | `/users/:userId/interview-reviews/:revId` | all users      | Delete a review about an interview by id.            |
 
@@ -246,11 +246,57 @@ To get the server running locally:
 
 ```
 {
-    Coming soon to you live! in action! seriously be patient.
+    "job_title": "Software Engineer",
+    "interview_rounds": 4,
+    "overall_rating": 5,
+    "difficulty_rating": 5,
+    "salary": 120000,
+    "company_name": "Google",
+    "offer_status": "Offer Accepted",
+    "city": "New York",
+    "abbreviation": "NY",
+    "phone_interview": true,
+    "resume_review": true,
+    "take_home_assignments": false,
+    "online_coding_assignments": true,
+    "portfolio_review": false,
+    "screen_share": true,
+    "open_source_contribution": false,
+    "side_projects": false,
+    "comment": "Non diam phasellus vestibulum lorem sed risus. Quam vulputate dignissim suspendisse in est. In nibh mauris cursus mattis. Id faucibus nisl tincidunt eget nullam non nisi est sit. Elit ullamcorper dignissim cras tincidunt. Semper risus in hendrerit gravida rutrum. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Turpis massa sed elementum tempus. "
 }
 ```
 
 ##### RETURNS
+
+```
+{
+    "interview_review_id": 1,
+    "job_title": "Software Engineer",
+    "interview_rounds": 4,
+    "overall_rating": 5,
+    "difficulty_rating": 5,
+    "salary": 120000,
+    "username": "nasra555",
+    "company_name": "Google",
+    "offer_status": "Offer Accepted",
+    "city": "New York",
+    "abbreviation": "NY",
+    "user_id": 1,
+    "phone_interview": true,
+    "resume_review": true,
+    "take_home_assignments": false,
+    "online_coding_assignments": true,
+    "portfolio_review": false,
+    "screen_share": true,
+    "open_source_contribution": false,
+    "side_projects": false,
+    "comment": "Non diam phasellus vestibulum lorem sed risus. Quam vulputate dignissim suspendisse in est. In nibh mauris cursus mattis. Id faucibus nisl tincidunt eget nullam non nisi est sit. Elit ullamcorper dignissim cras tincidunt. Semper risus in hendrerit gravida rutrum. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Turpis massa sed elementum tempus. ",
+    "created_at": "2020-03-19T14:09:11.762Z",
+    "updated_at": "2020-03-19T14:09:11.762Z"
+}
+
+```
 
 #### COMPANIES
 
