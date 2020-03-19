@@ -55,12 +55,12 @@ To get the server running locally:
 | GET    | `/companies/:id` | all users      | Returns the information for a single company. |
 | POST   | `/companies`     | all users      | Creates a new company.                        |
 
-#### Company Reviews Routes
+#### Reviews Routes
 
-| Method | Endpoint               | Access Control | Description                          |
-| ------ | ---------------------- | -------------- | ------------------------------------ |
-| GET    | `/company-reviews`     | all users      | Returns list of all company reviews. |
-| GET    | `/company-reviews/:id` | all users      | Returns a single company review.     |
+| Method | Endpoint       | Access Control | Description                  |
+| ------ | -------------- | -------------- | ---------------------------- |
+| GET    | `/reviews`     | all users      | Returns list of all reviews. |
+| GET    | `/reviews/:id` | all users      | Returns a single review.     |
 
 #### Interview Reviews Routes
 
@@ -80,93 +80,7 @@ To get the server running locally:
     "id": 1,
     "username": "nasra555",
     "email": "nasra555@nasra.com",
-    "track_name": "Data Science",
-    "company_reviews": [
-        {
-            "company_review_id": 1,
-            "job_title": "Software Engineer",
-            "start_date": 2018,
-            "end_date": 2020,
-            "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-            "typical_hours": 40,
-            "salary": 120000,
-            "job_rating": 5,
-            "username": "nasra555",
-            "company_name": "Google",
-            "logo": "google.com",
-            "work_status": "Former Employee",
-            "created_at": "2020-03-19T14:04:55.537Z",
-            "updated_at": "2020-03-19T14:04:55.537Z"
-        },
-        {
-            "company_review_id": 2,
-            "job_title": "Full Stack Web Developer",
-            "start_date": 2020,
-            "end_date": 2020,
-            "comment": "Gravida dictum fusce ut placerat orci. Lacus sed turpis tincidunt id aliquet risus feugiat. Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Vitae semper quis lectus nulla at volutpat diam. In massa tempor nec feugiat nisl pretium fusce id velit. Risus feugiat in ante metus dictum at. ",
-            "typical_hours": 30,
-            "salary": 150000,
-            "job_rating": 4,
-            "username": "nasra555",
-            "company_name": "1 Hotels",
-            "logo": "1hotels.com",
-            "work_status": "Current Employee",
-            "created_at": "2020-03-19T14:06:15.079Z",
-            "updated_at": "2020-03-19T14:06:15.079Z"
-        }
-    ],
-    "interview_reviews": [
-        {
-            "interview_review_id": 2,
-            "job_title": "Full Stack Web Developer",
-            "interview_rounds": 3,
-            "overall_rating": 5,
-            "difficulty_rating": 3,
-            "salary": 150000,
-            "username": "nasra555",
-            "company_name": "1 Hotels",
-            "offer_status": "Offer Accepted",
-            "city": "Miami",
-            "abbreviation": "FL",
-            "user_id": 1,
-            "phone_interview": true,
-            "resume_review": false,
-            "take_home_assignments": true,
-            "online_coding_assignments": false,
-            "portfolio_review": true,
-            "screen_share": false,
-            "open_source_contribution": false,
-            "side_projects": true,
-            "comment": "Penatibus et magnis dis parturient montes nascetur ridiculus. Proin libero nunc consequat interdum varius sit. Adipiscing bibendum est ultricies integer quis auctor elit. Pellentesque pulvinar pellentesque habitant morbi tristique. Sagittis nisl rhoncus mattis rhoncus urna. Ligula ullamcorper malesuada proin libero. ",
-            "created_at": "2020-03-19T14:09:11.762Z",
-            "updated_at": "2020-03-19T14:09:11.762Z"
-        },
-        {
-            "interview_review_id": 1,
-            "job_title": "Software Engineer",
-            "interview_rounds": 4,
-            "overall_rating": 5,
-            "difficulty_rating": 5,
-            "salary": 120000,
-            "username": "nasra555",
-            "company_name": "Google",
-            "offer_status": "Offer Accepted",
-            "city": "New York",
-            "abbreviation": "NY",
-            "user_id": 1,
-            "phone_interview": true,
-            "resume_review": true,
-            "take_home_assignments": false,
-            "online_coding_assignments": true,
-            "portfolio_review": false,
-            "screen_share": true,
-            "open_source_contribution": false,
-            "side_projects": false,
-            "comment": "Non diam phasellus vestibulum lorem sed risus. Quam vulputate dignissim suspendisse in est. In nibh mauris cursus mattis. Id faucibus nisl tincidunt eget nullam non nisi est sit. Elit ullamcorper dignissim cras tincidunt. Semper risus in hendrerit gravida rutrum. Blandit cursus risus at ultrices mi tempus imperdiet nulla. Turpis massa sed elementum tempus. ",
-            "created_at": "2020-03-19T14:09:11.762Z",
-            "updated_at": "2020-03-19T14:09:11.762Z"
-        }
-    ]
+    "track_name": "DS"
 }
 ```
 
@@ -174,13 +88,13 @@ To get the server running locally:
 
 ##### TRACKS TABLE
 
-| id  | track_name                 |
-| --- | -------------------------- |
-| 1   | Android Development        |
-| 2   | Data Science               |
-| 3   | Full Stack Web Development |
-| 4   | iOS Development            |
-| 5   | UX Design                  |
+| id  | track_name |
+| --- | ---------- |
+| 1   | AND        |
+| 2   | DS         |
+| 3   | WEB        |
+| 4   | iOS        |
+| 5   | UX         |
 
 ##### WORK STATUS TABLE
 
@@ -199,6 +113,45 @@ To get the server running locally:
 | 1   | No Offer       |
 | 2   | Offer Accepted |
 | 3   | Offer Declined |
+
+### ALL REVIEWS
+
+##### RETURNS
+
+```
+{
+    "review_id": 1,
+    "user_id": 1,
+    "username": "aaron123",
+    "review_type": "Company",
+    "company_name": "Google",
+    "logo": "google.com",
+    "work_status": "Former Employee",
+    "job_title": "Software Geniius",
+    "city": "Los Angeles",
+    "state_name": "CA",
+    "start_date": 2123,
+    "end_date": 2000,
+    "interview_rounds": 3,
+    "phone_interview": true,
+    "resume_review": true,
+    "take_home_assignments": true,
+    "online_coding_assignments": false,
+    "portfolio_review": false,
+    "screen_share": false,
+    "open_source_contribution": true,
+    "side_projects": false,
+    "comment": "asdfasdfasdfasfdasdfasdf",
+    "typical_hours": 40,
+    "salary": 6000,
+    "difficulty_rating": 5,
+    "offer_status": "Offer Declined",
+    "overall_rating": 4,
+    "created_at": "2020-03-19T20:32:17.896Z",
+    "updated_at": "2020-03-19T20:32:17.896Z"
+}
+
+```
 
 #### COMPANY REVIEW
 
@@ -361,34 +314,19 @@ To get the server running locally:
 `deleteCompany(userId)` -> Deletes the single company.
 <br>
 
-### Company Reviews Actions
+### Reviews Actions
 
-`findCompanyReviews()` -> Returns a list of all company reviews.
+`findReviews()` -> Returns a list of all reviews.
 
-`findCompanyReviewBy(filter)` -> Returns a single company review by specified filter.
+`findReviewBy(filter)` -> Returns a single company review by specified filter.
 
-`findCompanyReviewById(id)` -> Returns a single review by review ID.
+`findReviewById(id)` -> Returns a single review by review ID.
 
-`addCompanyReview(newReview)` --> Creates a new company review and returns that review.
+`addReview(newReview)` --> Creates a new review and returns that review.
 
-`updateReview(id, changes)` -> Updates a single company review by ID.
+`updateReview(id, changes)` -> Updates a single review by ID.
 
-`deleteCompanyReview(id)` -> Deletes a single company review by ID.
-<br>
-
-### Interview Reviews Actions
-
-`findInterviewReviews()` -> Returns a list of all interview reviews.
-
-`findInterviewReviewBy(filter)` -> Returns a single interview review by specified filter.
-
-`findInterviewReviewById(id)` -> Returns a single interview review by review ID.
-
-`addInterviewReview(newReview)` --> Creates a new interview review and returns that review.
-
-`updateInterviewReview(id, changes)` -> Updates a single interview review by ID.
-
-`deleteInterviewReview(id)` -> Deletes a single interview review by ID.
+`deleteReview(id)` -> Deletes a single review by ID.
 <br>
 
 ## Environment Variables
