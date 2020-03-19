@@ -69,7 +69,7 @@ To get the server running locally:
 | GET    | `/interview-reviews`     | all users      | Returns list of all interview reviews. |
 | GET    | `/interview-reviews/:id` | all users      | Returns single interview review by id. |
 
-# Data Model
+## Data Model
 
 #### USERS
 
@@ -99,10 +99,11 @@ To get the server running locally:
             "updated_at": "2020-03-18T20:29:40.711Z"
         }
     ]
+    "interview_reviews": []
 }
 ```
 
-### MAKE SURE THERE ARE NO TYPOS
+#### MAKE SURE THERE ARE NO TYPOS
 
 ##### TRACKS TABLE
 
@@ -132,9 +133,9 @@ To get the server running locally:
 | 2   | Offer Accepted |
 | 3   | Offer Declined |
 
-## COMPANY REVIEW
+#### COMPANY REVIEW
 
-### EXPECTS
+##### EXPECTS
 
 ```
 {
@@ -149,7 +150,7 @@ To get the server running locally:
 }
 ```
 
-### RETURNS
+##### RETURNS
 
 ```
 {
@@ -170,17 +171,21 @@ To get the server running locally:
 }
 ```
 
-## INTERVIEW REVIEW
+#### INTERVIEW REVIEW
 
 ---
+
+##### EXPECTS
 
 ```
 {
     Coming soon to you live! in action! seriously be patient.
-    }
+}
 ```
 
-## COMPANIES
+##### RETURNS
+
+#### COMPANIES
 
 ---
 
@@ -193,14 +198,17 @@ To get the server running locally:
     "domain": "1millioncups.com",
     "industry_name": "Philanthropy",
     "size_range": "51 - 200",
-    "linkedin_url": "linkedin.com/company/1-million-cups-organizer",
-    "reviews": []
+    "linkedin_url": "linkedin.com/company/1-million-cups-organizer"
 }
 ```
 
 ## Actions
 
 ---
+
+<br />
+
+### Users Actions
 
 `findUsers()` -> Returns all users
 
@@ -221,9 +229,10 @@ To get the server running locally:
 `updateUser(userId)` -> Update a single user by ID.
 
 `deleteUser(userId)` -> Deletes everything dependent on the user.
-<br>
-<br>
-<br>
+<br />
+<br />
+
+### Company Actions
 
 `findCompanies()` -> Retruns a list of all companies.
 
@@ -240,7 +249,8 @@ To get the server running locally:
 `deleteCompany(userId)` -> Deletes the single company.
 <br>
 <br>
-<br>
+
+### Company Reviews Actions
 
 `findCompanyReviews()` -> Returns a list of all company reviews.
 
@@ -255,7 +265,8 @@ To get the server running locally:
 `deleteCompanyReview(id)` -> Deletes a single company review by ID.
 <br>
 <br>
-<br>
+
+### Interview Reviews Actions
 
 `findInterviewReviews()` -> Returns a list of all interview reviews.
 
@@ -268,6 +279,8 @@ To get the server running locally:
 `updateInterviewReview(id, changes)` -> Updates a single interview review by ID.
 
 `deleteInterviewReview(id)` -> Deletes a single interview review by ID.
+<br>
+<br>
 
 ## Environment Variables
 
