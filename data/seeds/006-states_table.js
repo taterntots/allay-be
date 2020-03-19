@@ -6,160 +6,160 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('states').insert([
         {
-          abbreviation: 'AL'
+          state_name: 'AL'
         },
         {
-          abbreviation: 'AK'
+          state_name: 'AK'
         },
         {
-          abbreviation: 'AZ'
+          state_name: 'AZ'
         },
         {
-          abbreviation: 'AR'
+          state_name: 'AR'
         },
         {
-          abbreviation: 'CA'
+          state_name: 'CA'
         },
         {
-          abbreviation: 'CO'
+          state_name: 'CO'
         },
         {
-          abbreviation: 'CT'
+          state_name: 'CT'
         },
         {
-          abbreviation: 'DE'
+          state_name: 'DE'
         },
         {
-          abbreviation: 'FL'
+          state_name: 'FL'
         },
         {
-          abbreviation: 'GA'
+          state_name: 'GA'
         },
         {
-          abbreviation: 'HI'
+          state_name: 'HI'
         },
         {
-          abbreviation: 'ID'
+          state_name: 'ID'
         },
         {
-          abbreviation: 'IL'
+          state_name: 'IL'
         },
         {
-          abbreviation: 'IN'
+          state_name: 'IN'
         },
         {
-          abbreviation: 'IA'
+          state_name: 'IA'
         },
         {
-          abbreviation: 'KS'
+          state_name: 'KS'
         },
         {
-          abbreviation: 'KY'
+          state_name: 'KY'
         },
         {
-          abbreviation: 'LA'
+          state_name: 'LA'
         },
         {
-          abbreviation: 'ME'
+          state_name: 'ME'
         },
         {
-          abbreviation: 'MD'
+          state_name: 'MD'
         },
         {
-          abbreviation: 'MA'
+          state_name: 'MA'
         },
         {
-          abbreviation: 'MI'
+          state_name: 'MI'
         },
         {
-          abbreviation: 'MN'
+          state_name: 'MN'
         },
         {
-          abbreviation: 'MS'
+          state_name: 'MS'
         },
         {
-          abbreviation: 'MO'
+          state_name: 'MO'
         },
         {
-          abbreviation: 'MT'
+          state_name: 'MT'
         },
         {
-          abbreviation: 'NE'
+          state_name: 'NE'
         },
         {
-          abbreviation: 'NV'
+          state_name: 'NV'
         },
         {
-          abbreviation: 'NH'
+          state_name: 'NH'
         },
         {
-          abbreviation: 'NJ'
+          state_name: 'NJ'
         },
         {
-          abbreviation: 'NM'
+          state_name: 'NM'
         },
         {
-          abbreviation: 'NY'
+          state_name: 'NY'
         },
         {
-          abbreviation: 'NC'
+          state_name: 'NC'
         },
         {
-          abbreviation: 'ND'
+          state_name: 'ND'
         },
         {
-          abbreviation: 'OH'
+          state_name: 'OH'
         },
         {
-          abbreviation: 'OK'
+          state_name: 'OK'
         },
         {
-          abbreviation: 'OR'
+          state_name: 'OR'
         },
         {
-          abbreviation: 'PA'
+          state_name: 'PA'
         },
         {
-          abbreviation: 'RI'
+          state_name: 'RI'
         },
         {
-          abbreviation: 'SC'
+          state_name: 'SC'
         },
         {
-          abbreviation: 'SD'
+          state_name: 'SD'
         },
         {
-          abbreviation: 'TN'
+          state_name: 'TN'
         },
         {
-          abbreviation: 'TX'
+          state_name: 'TX'
         },
         {
-          abbreviation: 'UT'
+          state_name: 'UT'
         },
         {
-          abbreviation: 'VT'
+          state_name: 'VT'
         },
         {
-          abbreviation: 'VA'
+          state_name: 'VA'
         },
         {
-          abbreviation: 'WA'
+          state_name: 'WA'
         },
         {
-          abbreviation: 'WV'
+          state_name: 'WV'
         },
         {
-          abbreviation: 'WI'
+          state_name: 'WI'
         },
         {
-          abbreviation: 'WY'
+          state_name: 'WY'
         },
         {
-          abbreviation: 'Remote'
+          state_name: 'Remote'
         },
         {
-          abbreviation: 'Unknown'
+          state_name: 'Unknown'
         }
       ]);
     });

@@ -6,19 +6,19 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('tracks').insert([
         {
-          track_name: 'Android Development'
+          track_name: 'AND'
         },
         {
-          track_name: 'Data Science'
+          track_name: 'DS'
         },
         {
-          track_name: 'Full Stack Web Development'
+          track_name: 'WEB'
         },
         {
-          track_name: 'iOS Development'
+          track_name: 'iOS'
         },
         {
-          track_name: 'UX Design'
+          track_name: 'UX'
         }
       ]);
     });

@@ -11,10 +11,10 @@ exports.up = function(knex, Promise) {
       .unique();
     tbl.string('password');
     tbl
-      .string('track_name')
+      .integer('track_id')
       .unsigned()
       .notNullable()
-      .references('track_name')
+      .references('id')
       .inTable('tracks')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
