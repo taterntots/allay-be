@@ -68,7 +68,8 @@ To get the server running locally:
     "id": 1,
     "username": "nasra555",
     "email": "nasra555@nasra.com",
-    "track_name": "DS"
+    "track_id": 1,
+    "reviews": []
 }
 ```
 
@@ -200,13 +201,9 @@ To get the server running locally:
 
 `findUserById(userId)` -> Returns all data for a single user by ID (including all company and interview).
 
-`findUserCompanyReviews(userId)` => Returns company reviews related to a user.
+`findUserReviews(userId)` => Returns reviews related to a user.
 
-`findUserCompanyReviewById(revId)` => Returns a single company review related to a user.
-
-`findUserInterviewReviews(userId)` => Returns interview reviews related to a user.
-
-`findUserInterviewReviewById(revId)` => Returns a single interview review related to a user.
+`findUserReviewById(revId)` => Returns a single review related to a user.
 
 `addUser(user object)` -> Creates a new user and returns that user.
 
