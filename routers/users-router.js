@@ -161,19 +161,19 @@ router.put(
 
     const changes = req.body;
 
-    // .updateInterviewReview(revId, changes)
-    //   .then(updatedReview => {
-    //     if (updatedReview) {
-    //       res.status(200).json({ updatedReview: changes });
-    //     } else {
-    //       res.status(404).json(err, {
-    //         error: 'could not find a valid interview review'
-    //       });
-    //     }
-    //   })
-    //   .catch(err => {
-    //     res.status(500).json(err, { error: 'can not edit interview review' });
-    //   });
+    Revs.updateReview(revId, changes)
+      .then(updatedReview => {
+        if (updatedReview) {
+          res.status(200).json({ updatedReview: changes });
+        } else {
+          res.status(404).json(err, {
+            error: 'could not find a valid review'
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).json(err, { error: 'can not edit review' });
+      });
   }
 );
 
@@ -185,15 +185,15 @@ router.delete(
   // validateInterviewReviewId,
   (req, res) => {
     const { revId } = req.params;
-    // IRevs.deleteInterviewReview(revId)
-    //   .then(deleted => {
-    //     res.status(200).json(deleted);
-    //   })
-    //   .catch(err => {
-    //     res.status(500).json(err, {
-    //       error: ' was not able to delete interview review'
-    //     });
-    //   });
+    Revs.deleteReview(revId)
+      .then(deleted => {
+        res.status(200).json(deleted);
+      })
+      .catch(err => {
+        res.status(500).json(err, {
+          error: ' was not able to delete interview review'
+        });
+      });
   }
 );
 

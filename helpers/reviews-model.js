@@ -115,7 +115,7 @@ function updateReview(id, changes) {
   return db('reviews')
     .where({ id })
     .update(changes)
-    .then(count => (count > 0 ? findReviewById(id) : null));
+    .then(count => (count > 0 ? findReviewsById(id) : null));
 }
 
 // DELETE AN EXISTING REVIEW
