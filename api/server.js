@@ -30,11 +30,7 @@ server.get('/', (req, res) => {
 //routes with Auth applied
 server.use('/api/auth', authRouter);
 server.use('/api/users', restricted, usersRouter);
-server.use(
-  '/api/reviews',
-  //  restricted,
-  reviewsRouter
-);
+server.use('/api/reviews', restricted, reviewsRouter);
 server.use('/api/companies', restricted, companiesRouter);
 
 module.exports = server;

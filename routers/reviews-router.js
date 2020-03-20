@@ -19,9 +19,9 @@ router.get('/filter', (req, res) => {
   const filter = req.params.filter;
 
   Revs.findReviewsBy(filter)
-    .then(review => {
-      console.log(review);
-      res.json(review);
+    .then(reviews => {
+      console.log(reviews);
+      res.json(reviews);
     })
     .catch(err => {
       res.status(500).json({
@@ -39,8 +39,8 @@ router.get(
     const { revId } = req.params;
 
     Revs.findReviewsById(revId)
-      .then(userReview => {
-        res.json(userReview);
+      .then(review => {
+        res.json(review);
       })
       .catch(err => {
         res.status(500).json({

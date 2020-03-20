@@ -42,10 +42,46 @@
 
 ## files needing to get looked at before checking them off
 
+## users-router
+
+- finish crud for reviews
+- add middleware
+- comment our code
+- update readME
+
+## reviews router
+
+- add middleware
+- double check the routes
+- update readme with the routes
+-
+
+## users model
+
+- update functions/ delete old ones
+- add middleware
+- update readme
+
+## reviews model
+
+- update functions/delete ones
+- crud operations gets sent to users-router
+- update readme
+- middleware
+-
+
+## middleware
+
+- add new middleware
+  - validate review id
+  - check for review data
+  - implement and to readme
+
+## readME
+
+- delete parts of the readme that no longer work
+- update routes
+- update data model
+- double check!
+
 # Bugs
-
-1. (users-router) get(/:id/company-`review`/:id)
-
-- we had to make sure it is singular because if the url was plural (reviews) postman throws a 404 error.
-
-2. Double check migrations table that appropriate input fields are integers instead of strings. (Top Priority)

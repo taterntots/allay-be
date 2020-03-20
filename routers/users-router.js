@@ -39,7 +39,7 @@ router.get('/:userId', validateUserId, (req, res) => {
 
 //*************** UPDATE USER INFO ******************//
 router.put('/:userId', validateUserId, (req, res) => {
-  const { email, password, username, track_name } = req.body;
+  const { email, password, username, track_id } = req.body;
   const { userId } = req.params;
   id = userId;
   User.findUsersBy({ id }).then(userInfo => {
@@ -48,16 +48,16 @@ router.put('/:userId', validateUserId, (req, res) => {
       email === user[0].email &&
       username === user[0].username &&
       password === user[0].password &&
-      track_name === user[0].track_name
+      track_id === user[0].track_id
     ) {
       return res.status(200).json({ message: 'No changes to update' });
     } else {
-      User.updateUser(id, { email, password, username, track_name })
+      User.updateUser(id, { email, password, username, track_id })
         .then(info => {
           if (info) {
             res
               .status(202)
-              .json({ info: { email, password, username, track_namei } });
+              .json({ info: { email, password, username, track_id } });
           } else {
             res.status(404).json({ message: 'Error locating user info' });
           }
