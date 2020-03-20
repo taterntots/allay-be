@@ -106,7 +106,7 @@ function addReview(newReview) {
   return db('reviews')
     .insert(newReview, 'id')
     .then(([id]) => {
-      return findReviewById(id);
+      return findReviewsById(id);
     });
 }
 

@@ -53,11 +53,11 @@ router.put('/:userId', validateUserId, (req, res) => {
       return res.status(200).json({ message: 'No changes to update' });
     } else {
       User.updateUser(id, { email, password, username, track_id })
-        .then(info => {
-          if (info) {
+        .then(updatedInfo => {
+          if (updatedInfo) {
             res
               .status(202)
-              .json({ info: { email, password, username, track_id } });
+              .json({ updatedInfo: { email, password, username, track_id } });
           } else {
             res.status(404).json({ message: 'Error locating user info' });
           }
@@ -135,18 +135,18 @@ router.post(
     review = { ...review, user_id: userId };
 
     // if (Number(req.user.id) === Number(id)) {
-    // IRevs.addInterviewReview(interviewReview)
-    //   .then(newReview => {
-    //     res.status(201).json(newReview);
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: 'There was an error check id or review fields' });
-    //   });
-    //   } else {
-    //     return res.status(404).json({ error: 'Wrong user' });
-    //   }
+    Revs.addReview(review)
+      .then(newReview => {
+        res.status(201).json(newReview);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json(err, { error: 'There was an error check id or review fields' });
+      });
+    // } else {
+    //   return res.status(404).json({ error: 'Wrong user' });
+    // }
   }
 );
 

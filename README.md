@@ -30,22 +30,17 @@ To get the server running locally:
 
 #### New Users Routes
 
-| Method | Endpoint                                  | Access Control | Description                                          |
-| ------ | ----------------------------------------- | -------------- | ---------------------------------------------------- |
-| GET    | `/users/all`                              | all users      | Returns list of all users.                           |
-| GET    | `/users/:userIid`                         | all users      | Returns info for a single user by id.                |
-| PUT    | `/users/:userId`                          | all users      | Update user's account info by id.                    |
-| DELETE | `/users/:userId`                          | all users      | Delete user's account by id.                         |
-| GET    | `/users/:userId/company-reviews`          | all users      | Returns a list of review about a company by user.    |
-| GET    | `/users/:userId/company-reviews/revId`    | all users      | Returns a single review about a company by user.     |
-| POST   | `/users/:userId/add-company-review`       | all users      | Post helpful review about a company.                 |
-| PUT    | `/users/:userId/company-reviews/:revId`   | all users      | Update a review about a company by id.               |
-| DELETE | `/users/:userId/company-reviews/:revId`   | all users      | Delete a review about a company by id.               |
-| GET    | `/users/:userId/interview-reviews`        | all users      | Returns a list of review about an interview by user. |
-| GET    | `/users/:userId/interview-reviews/revId`  | all users      | Returns a single review about an interview by user.  |
-| POST   | `/users/:userId/add-interview-reviews`    | all users      | Post helpful review about an interview.              |
-| PUT    | `/users/:userId/interview-reviews/:revId` | all users      | Update a review about an interview by id.            |
-| DELETE | `/users/:userId/interview-reviews/:revId` | all users      | Delete a review about an interview by id.            |
+| Method | Endpoint                        | Access Control | Description                           |
+| ------ | ------------------------------- | -------------- | ------------------------------------- |
+| GET    | `/users/all`                    | all users      | Returns list of all users.            |
+| GET    | `/users/:userIid`               | all users      | Returns info for a single user by id. |
+| PUT    | `/users/:userId`                | all users      | Update user's account info by id.     |
+| DELETE | `/users/:userId`                | all users      | Delete user's account by id.          |
+| GET    | `/users/:userId/reviews`        | all users      | Returns a list of review by user.     |
+| GET    | `/users/:userId/reviews/revId`  | all users      | Returns a single review by user.      |
+| POST   | `/users/1/add-review`           | all users      | Post helpful review.                  |
+| PUT    | `/users/:userId/reviews/:revId` | all users      | Update a review by id.                |
+| DELETE | `/users/:userId/reviews/:revId` | all users      | Delete a review by id.                |
 
 #### Company Routes
 
@@ -61,13 +56,6 @@ To get the server running locally:
 | ------ | -------------- | -------------- | ---------------------------- |
 | GET    | `/reviews`     | all users      | Returns list of all reviews. |
 | GET    | `/reviews/:id` | all users      | Returns a single review.     |
-
-#### Interview Reviews Routes
-
-| Method | Endpoint                 | Access Control | Description                            |
-| ------ | ------------------------ | -------------- | -------------------------------------- |
-| GET    | `/interview-reviews`     | all users      | Returns list of all interview reviews. |
-| GET    | `/interview-reviews/:id` | all users      | Returns single interview review by id. |
 
 ## Data Model
 
@@ -116,6 +104,36 @@ To get the server running locally:
 
 ### ALL REVIEWS
 
+##### EXPECTS
+
+```
+{
+    "review_type_id": 1,
+    "company_name": "Google",
+    "work_status_id": 5,
+    "job_title": "Software Geniius",
+    "city": "Los Angeles",
+    "state_id": 10,
+    "start_date": 2123,
+    "end_date": 2000,
+    "interview_rounds": 3,
+    "phone_interview": true,
+    "resume_review": true,
+    "take_home_assignments": true,
+    "online_coding_assignments": false,
+    "portfolio_review": false,
+    "screen_share": false,
+    "open_source_contribution": true,
+    "side_projects": false,
+    "comment": "asdfasdfasdfasfdasdfasdf asdfasdf sad fasd ",
+    "typical_hours": 40,
+    "salary": 6000,
+    "difficulty_rating": 5,
+    "offer_status_id": 3,
+    "overall_rating": 4
+}
+```
+
 ##### RETURNS
 
 ```
@@ -149,47 +167,6 @@ To get the server running locally:
     "overall_rating": 4,
     "created_at": "2020-03-19T20:32:17.896Z",
     "updated_at": "2020-03-19T20:32:17.896Z"
-}
-
-```
-
-#### COMPANY REVIEW
-
----
-
-##### EXPECTS
-
-```
-{
-
-}
-```
-
-##### RETURNS
-
-```
-{
-
-}
-```
-
-#### INTERVIEW REVIEW
-
----
-
-##### EXPECTS
-
-```
-{
-
-}
-```
-
-##### RETURNS
-
-```
-{
-
 }
 
 ```
