@@ -3,7 +3,11 @@ const router = require('express').Router();
 const User = require('../helpers/users-model.js');
 const Revs = require('../helpers/reviews-model.js');
 
-const { validateUserId } = require('../middleware/index.js');
+const {
+  validateUserId,
+  checkForReviewData,
+  validateReviewId
+} = require('../middleware/index.js');
 
 /**************************************************************************/
 
@@ -111,22 +115,28 @@ router.get('/:userId/reviews', validateUserId, (req, res) => {
 
 //************* GET A SINGLE REVIEW BY USER ID ***************//
 
-router.get('/:userId/reviews/:revId', validateUserId, (req, res) => {
-  const { revId } = req.params;
-  User.findUserReviewsById(revId)
-    .then(review => {
-      res.status(200).json(review);
-    })
-    .catch(err => {
-      res.status(500).json({ error: 'Could not retrieve single user review.' });
-    });
-});
+router.get(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  validateReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+    User.findUserReviewsById(revId)
+      .then(review => {
+        res.status(200).json(review);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: 'Could not retrieve single user review.' });
+      });
+  }
+);
 
 //***************** ADD NEW REVIEW *******************// ===== make sure to update the if else statement====
 router.post(
   '/:userId/add-review',
-  //  checkForReviewData,
-  // checkForInterviewReviewData,
+  checkForReviewData,
   validateUserId,
   (req, res) => {
     const { userId } = req.params;
@@ -155,7 +165,7 @@ router.post(
 router.put(
   '/:userId/reviews/:revId',
   validateUserId,
-  // validateInterviewReviewId,
+  validateReviewId,
   (req, res) => {
     const { revId } = req.params;
 
@@ -182,7 +192,7 @@ router.put(
 router.delete(
   '/:userId/reviews/:revId',
   validateUserId,
-  // validateInterviewReviewId,
+  validateReviewId,
   (req, res) => {
     const { revId } = req.params;
     Revs.deleteReview(revId)

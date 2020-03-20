@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/secret.js');
 const Users = require('../helpers/users-model.js');
 const Companies = require('../helpers/companies-model.js');
+const Revs = require('../helpers/reviews-model.js');
 
 module.exports = {
   restricted,
@@ -10,7 +11,8 @@ module.exports = {
   validateUserId,
   checkForCompanyData,
   validateCompanyId,
-  checkForReviewData
+  checkForReviewData,
+  validateReviewId
 };
 
 // Auth Router
@@ -129,80 +131,27 @@ function validateCompanyId(req, res, next) {
     });
 }
 
-// Company Reviews Router
+// Reviews Router
 
-// function checkForCompanyReviewData(req, res, next) {
-//   if (Object.keys(req.body).length === 0) {
-//     res
-//       .status(400)
-//       .json({ errorMessage: 'body is empty / missing company review data' });
-//   } else if (
-//     !req.body.job_title ||
-//     !req.body.start_date ||
-//     !req.body.job_rating ||
-//     !req.body.end_date ||
-//     !req.body.salary ||
-//     !req.body.comment ||
-//     !req.body.typical_hours ||
-//     !req.body.work_status ||
-//     !req.body.company_name
-//   ) {
-//     res.status(400).json({
-//       errorMessage:
-//         'job title, job location, salary, start end and end dates, typical hours, work status, and company name are required'
-//     });
-//   } else {
-//     next();
-//   }
-// }
-
-// function validateCompanyReviewId(req, res, next) {
-//   const { revId } = req.params;
-//   CRevs.findCompanyReviewById(revId)
-//     .then(review => {
-//       if (review) {
-//         next();
-//       } else {
-//         res.status(404).json({
-//           errorMessage:
-//             'The company review with the specified ID does not exist'
-//         });
-//       }
-//     })
-//     .catch(erorr => {
-//       res.status(500).json({
-//         errorMessage:
-//           'Could not validate company review information for the specified ID'
-//       });
-//     });
-// }
-
-// Interview Reviews Router
-
-// function checkForInterviewReviewData(req, res, next) {
-//   if (Object.keys(req.body).length === 0) {
-//     res
-//       .status(400)
-//       .json({ errorMessage: 'body is empty / missing review data' });
-//   } else if (
-//     !req.body.job_title ||
-//     !req.body.overall_rating ||
-//     !req.body.salary ||
-//     !req.body.city ||
-//     !req.body.abbreviation ||
-//     !req.body.interview_rounds ||
-//     !req.body.offer_status ||
-//     !req.body.company_name ||
-//     !req.body.comment
-//   ) {
-//     res.status(400).json({
-//       errorMessage:
-//         'job title, interview location, salary, overall rating, interview rounds, work status, and company, and a comment are required'
-//     });
-//   } else {
-//     next();
-//   }
-// }
+function validateReviewId(req, res, next) {
+  const { revId } = req.params;
+  Revs.findReviewsById(revId)
+    .then(review => {
+      if (review) {
+        next();
+      } else {
+        res.status(404).json({
+          errorMessage: 'The review with the specified ID does not exist'
+        });
+      }
+    })
+    .catch(erorr => {
+      res.status(500).json({
+        errorMessage:
+          'Could not validate review information for the specified ID'
+      });
+    });
+}
 
 function checkForReviewData(req, res, next) {
   if (Object.keys(req.body).length === 0) {
@@ -211,13 +160,14 @@ function checkForReviewData(req, res, next) {
       .json({ errorMessage: 'body is empty / missing review data' });
   } else if (
     !req.body.job_title ||
-    !req.body.job_location ||
+    !req.body.city ||
+    !req.body.state_id ||
     !req.body.salary ||
-    !req.body.company_id
+    !req.body.company_name
   ) {
     res.status(400).json({
       errorMessage:
-        'job title, job location, salary, and company id are required'
+        'job title, job location, salary, and company name are required'
     });
   } else {
     next();
