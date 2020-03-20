@@ -16,6 +16,7 @@ function findReviews() {
       'r.id as review_id',
       'u.id as user_id',
       'u.username',
+      't.track_name',
       'rt.review_type',
       'c.company_name',
       'c.domain as logo',
@@ -45,6 +46,7 @@ function findReviews() {
       'r.updated_at'
     )
     .join('users as u', 'r.user_id', 'u.id')
+    .join('tracks as t', 'u.track_id', 't.id')
     .join('companies as c', 'r.company_name', 'c.company_name')
     .join('work_status as ws', 'r.work_status_id', 'ws.id')
     .join('offer_status as os', 'r.offer_status_id', 'os.id')
@@ -64,6 +66,7 @@ function findReviewsById(revId) {
       'r.id as review_id',
       'u.id as user_id',
       'u.username',
+      't.track_name',
       'rt.review_type',
       'c.company_name',
       'c.domain as logo',
@@ -93,6 +96,7 @@ function findReviewsById(revId) {
       'r.updated_at'
     )
     .join('users as u', 'r.user_id', 'u.id')
+    .join('tracks as t', 'u.track_id', 't.id')
     .join('companies as c', 'r.company_name', 'c.company_name')
     .join('work_status as ws', 'r.work_status_id', 'ws.id')
     .join('offer_status as os', 'r.offer_status_id', 'os.id')

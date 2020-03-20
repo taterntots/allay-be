@@ -45,6 +45,7 @@ function findUserReviews(userId) {
       'r.id as review_id',
       'u.id as user_id',
       'u.username',
+      't.track_name',
       'rt.review_type',
       'c.company_name',
       'c.domain as logo',
@@ -75,6 +76,7 @@ function findUserReviews(userId) {
     )
     .where('r.user_id', userId)
     .join('users as u', 'r.user_id', 'u.id')
+    .join('tracks as t', 'u.track_id', 't.id')
     .join('companies as c', 'r.company_name', 'c.company_name')
     .join('work_status as ws', 'r.work_status_id', 'ws.id')
     .join('offer_status as os', 'r.offer_status_id', 'os.id')
@@ -90,6 +92,7 @@ function findUserReviewsById(revId) {
       'r.id as review_id',
       'u.id as user_id',
       'u.username',
+      't.track_name',
       'rt.review_type',
       'c.company_name',
       'c.domain as logo',
@@ -120,6 +123,7 @@ function findUserReviewsById(revId) {
     )
     .where('r.id', revId)
     .join('users as u', 'r.user_id', 'u.id')
+    .join('tracks as t', 'u.track_id', 't.id')
     .join('companies as c', 'r.company_name', 'c.company_name')
     .join('work_status as ws', 'r.work_status_id', 'ws.id')
     .join('offer_status as os', 'r.offer_status_id', 'os.id')
