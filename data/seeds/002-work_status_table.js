@@ -19,6 +19,9 @@ exports.seed = function(knex) {
         },
         {
           work_status: 'Intern'
+        },
+        {
+          work_status: 'no work status'
         }
       ]);
     });

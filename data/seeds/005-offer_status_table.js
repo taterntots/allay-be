@@ -13,6 +13,9 @@ exports.seed = function(knex) {
         },
         {
           offer_status: 'Offer Declined'
+        },
+        {
+          offer_status: 'no offer status'
         }
       ]);
     });
