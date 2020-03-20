@@ -103,6 +103,14 @@ To get the server running locally:
 | 2   | Offer Accepted |
 | 3   | Offer Declined |
 
+##### Review Types TABLE
+
+| id  | work_status |
+| --- | ----------- |
+| 1   | Company     |
+| 2   | Interview   |
+|     |             |
+
 ### ALL REVIEWS
 
 ##### EXPECTS
