@@ -21,7 +21,6 @@ router.post('/register', checkForRegisterData, (req, res) => {
   const hash = bcrypt.hashSync(user.password, 3); //Change in production!!!
 
   user.password = hash;
-  console.log(req.body);
   User.addUser(user)
     .then(newUser => {
       const token = signToken(newUser);
@@ -46,7 +45,7 @@ router.post('/login', checkForLoginData, (req, res) => {
         const token = signToken(user);
         const id = user.id;
 
-        res.status(200).json({ token, id });
+        res.status(200).json({ user, token, id });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }

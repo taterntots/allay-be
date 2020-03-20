@@ -111,6 +111,22 @@ To get the server running locally:
 | 2   | Interview   |
 |     |             |
 
+##### STATES TABLE
+
+| id  | state_name |
+| --- | ---------- |
+| 1   | AL         |
+| 2   | AK         |
+| 3   | AZ         |
+| 4   | AR         |
+| 5   | CA         |
+| 6   | CO         |
+| 7   | CT         |
+
+...
+| 51 | Remote |
+| 52 | Unknown |
+
 ### ALL REVIEWS
 
 ##### EXPECTS
