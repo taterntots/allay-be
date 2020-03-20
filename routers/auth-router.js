@@ -24,7 +24,8 @@ router.post('/register', checkForRegisterData, (req, res) => {
   User.addUser(user)
     .then(newUser => {
       const token = signToken(newUser);
-      res.status(201).json({ newUser, token });
+      const { username, id } = newUser;
+      res.status(201).json({ username, token, id });
     })
     .catch(err => {
       res.status(500).json(err, { error: 'There was an error signing up.' });
