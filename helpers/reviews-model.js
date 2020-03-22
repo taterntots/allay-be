@@ -102,6 +102,7 @@ function findReviewsById(revId) {
     .join('offer_status as os', 'r.offer_status_id', 'os.id')
     .join('states as s', 'r.state_id', 's.id')
     .join('review_types as rt', 'r.review_type_id', 'rt.id')
+    .where('r.id', revId)
     .first();
 }
 
