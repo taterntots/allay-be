@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       res.json(reviews);
     })
     .catch(err => {
-      res.status(500).json(err, {
+      res.status(500).json({
         error: 'Error getting all reviews.'
       });
     });

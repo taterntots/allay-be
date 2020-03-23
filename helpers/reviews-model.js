@@ -51,7 +51,8 @@ function findReviews() {
     .join('work_status as ws', 'r.work_status_id', 'ws.id')
     .join('offer_status as os', 'r.offer_status_id', 'os.id')
     .join('states as s', 'r.state_id', 's.id')
-    .join('review_types as rt', 'r.review_type_id', 'rt.id');
+    .join('review_types as rt', 'r.review_type_id', 'rt.id')
+    .orderBy('r.created_at', 'desc');
 }
 
 // FIND REVIEWS BY A SPECIFIC FILTER

@@ -37,7 +37,7 @@ router.get('/:userId', validateUserId, (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      res.status(500).json(err, { error: 'There was an error getting user' });
+      res.status(500).json({ error: 'There was an error getting user' });
     });
 });
 
@@ -144,19 +144,19 @@ router.post(
     let review = req.body;
     review = { ...review, user_id: userId };
 
-    // if (Number(req.user.id) === Number(id)) {
-    Revs.addReview(review)
-      .then(newReview => {
-        res.status(201).json(newReview);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json(err, { error: 'There was an error check id or review fields' });
-      });
-    // } else {
-    //   return res.status(404).json({ error: 'Wrong user' });
-    // }
+    if (Number(req.user.id) === Number(userId)) {
+      Revs.addReview(review)
+        .then(newReview => {
+          res.status(201).json(newReview);
+        })
+        .catch(err => {
+          res.status(500).json({
+            error: 'There was an error check id or review fields'
+          });
+        });
+    } else {
+      return res.status(404).json({ error: 'Wrong user' });
+    }
   }
 );
 
@@ -176,13 +176,13 @@ router.put(
         if (updatedReview) {
           res.status(200).json({ updatedReview: changes });
         } else {
-          res.status(404).json(err, {
+          res.status(404).json({
             error: 'could not find a valid review'
           });
         }
       })
       .catch(err => {
-        res.status(500).json(err, { error: 'can not edit review' });
+        res.status(500).json({ error: 'can not edit review' });
       });
   }
 );
@@ -200,7 +200,7 @@ router.delete(
         res.status(200).json(deleted);
       })
       .catch(err => {
-        res.status(500).json(err, {
+        res.status(500).json({
           error: ' was not able to delete interview review'
         });
       });
