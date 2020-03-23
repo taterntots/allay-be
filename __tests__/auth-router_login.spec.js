@@ -28,7 +28,8 @@ describe('server.js', () => {
         .send({
           username: 'banjo-kazooie',
           password: 'jiggy',
-          email: 'banjo64@spiralmountain.com'
+          email: 'banjo64@spiralmountain.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // login with the newly created user
@@ -52,7 +53,8 @@ describe('server.js', () => {
         .send({
           username: 'samus',
           password: 'metroid',
-          email: 'samus@zebes.com'
+          email: 'samus@zebes.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // login with the newly created user
@@ -71,7 +73,8 @@ describe('server.js', () => {
         .send({
           username: 'kirby',
           password: 'food',
-          email: 'kirby@planetpopstar.com'
+          email: 'kirby@planetpopstar.com',
+          track_id: 2
         });
       expect(res.status).toEqual(201);
       // login with the newly created user
@@ -90,7 +93,8 @@ describe('server.js', () => {
         .send({
           username: 'megaman',
           password: 'rush',
-          email: 'megaman@20XX.com'
+          email: 'megaman@20XX.com',
+          track_id: 3
         });
       expect(res.status).toEqual(201);
       // login with the newly created user
@@ -112,7 +116,8 @@ describe('server.js', () => {
         .send({
           username: 'papyrus',
           password: 'spaghetti',
-          email: 'papyrus@snowdin.com'
+          email: 'papyrus@snowdin.com',
+          track_id: 4
         });
       expect(res.status).toEqual(201);
       // login with the newly created user

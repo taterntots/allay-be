@@ -12,8 +12,8 @@ describe('Companies Model', () => {
     it('can add a new company', async () => {
       // POST new company
       const new_company = {
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 5,
         hq_city: 'San Francisco'
       };
       await Company.addCompany(new_company);

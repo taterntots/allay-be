@@ -7,24 +7,23 @@ describe('Companies Model', () => {
     await db.raw('truncate table reviews restart identity cascade');
     await db.raw('truncate table companies restart identity cascade');
     await db.raw('truncate table users restart identity cascade');
-    
   });
   describe('findCompanies()', () => {
     it('can add a few companies then find all companies', async () => {
       // POST new company
       const new_company = {
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 1,
         hq_city: 'San Francisco'
       };
       const new_company_2 = {
-        name: 'Spencer Test Company',
-        hq_state: 'California',
+        company_name: 'Spencer Test Company',
+        state_id: 1,
         hq_city: 'San Francisco'
       };
       const new_company_3 = {
-        name: 'Matt Test Company',
-        hq_state: 'California',
+        company_name: 'Matt Test Company',
+        state_id: 1,
         hq_city: 'San Francisco'
       };
 

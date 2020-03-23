@@ -4,7 +4,7 @@ const db = require('../data/dbConfig.js');
 
 // ********************** TRUNCATE BEFORE EACH TEST *******************************
 
-describe('test company endpoints', () => {
+describe.skip('test company endpoints', () => {
   beforeEach(async () => {
     await db.raw('truncate table reviews restart identity cascade');
     await db.raw('truncate table companies restart identity cascade');

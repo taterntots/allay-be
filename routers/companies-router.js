@@ -74,7 +74,7 @@ router.post('/', checkForCompanyData, (req, res) => {
       res.status(201).json(newCompany);
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      res.status(500).json({ error: 'There was an error adding a company' });
     });
 });
 

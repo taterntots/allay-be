@@ -3,7 +3,7 @@ const Reviews = require('../helpers/reviews-model');
 const Company = require('../helpers/companies-model');
 const User = require('../helpers/users-model');
 
-describe('Companies Model', () => {
+describe.skip('Companies Model', () => {
   beforeEach(async () => {
     await db.raw('truncate table reviews restart identity cascade');
     await db.raw('truncate table companies restart identity cascade');
