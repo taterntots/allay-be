@@ -2,6 +2,8 @@ const router = require('express').Router();
 
 const Revs = require('../helpers/reviews-model.js');
 
+const { validateReviewId } = require('../middleware/index.js');
+
 //************* GET ALL REVIEWS ***************//
 router.get('/', (req, res) => {
   Revs.findReviews()
@@ -32,22 +34,18 @@ router.get('/filter', (req, res) => {
 
 //************* GET A SINGLE REVIEW BY ID ***************//
 
-router.get(
-  '/:revId',
-  // validateCompanyReviewId,
-  (req, res) => {
-    const { revId } = req.params;
+router.get('/:revId', validateReviewId, (req, res) => {
+  const { revId } = req.params;
 
-    Revs.findReviewsById(revId)
-      .then(review => {
-        res.json(review);
-      })
-      .catch(err => {
-        res.status(500).json({
-          error: 'Error getting comany review by company review ID.'
-        });
+  Revs.findReviewsById(revId)
+    .then(review => {
+      res.json(review);
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: 'Error getting comany review by company review ID.'
       });
-  }
-);
+    });
+});
 
 module.exports = router;

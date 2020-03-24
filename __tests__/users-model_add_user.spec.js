@@ -17,17 +17,20 @@ describe('Users Model', () => {
       const mock_user_1 = {
         email: 'test1@gmail.com',
         username: 'IronMan',
-        password: 'IAmIronMan'
+        password: 'IAmIronMan',
+        track_id: 2
       };
       const mock_user_2 = {
         email: 'test2@gmail.com',
         username: 'Thor',
-        password: 'GodOfThunder'
+        password: 'GodOfThunder',
+        track_id: 3
       };
       const mock_user_3 = {
         email: 'test3@gmail.com',
         username: 'Rocket',
-        password: 'M3chanic'
+        password: 'M3chanic',
+        track_id: 4
       };
 
       await Users.addUser(mock_user_1);

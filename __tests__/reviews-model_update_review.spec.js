@@ -11,41 +11,37 @@ describe('Reviews Model', () => {
   });
   describe('updateReview()', () => {
     it('can update a review', async () => {
-
       const user_1 = {
         username: 'ignacio',
         email: 'ignacio@gmail.com',
-        password: 'ignacio'
+        password: 'ignacio',
+        track_id: 5
       };
 
       const review_1 = {
+        id: 3,
         job_title: 'engineer',
-        job_location: 'Tennessee',
+        state_id: 5,
+        city: 'San Diego',
         salary: 500,
-        interview_review: 'some info',
-        interview_rating: 3,
-        job_review: 'more info',
-        job_rating: 2,
-        tagline: 'The Best Interview Ever!',
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
 
       const review_1_update = {
-        job_title: 'engineer',
-        job_location: 'Tennessee',
-        salary: 5500,
-        interview_review: 'some info',
-        interview_rating: 3,
-        job_review: 'more info',
-        job_rating: 2,
-        tagline: 'The Best Interview Ever!',
+        id: 3,
+        job_title: 'Full-stack - engineer',
+        state_id: 5,
+        city: 'Los Angeles',
+        salary: 500,
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
       const company_1 = {
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 5,
         hq_city: 'San Diego'
       };
 

@@ -20,7 +20,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 3
         });
       //open the database and see that the new user is there
       const newUsers = await db('users');
@@ -35,7 +36,7 @@ describe('server.js', () => {
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(404);
       expect(res.body).toMatchObject({
-        errorMessage: 'The user with the specified ID does not exist'
+        errorMessage: 'The user with the specified ID does not exist.'
       });
     });
   });

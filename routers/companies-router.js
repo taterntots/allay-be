@@ -33,19 +33,15 @@ router.get('/filter', (req, res) => {
 });
 
 //*************** GET COMPANY BY ID *****************//
-router.get(
-  '/:id',
-  // validateCompanyId,
-  (req, res) => {
-    const { id } = req.params;
+router.get('/:id', validateCompanyId, (req, res) => {
+  const { id } = req.params;
 
-    Co.findCompanyById(id)
-      .then(company => {
-        res.json(company);
-      })
-      .catch(err => res.send(err));
-  }
-);
+  Co.findCompanyById(id)
+    .then(company => {
+      res.json(company);
+    })
+    .catch(err => res.send(err));
+});
 
 //****** GET REVIEWS ASSOCIATED WITH COMPANY NAME ******//
 
