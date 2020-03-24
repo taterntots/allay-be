@@ -21,7 +21,8 @@ describe('POST TEST', () => {
         .send({
           username: 'test',
           email: 'test@test.com',
-          password: '1234'
+          password: '1234',
+          track_id: 2
         });
 
       //make POST request to login and get token
@@ -41,11 +42,13 @@ describe('POST TEST', () => {
       expect([
         { id: '1' },
         { username: 'test' },
-        { email: 'test@test.com' }
+        { email: 'test@test.com' },
+        { track_id: 2 }
       ]).toMatchObject([
         { id: '1' },
         { username: 'test' },
-        { email: 'test@test.com' }
+        { email: 'test@test.com' },
+        { track_id: 2 }
       ]);
     });
   });

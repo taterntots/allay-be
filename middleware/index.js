@@ -61,7 +61,7 @@ function checkForLoginData(req, res, next) {
   if (Object.keys(req.body).length === 0) {
     res
       .status(400)
-      .json(err, { errorMessage: 'body is empty / missing registration data' });
+      .json({ errorMessage: 'body is empty / missing registration data' });
   } else if (!req.body.username || !req.body.password) {
     res
       .status(400)
@@ -88,7 +88,7 @@ function validateUserId(req, res, next) {
       }
     })
     .catch(error => {
-      res.status(500).json(error, {
+      res.status(500).json({
         errorMessage:
           'Could not validate user information for the specified ID.'
       });

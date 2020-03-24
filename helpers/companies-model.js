@@ -37,7 +37,7 @@ function findCompanyById(id) {
 
 // FIND ONLY THE REVIEWS ASSOCIATED WITH A COMPANY
 function findCompanyReviews(companyId) {
-  return db('company_reviews as cr').where('cr.company_id', companyId);
+  return db('reviews as r').where('r.company_name', companyId);
 }
 
 // ADD A COMPANY TO THE DATABASE

@@ -73,8 +73,6 @@ To get the server running locally:
 }
 ```
 
-#### MAKE SURE THERE ARE NO TYPOS
-
 ##### TRACKS TABLE
 
 | id  | track_name |
@@ -109,7 +107,6 @@ To get the server running locally:
 | --- | ----------- |
 | 1   | Company     |
 | 2   | Interview   |
-|     |             |
 
 ##### STATES TABLE
 
@@ -122,78 +119,136 @@ To get the server running locally:
 | 5   | CA         |
 | 6   | CO         |
 | 7   | CT         |
+| ... | ...        |
+| 51  | Remote     |
+| 51  | Unknown    |
 
-...
-| 51 | Remote |
-| 52 | Unknown |
+#### ALL REVIEWS
 
-### ALL REVIEWS
+---
 
-##### EXPECTS
+##### COMPANY REVIEWS
+
+###### EXPECTS
 
 ```
 {
-    "review_type_id": 1,
-    "company_name": "Google",
-    "work_status_id": 5,
-    "job_title": "Software Geniius",
-    "city": "Los Angeles",
-    "state_id": 10,
-    "start_date": 2123,
-    "end_date": 2000,
-    "interview_rounds": 3,
-    "phone_interview": true,
-    "resume_review": true,
-    "take_home_assignments": true,
-    "online_coding_assignments": false,
-    "portfolio_review": false,
-    "screen_share": false,
-    "open_source_contribution": true,
-    "side_projects": false,
-    "comment": "asdfasdfasdfasfdasdfasdf asdfasdf sad fasd ",
-    "typical_hours": 40,
-    "salary": 6000,
-    "difficulty_rating": 5,
-    "offer_status_id": 3,
-    "overall_rating": 4
+    work_status_id: "1"
+    job_title: "Software Geniius"
+    city: "Nashville"
+    state_id: 42
+    start_date: 2010
+    end_date: 2012
+    company_name: "Facet Biotech"
+    comment: "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. "
+    typical_hours: "50"
+    salary: 6000
+    review_type_id: 1
+    overall_rating: 3
 }
 ```
 
-##### RETURNS
+###### RETURNS
 
 ```
 {
-    "review_id": 1,
+    review_id: 1
+    user_id: 1
+    username: "thisisarealuser"
+    track_name: "WEB"
+    review_type_id: 1
+    company_name: "Nintendo"
+    logo: "nintendo.com"
+    work_status: "Intern"
+    job_title: "Software Geniius"
+    city: "Nashville"
+    state_id: 42
+    start_date: 2010
+    end_date: 2012
+    interview_rounds: 3
+    phone_interview: false
+    resume_review: false
+    take_home_assignments: false
+    online_coding_assignments: false
+    portfolio_review: false
+    screen_share: false
+    open_source_contribution: false
+    side_projects: false
+    comment: "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. "
+    typical_hours: 50
+    salary: 6000
+    difficulty_rating: 4
+    offer_status: "No Offer"
+    overall_rating: 3
+    created_at: "2020-03-20T23:52:55.681Z"
+    updated_at: "2020-03-20T23:52:55.681Z"
+
+}
+```
+
+##### INTERVIEW REVIEWS
+
+###### EXPECTS
+
+```
+{
+    "job_title": "Full Stack Developer",
+    "city": "Los Angeles",
+    "state_id": 5,
+    "company_name": "Twitch",
+    "phone_interview": false,
+    "resume_review": false,
+    "take_home_assignments": false,
+    "online_coding_assignments": false,
+    "portfolio_review": false,
+    "screen_share": true,
+    "open_source_contribution": false,
+    "side_projects": false,
+    "comment": "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. ",
+    "difficulty_rating": 4,
+    "salary": "1234567",
+    "review_type_id": 2,
+    "overall_rating": 3,
+    "offer_status_id": "2"
+}
+
+
+```
+
+###### RETURNS
+
+```
+{
+    "review_id": 2,
     "user_id": 1,
     "username": "aaron123",
-    "review_type": "Company",
-    "company_name": "Google",
-    "logo": "google.com",
+    "review_type_id": 2,
+    "company_name": "Twitch",
+    "logo": "twitch.com",
     "work_status": "Former Employee",
-    "job_title": "Software Geniius",
+    "job_title": "Full Stack Developer",
     "city": "Los Angeles",
-    "state_name": "CA",
+    "state_id": 5,
     "start_date": 2123,
     "end_date": 2000,
     "interview_rounds": 3,
-    "phone_interview": true,
-    "resume_review": true,
-    "take_home_assignments": true,
+    "phone_interview": false,
+    "resume_review": false,
+    "take_home_assignments": false,
     "online_coding_assignments": false,
     "portfolio_review": false,
-    "screen_share": false,
-    "open_source_contribution": true,
+    "screen_share": true,
+    "open_source_contribution": false,
     "side_projects": false,
-    "comment": "asdfasdfasdfasfdasdfasdf",
+    "comment": "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. ",
     "typical_hours": 40,
     "salary": 6000,
-    "difficulty_rating": 5,
-    "offer_status": "Offer Declined",
-    "overall_rating": 4,
+    "difficulty_rating": 4,
+    "offer_status_id": 2
+    "overall_rating": 3,
     "created_at": "2020-03-19T20:32:17.896Z",
     "updated_at": "2020-03-19T20:32:17.896Z"
 }
-
 ```
 
 #### COMPANIES

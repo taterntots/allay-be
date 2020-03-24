@@ -20,7 +20,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // check token exists
@@ -30,24 +31,27 @@ describe('server.js', () => {
       res = await request(server)
         .post('/api/companies')
         .send({
-          name: 'Super Mario Bros.'
+          company_name: 'Super Mario Bros',
+          state_id: 5,
+          hq_city: 'fresno'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
       // create a review
       res = await request(server)
-        .post('/api/users/1/reviews')
+        .post('/api/users/1/add-review')
         .send({
           job_title: '',
-          job_location: 'mushroom kingdom',
+          city: 'mushroom kingdom',
+          state_id: 5,
           salary: 30000,
-          company_id: 1
+          company_name: 'Super Mario Bros'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(400);
       expect(res.body).toMatchObject({
         errorMessage:
-          'job title, job location, salary, and company id are required'
+          'job title, job location, salary, and company name are required'
       });
     });
     it('should 400 error if job_location is missing from body', async () => {
@@ -57,7 +61,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 2
         });
       expect(res.status).toEqual(201);
       // check token exists
@@ -67,24 +72,27 @@ describe('server.js', () => {
       res = await request(server)
         .post('/api/companies')
         .send({
-          name: 'Super Mario Bros.'
+          company_name: 'Super Mario Bros',
+          state_id: 5,
+          hq_city: 'Los Angeles'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
       // create a review
       res = await request(server)
-        .post('/api/users/1/reviews')
+        .post('/api/users/1/add-review')
         .send({
           job_title: 'plumber',
-          job_location: '',
+          city: '',
+          state_id: '',
           salary: 30000,
-          company_id: 1
+          company_name: 'Google'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(400);
       expect(res.body).toMatchObject({
         errorMessage:
-          'job title, job location, salary, and company id are required'
+          'job title, job location, salary, and company name are required'
       });
     });
     it('should 400 error if salary is missing from body', async () => {
@@ -94,7 +102,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // check token exists
@@ -104,34 +113,38 @@ describe('server.js', () => {
       res = await request(server)
         .post('/api/companies')
         .send({
-          name: 'Super Mario Bros.'
+          company_name: 'Super Mario Bros',
+          state_id: 5,
+          hq_city: 'Los Angeles'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
       // create a review
       res = await request(server)
-        .post('/api/users/1/reviews')
+        .post('/api/users/1/add-review')
         .send({
           job_title: 'plumber',
-          job_location: 'mushroom kingdom',
+          city: 'SF',
+          state_id: 5,
           salary: '',
-          company_id: 1
+          company_name: 'Google'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(400);
       expect(res.body).toMatchObject({
         errorMessage:
-          'job title, job location, salary, and company id are required'
+          'job title, job location, salary, and company name are required'
       });
     });
-    it('should 400 error if company_id is missing from body', async () => {
+    it('should 400 error if company_name is missing from body', async () => {
       // register a new user
       res = await request(server)
         .post('/api/auth/register')
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // check token exists
@@ -141,24 +154,27 @@ describe('server.js', () => {
       res = await request(server)
         .post('/api/companies')
         .send({
-          name: 'Super Mario Bros.'
+          company_name: 'Super Mario Bros',
+          state_id: 5,
+          hq_city: 'Los Angeles'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
       // create a review
       res = await request(server)
-        .post('/api/users/1/reviews')
+        .post('/api/users/1/add-review')
         .send({
           job_title: 'plumber',
-          job_location: 'mushroom kingdom',
+          city: 'SF',
+          state_id: 5,
           salary: 30000,
-          company_id: ''
+          company_name: ''
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(400);
       expect(res.body).toMatchObject({
         errorMessage:
-          'job title, job location, salary, and company id are required'
+          'job title, job location, salary, and company name are required'
       });
     });
     it('should 400 error if review body is empty', async () => {
@@ -168,7 +184,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // check token exists
@@ -178,13 +195,15 @@ describe('server.js', () => {
       res = await request(server)
         .post('/api/companies')
         .send({
-          name: 'Super Mario Bros.'
+          company_name: 'Super Mario Bros',
+          state_id: 5,
+          hq_city: 'Los Angeles'
         })
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(201);
       // create a review
       res = await request(server)
-        .post('/api/users/1/reviews')
+        .post('/api/users/1/add-review')
         .send()
         .set({ authorization: token, Accept: 'application/json' });
       expect(res.status).toEqual(400);

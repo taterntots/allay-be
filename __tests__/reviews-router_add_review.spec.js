@@ -21,7 +21,8 @@ describe('POST TEST', () => {
         .send({
           username: 'test',
           email: 'test@test.com',
-          password: '1234'
+          password: '1234',
+          track_id: 5
         });
       expect(res.status).toBe(201);
 
@@ -40,29 +41,25 @@ describe('POST TEST', () => {
         .post('/api/companies')
         .set('Authorization', token)
         .send({
-          name: 'Ignacio Test Company',
-          hq_state: 'California',
+          company_name: 'Ignacio Test Company',
+          state_id: 5,
           hq_city: 'San Diego'
         });
       expect(res3.status).toBe(201);
 
-
       //make POST request to add review
       const res4 = await request(server)
-        .post('/api/reviews')
+        .post('/api/users/1/add-review')
         .set('Authorization', token)
         .send({
-          id: '101',
-          job_title: 'test job title',
-          job_location: 'florida',
-          salary: '100000',
-          interview_review: 'testing interview review',
-          interview_rating: '3',
-          job_review: 'testimg job review',
-          job_rating: '4',
-          tagline: 'The Best Interview Ever!',
-          user_id: '1',
-          company_id: '1'
+          id: 3,
+          job_title: 'Full-stack Web Developer',
+          state_id: 5,
+          city: 'Los Angeles',
+          salary: 500,
+          user_id: 1,
+          company_name: 'Ignacio Test Company',
+          review_type_id: 1
         });
       expect(res4.type).toBe('application/json');
       expect(res4.status).toBe(201);

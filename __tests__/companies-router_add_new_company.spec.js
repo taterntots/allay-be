@@ -20,7 +20,8 @@ describe('test company endpoints', () => {
       .send({
         email: 'ignacio@test.com',
         username: 'ignaciosm',
-        password: 'test123'
+        password: 'test123',
+        track_id: 1
       })
       .then(res_signup => {
         expect(res_signup.status).toBe(201);
@@ -39,8 +40,8 @@ describe('test company endpoints', () => {
 
             // POST new company
             const new_company = {
-              name: 'Ignacio Test Company',
-              hq_state: 'California',
+              company_name: 'Ignacio Test Company',
+              state_id: 5,
               hq_city: 'San Francisco'
             };
             return request(server)
@@ -50,8 +51,10 @@ describe('test company endpoints', () => {
               .then(res_post => {
                 expect(res_post.status).toBe(201);
                 expect(res_post.body.id).toBe(1);
-                expect(res_post.body.name).toBe(new_company.name);
-                expect(res_post.body.hq_state).toBe(new_company.hq_state);
+                expect(res_post.body.company_name).toBe(
+                  new_company.company_name
+                );
+                expect(res_post.body.state_id).toBe(new_company.state_id);
                 expect(res_post.body.hq_city).toBe(new_company.hq_city);
                 console.log('post new company succesful');
               }); // closes res_get

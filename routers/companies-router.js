@@ -33,19 +33,15 @@ router.get('/filter', (req, res) => {
 });
 
 //*************** GET COMPANY BY ID *****************//
-router.get(
-  '/:id',
-  // validateCompanyId,
-  (req, res) => {
-    const { id } = req.params;
+router.get('/:id', validateCompanyId, (req, res) => {
+  const { id } = req.params;
 
-    Co.findCompanyById(id)
-      .then(company => {
-        res.json(company);
-      })
-      .catch(err => res.send(err));
-  }
-);
+  Co.findCompanyById(id)
+    .then(company => {
+      res.json(company);
+    })
+    .catch(err => res.send(err));
+});
 
 //****** GET REVIEWS ASSOCIATED WITH COMPANY NAME ******//
 
@@ -74,7 +70,7 @@ router.post('/', checkForCompanyData, (req, res) => {
       res.status(201).json(newCompany);
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      res.status(500).json({ error: 'There was an error adding a company' });
     });
 });
 

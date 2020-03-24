@@ -12,7 +12,7 @@ describe('server.js', () => {
 
   /*************************** VALIDATE REVIEW BY ID *******************************/
 
-  describe('ValidateReviewById Middleware', () => {
+  describe('ValidateReviewId Middleware', () => {
     it('should 404 error if the review id does not exist', async () => {
       // register a new user
       res = await request(server)
@@ -20,7 +20,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 5
         });
       //open the database and see that the new user is there
       const newUsers = await db('users');
