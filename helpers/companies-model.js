@@ -35,7 +35,7 @@ function findCompanyById(id) {
     });
 }
 
-// FIND ONLY THE REVIEWS ASSOCIATED WITH A COMPANY
+// FIND ONLY THE REVIEWS ASSOCIATED WITH A COMPANY BY COMPANY NAME (FK)
 function findCompanyReviews(companyName) {
   return db('reviews as r').where('r.company_name', companyName);
 }
