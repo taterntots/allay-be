@@ -26,7 +26,7 @@ function findCompanyById(id) {
     .where({ id })
     .first()
     .then(company => {
-      return findCompanyReviews(company.id).then(companyReviews => {
+      return findCompanyReviews(company.company_name).then(companyReviews => {
         return {
           ...company,
           reviews: companyReviews
@@ -35,9 +35,9 @@ function findCompanyById(id) {
     });
 }
 
-// FIND ONLY THE REVIEWS ASSOCIATED WITH A COMPANY
-function findCompanyReviews(companyId) {
-  return db('reviews as r').where('r.company_name', companyId);
+// FIND ONLY THE REVIEWS ASSOCIATED WITH A COMPANY BY COMPANY NAME (FK)
+function findCompanyReviews(companyName) {
+  return db('reviews as r').where('r.company_name', companyName);
 }
 
 // ADD A COMPANY TO THE DATABASE

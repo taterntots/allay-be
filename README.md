@@ -133,7 +133,7 @@ To get the server running locally:
 
 ```
 {
-    work_status_id: "1"
+    work_status_id: 1
     job_title: "Software Geniius"
     city: "Nashville"
     state_id: 42
@@ -141,7 +141,7 @@ To get the server running locally:
     end_date: 2012
     company_name: "Facet Biotech"
     comment: "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. "
-    typical_hours: "50"
+    typical_hours: 50
     salary: 6000
     review_type_id: 1
     overall_rating: 3
