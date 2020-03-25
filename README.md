@@ -28,44 +28,54 @@ To get the server running locally:
 | POST   | `/auth/register` | all users      | Register a new user account.     |
 | POST   | `/auth/login`    | all users      | Login with a registered account. |
 
-
 #### New Users Routes
 
 | Method | Endpoint                        | Access Control | Description                           |
 | ------ | ------------------------------- | -------------- | ------------------------------------- |
 | GET    | `/users/all`                    | all users      | Returns list of all users.            |
-| GET    | `/users/:userId`               | all users      | Returns info for a single user by id. |
+| GET    | `/users/:userId`                | all users      | Returns info for a single user by id. |
 | PUT    | `/users/:userId`                | all users      | Update user's account info by id.     |
 | DELETE | `/users/:userId`                | all users      | Delete user's account by id.          |
 | GET    | `/users/:userId/reviews`        | all users      | Returns a list of review by user.     |
 | GET    | `/users/:userId/reviews/revId`  | all users      | Returns a single review by user.      |
-| POST   | `/users/:userId/add-review`           | all users      | Post helpful review.                  |
+| POST   | `/users/:userId/add-review`     | all users      | Post helpful review.                  |
 | PUT    | `/users/:userId/reviews/:revId` | all users      | Update a review by id.                |
 | DELETE | `/users/:userId/reviews/:revId` | all users      | Delete a review by id.                |
 
 #### Company Routes
 
-
-| Method | Endpoint         | Access Control | Description                                   |
-| ------ | ---------------- | -------------- | --------------------------------------------- |
-| GET    | `/companies`     | all users      | Returns list of all companies.                |
+| Method | Endpoint            | Access Control | Description                                   |
+| ------ | ------------------- | -------------- | --------------------------------------------- |
+| GET    | `/companies`        | all users      | Returns list of all companies.                |
 | GET    | `/companies/:comId` | all users      | Returns the information for a single company. |
-| POST   | `/companies`     | all users      | Creates a new company.                        |
+| POST   | `/companies`        | all users      | Creates a new company.                        |
 
 #### Reviews Routes
 
-| Method | Endpoint       | Access Control | Description                  |
-| ------ | -------------- | -------------- | ---------------------------- |
-| GET    | `/reviews`     | all users      | Returns list of all reviews. |
+| Method | Endpoint          | Access Control | Description                  |
+| ------ | ----------------- | -------------- | ---------------------------- |
+| GET    | `/reviews`        | all users      | Returns list of all reviews. |
 | GET    | `/reviews/:revId` | all users      | Returns a single review.     |
-
-
 
 ## Data Model
 
 #### USERS
 
 ---
+
+##### EXPECTS
+
+```
+{
+    "id": 1,
+    "username": "nasra555",
+    "email": "nasra555@nasra.com",
+    "password": "nasra555",
+    "track_id": 1
+}
+```
+
+##### RETURNS
 
 ```
 {
@@ -74,7 +84,6 @@ To get the server running locally:
     "email": "nasra555@nasra.com",
     "track_id": 1,
     "reviews": []
-
 }
 ```
 
@@ -323,12 +332,10 @@ To get the server running locally:
 
 `addReview(newReview)` --> Creates a new review and returns that review.
 
-
 `updateReview(id, changes)` -> Updates a single review by ID.
 
 `deleteReview(id)` -> Deletes a single review by ID.
 <br>
-
 
 ## Environment Variables
 
