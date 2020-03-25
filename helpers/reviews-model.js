@@ -61,6 +61,7 @@ function findReviewsBy(filter) {
 }
 
 // FIND REVIEW BY ID
+
 function findReviewsById(revId) {
   return db('reviews as r')
     .select(

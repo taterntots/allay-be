@@ -32,6 +32,7 @@ router.get('/filter', (req, res) => {
     });
 });
 
+
 //************* GET A SINGLE REVIEW BY ID ***************//
 
 router.get('/:revId', validateReviewId, (req, res) => {
@@ -47,5 +48,9 @@ router.get('/:revId', validateReviewId, (req, res) => {
       });
     });
 });
+
+
+/**************************************************************************/
+
 
 module.exports = router;
