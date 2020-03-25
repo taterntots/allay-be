@@ -28,7 +28,7 @@ To get the server running locally:
 | POST   | `/auth/register` | all users      | Register a new user account.     |
 | POST   | `/auth/login`    | all users      | Login with a registered account. |
 
-#### New Users Routes
+#### Users Routes
 
 | Method | Endpoint                        | Access Control | Description                           |
 | ------ | ------------------------------- | -------------- | ------------------------------------- |
@@ -67,7 +67,6 @@ To get the server running locally:
 
 ```
 {
-    "id": 1,
     "username": "nasra555",
     "email": "nasra555@nasra.com",
     "password": "nasra555",
@@ -81,11 +80,13 @@ To get the server running locally:
 {
     "id": 1,
     "username": "nasra555",
-    "email": "nasra555@nasra.com",
-    "track_id": 1,
-    "reviews": []
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuYXNyYSIsImlhdCI6MTU4NTA2ODAzMSwiZXhwIjoxNTg1MDk2ODMxfQ.szdbRq9uZzvoIw84ka4qelk6ozbIgO8RyQLqtrJ2bqc"
 }
 ```
+
+#### SEEDED TABLES
+
+---
 
 ##### TRACKS TABLE
 
@@ -225,8 +226,6 @@ To get the server running locally:
     "overall_rating": 3,
     "offer_status_id": "2"
 }
-
-
 ```
 
 ###### RETURNS
@@ -268,6 +267,22 @@ To get the server running locally:
 #### COMPANIES
 
 ---
+
+#### EXPECTS
+
+```
+{
+    "company_name": "1 Million Cups Organizer",
+    "hq_city": "Kansas City",
+    "state_id": 25,
+    "domain": "1millioncups.com",
+    "industry_name": "Philanthropy",
+    "size_range": "51 - 200",
+    "linkedin_url": "linkedin.com/company/1-million-cups-organizer"
+}
+```
+
+#### RETURNS
 
 ```
 {
