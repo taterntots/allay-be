@@ -3,7 +3,10 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const User = require('../helpers/users-model.js');
-const { checkForRegisterData, checkForLoginData } = require('../middleware/index.js');
+const {
+  checkForRegisterData,
+  checkForLoginData
+} = require('../middleware/index.js');
 
 const { jwtSecret } = require('../config/secret.js');
 
@@ -18,14 +21,14 @@ router.post('/register', checkForRegisterData, (req, res) => {
   const hash = bcrypt.hashSync(user.password, 3); //Change in production!!!
 
   user.password = hash;
-
   User.addUser(user)
     .then(newUser => {
       const token = signToken(newUser);
-      res.status(201).json({ newUser, token });
+      const { username, id } = newUser;
+      res.status(201).json({ username, token, id });
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      res.status(500).json({ error: 'There was an error signing up.' });
     });
 });
 /*************************** END REGISTER *******************************/
@@ -41,15 +44,15 @@ router.post('/login', checkForLoginData, (req, res) => {
     .then(user => {
       if (user && bcrypt.compareSync(password, user.password)) {
         const token = signToken(user);
-        const id = user.id;
+        const { id, username } = user;
 
-        res.status(200).json({ token, id });
+        res.status(200).json({ username, token, id });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      res.status(500).json({ error: 'There was an error signing in' });
     });
 });
 

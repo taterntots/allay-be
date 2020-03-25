@@ -21,7 +21,8 @@ describe('GET TEST', () => {
         .send({
           username: 'test',
           email: 'test@test.com',
-          password: '1234'
+          password: '1234',
+          track_id: 4
         });
 
       //make POST request to login and get token

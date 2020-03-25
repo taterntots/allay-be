@@ -14,23 +14,21 @@ describe('Reviews Model', () => {
       const user_1 = {
         username: 'ignacio',
         email: 'ignacio@gmail.com',
-        password: 'ignacio'
+        password: 'ignacio',
+        track_id: 4
       };
       const review_1 = {
         job_title: 'engineer',
-        job_location: 'Tennessee',
+        state_id: 5,
+        city: 'San Diego',
         salary: 500,
-        interview_review: 'some info',
-        interview_rating: 3,
-        job_review: 'more info',
-        job_rating: 2,
-        tagline: 'The Best Interview Ever!',
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
       const company_1 = {
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 5,
         hq_city: 'San Diego'
       };
 

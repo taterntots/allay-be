@@ -12,23 +12,23 @@ describe('Companies Model', () => {
     it('can add a an existing company', async () => {
       // POST new company
       const new_company = {
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 5,
         hq_city: 'San Francisco'
       };
       const new_company_2 = {
-        name: 'Spencer Test Company',
-        hq_state: 'California',
+        company_name: 'Spencer Test Company',
+        state_id: 5,
         hq_city: 'San Francisco'
       };
       const new_company_3 = {
-        name: 'Matt Test Company',
-        hq_state: 'California',
+        company_name: 'Matt Test Company',
+        state_id: 5,
         hq_city: 'San Francisco'
       };
       const update_company = {
-        name: 'Aaron Test Company',
-        hq_state: 'California',
+        company_name: 'Aaron Test Company',
+        state_id: 5,
         hq_city: 'San Francisco'
       };
 
@@ -44,7 +44,7 @@ describe('Companies Model', () => {
       const companies = await db('companies');
       // tests
       expect(companies).toHaveLength(3);
-      expect(companies[2].name).toBe(update_company.name);
+      expect(companies[2].company_name).toBe(update_company.company_name);
     });
   });
 });

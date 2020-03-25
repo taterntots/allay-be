@@ -14,47 +14,38 @@ describe('Reviews Model', () => {
       const review_1 = {
         id: 1,
         job_title: 'engineer',
-        job_location: 'Tennessee',
+        state_id: 5,
+        city: 'San Diego',
         salary: 500,
-        interview_review: 'some info',
-        interview_rating: 3,
-        job_review: 'more info',
-        job_rating: 2,
-        tagline: 'The Best Interview Ever!',
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
       const review_2 = {
         id: 2,
         job_title: 'engineer',
-        job_location: 'Tennessee',
+        state_id: 5,
+        city: 'San Diego',
         salary: 500,
-        interview_review: 'some info',
-        interview_rating: 3,
-        job_review: 'more info',
-        job_rating: 4,
-        tagline: 'The Best Interview Ever!',
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
       const review_3 = {
         id: 3,
         job_title: 'engineer',
-        job_location: 'Tennessee',
+        state_id: 5,
+        city: 'San Diego',
         salary: 500,
-        interview_review: 'some info',
-        interview_rating: 1,
-        job_review: 'more info',
-        job_rating: 5,
-        tagline: 'The Best Interview Ever!',
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
 
       const company_1 = {
         id: 1,
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 5,
         hq_city: 'San Diego'
       };
 
@@ -62,7 +53,8 @@ describe('Reviews Model', () => {
         id: 1,
         username: 'ignacio',
         email: 'ignacio@gmail.com',
-        password: 'ignacio'
+        password: 'ignacio',
+        track_id: 2
       };
 
       // add user
@@ -74,7 +66,7 @@ describe('Reviews Model', () => {
       await Reviews.addReview(review_2);
       await Reviews.addReview(review_3);
 
-      await Reviews.findReviewById(2);
+      await Reviews.findReviewsById(2);
 
       const reviews = await db('reviews');
       expect(reviews[1].interview_rating).toBe(review_2.interview_rating);

@@ -1,15 +1,17 @@
 const router = require('express').Router();
 
 const User = require('../helpers/users-model.js');
-const Rev = require('../helpers/reviews-model.js');
+const Revs = require('../helpers/reviews-model.js');
+
 const {
+  validateUserId,
   checkForReviewData,
-  validateUserId
+  validateReviewId
 } = require('../middleware/index.js');
 
 /**************************************************************************/
 
-//                  for endpoints beginning with /users                   //
+//                  for users endpoints beginning with /users                   //
 
 /**************************************************************************/
 
@@ -20,15 +22,17 @@ router.get('/all', (req, res) => {
       res.json(user);
     })
     .catch(err => {
-      res.status(500).json({ error: 'There was an error' });
+      console.log(err);
+      res.status(500).json({
+        error: 'There was an error getting all users to dsiplay'
+      });
     });
 });
 
 //*************** GET USER BY ID *****************//
-router.get('/:id', validateUserId, (req, res) => {
-  const { id } = req.params;
-
-  User.findUserById(id)
+router.get('/:userId', validateUserId, (req, res) => {
+  const { userId } = req.params;
+  User.findUserById(userId)
     .then(user => {
       res.json(user);
     })
@@ -38,22 +42,26 @@ router.get('/:id', validateUserId, (req, res) => {
 });
 
 //*************** UPDATE USER INFO ******************//
-router.put('/:id', validateUserId, (req, res) => {
-  const { email, password, username } = req.body;
-  const { id } = req.params;
+router.put('/:userId', validateUserId, (req, res) => {
+  const { email, password, username, track_id } = req.body;
+  const { userId } = req.params;
+  id = userId;
   User.findUsersBy({ id }).then(userInfo => {
     const user = userInfo;
     if (
       email === user[0].email &&
       username === user[0].username &&
-      password === user[0].password
+      password === user[0].password &&
+      track_id === user[0].track_id
     ) {
       return res.status(200).json({ message: 'No changes to update' });
     } else {
-      User.updateUser(id, { email, password, username })
-        .then(info => {
-          if (info) {
-            res.status(202).json({ info: { email, password, username } });
+      User.updateUser(id, { email, password, username, track_id })
+        .then(updatedInfo => {
+          if (updatedInfo) {
+            res
+              .status(202)
+              .json({ updatedInfo: { email, password, username, track_id } });
           } else {
             res.status(404).json({ message: 'Error locating user info' });
           }
@@ -66,13 +74,13 @@ router.put('/:id', validateUserId, (req, res) => {
 });
 
 //****************** DELETE ACCOUNT ********************//
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
+router.delete('/:userId', async (req, res) => {
+  const { userId } = req.params;
 
   try {
-    const user = await User.findUserById(id);
+    const user = await User.findUserById(userId);
     if (user) {
-      const deleted = await User.deleteUser(id);
+      const deleted = await User.deleteUser(userId);
       res.status(200).json({ message: 'User account deleted' });
     } else {
       res.status(404).json({ message: 'Error locating user.' });
@@ -84,40 +92,121 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
-//***************** ADD NEW REVIEW *******************//
-router.post('/:id/reviews', checkForReviewData, validateUserId, (req, res) => {
-  const id = req.params.id;
-  let review = req.body;
-  review = { ...review, user_id: id };
+/**************************************************************************/
 
-  if (Number(req.user.id) === Number(id)) {
-    Rev.addReview(review)
-      .then(newReview => {
-        res.status(201).json(newReview);
-      })
-      .catch(err => {
-        res.status(500).json({ error: 'There was an error' });
-      });
-  } else {
-    return res.status(404).json({ error: 'Wrong user' });
-  }
-});
+//        for all review endpoints beginning with /users/:id                   //
 
-//************* GET ALL REVIEWS FOR USER ID ***************//
-router.get('/:id/reviews', validateUserId, (req, res) => {
-  let { id } = req.params;
-  User.findUserReviews(id)
-    .then(reviews => {
-      if (reviews.length > 0) {
-        res.status(200).json(reviews);
-      } else {
-        res.status(404).json({ error: 'User has not posted any reviews' });
-      }
+/**************************************************************************/
+
+//***************** GET USERS REVIEWS *******************//
+
+router.get('/:userId/reviews', validateUserId, (req, res) => {
+  const { userId } = req.params;
+  User.findUserReviews(userId)
+    .then(user => {
+      res.status(200).json(user);
     })
     .catch(err => {
-      res.status(500).json({ error: 'Failed to get reviews' });
+      res.status(500).json({
+        error: 'Server was not able to retrieve user reviews'
+      });
     });
 });
+
+//************* GET A SINGLE REVIEW BY USER ID ***************//
+
+router.get(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  validateReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+    User.findUserReviewsById(revId)
+      .then(review => {
+        res.status(200).json(review);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: 'Could not retrieve single user review.' });
+      });
+  }
+);
+
+//***************** ADD NEW REVIEW *******************// ===== make sure to update the if else statement====
+router.post(
+  '/:userId/add-review',
+  checkForReviewData,
+  validateUserId,
+  (req, res) => {
+    const { userId } = req.params;
+
+    let review = req.body;
+    review = { ...review, user_id: userId };
+
+    if (Number(req.user.id) === Number(userId)) {
+      Revs.addReview(review)
+        .then(newReview => {
+          res.status(201).json(newReview);
+        })
+        .catch(err => {
+          res.status(500).json({
+            error: 'There was an error check id or review fields'
+          });
+        });
+    } else {
+      return res.status(404).json({ error: 'Wrong user' });
+    }
+  }
+);
+
+//************* EDIT A REVIEW WITH USER ID ***************//
+
+router.put(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  validateReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+
+    const changes = req.body;
+
+    Revs.updateReview(revId, changes)
+      .then(updatedReview => {
+        if (updatedReview) {
+          res.status(200).json({ updatedReview: changes });
+        } else {
+          res.status(404).json({
+            error: 'could not find a valid review'
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: 'can not edit review' });
+      });
+  }
+);
+
+//************* DELETE A REVIEW BY USER ID ***************//
+
+router.delete(
+  '/:userId/reviews/:revId',
+  validateUserId,
+  validateReviewId,
+  (req, res) => {
+    const { revId } = req.params;
+    Revs.deleteReview(revId)
+      .then(deleted => {
+        res.status(200).json(deleted);
+      })
+      .catch(err => {
+        res.status(500).json({
+          error: ' was not able to delete interview review'
+        });
+      });
+  }
+);
+
 /**************************************************************************/
 
 module.exports = router;

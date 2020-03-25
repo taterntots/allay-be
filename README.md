@@ -28,23 +28,28 @@ To get the server running locally:
 | POST   | `/auth/register` | all users      | Register a new user account.     |
 | POST   | `/auth/login`    | all users      | Login with a registered account. |
 
-#### Users Routes
 
-| Method | Endpoint             | Access Control | Description                           |
-| ------ | -------------------- | -------------- | ------------------------------------- |
-| GET    | `/users/all`         | all users      | Returns list of all users.            |
-| GET    | `/users/:id`         | all users      | Returns info for a single user by ID. |
-| POST   | `/users/:id/reviews` | all users      | Post helpful review about a company.  |
-| GET    | `/users/:id/reviews` | all users      | Returns all reviews the user posted.  |
-| PUT    | `/users/:id`         | all users      | Update user's account info by ID.     |
-| DELETE | `/users/:id`         | all users      | Delete user's account by ID.          |
+#### New Users Routes
 
-#### Companies Routes
+| Method | Endpoint                        | Access Control | Description                           |
+| ------ | ------------------------------- | -------------- | ------------------------------------- |
+| GET    | `/users/all`                    | all users      | Returns list of all users.            |
+| GET    | `/users/:userId`               | all users      | Returns info for a single user by id. |
+| PUT    | `/users/:userId`                | all users      | Update user's account info by id.     |
+| DELETE | `/users/:userId`                | all users      | Delete user's account by id.          |
+| GET    | `/users/:userId/reviews`        | all users      | Returns a list of review by user.     |
+| GET    | `/users/:userId/reviews/revId`  | all users      | Returns a single review by user.      |
+| POST   | `/users/:userId/add-review`           | all users      | Post helpful review.                  |
+| PUT    | `/users/:userId/reviews/:revId` | all users      | Update a review by id.                |
+| DELETE | `/users/:userId/reviews/:revId` | all users      | Delete a review by id.                |
+
+#### Company Routes
+
 
 | Method | Endpoint         | Access Control | Description                                   |
 | ------ | ---------------- | -------------- | --------------------------------------------- |
 | GET    | `/companies`     | all users      | Returns list of all companies.                |
-| GET    | `/companies/:id` | all users      | Returns the information for a single company. |
+| GET    | `/companies/:comId` | all users      | Returns the information for a single company. |
 | POST   | `/companies`     | all users      | Creates a new company.                        |
 
 #### Reviews Routes
@@ -52,36 +57,11 @@ To get the server running locally:
 | Method | Endpoint       | Access Control | Description                  |
 | ------ | -------------- | -------------- | ---------------------------- |
 | GET    | `/reviews`     | all users      | Returns list of all reviews. |
-| GET    | `/reviews/:id` | all users      | Returns single review by ID. |
-| POST   | `/reviews/:id` | all users      | Returns single review by ID. |
-| DELETE | `/reviews/:id` | all users      | Delete user's review by ID.  |
+| GET    | `/reviews/:revId` | all users      | Returns a single review.     |
 
-# Data Model
 
-#### REVIEWS
 
----
-
-```
-{
-    "id": 2,
-    "job_title": "National Factors Consultant",
-    "job_location": "Iowa",
-    "salary": 87000,
-    "interview_review": "Nisi itaque natus atque. Voluptatum laudantium temporibus aut enim officia quasi. Quasi dolorum minus repellat est doloremque. Laboriosam hic ducimus facilis. Et esse minus qui et maiores. Eos laudantium maiores optio ut voluptate.",
-    "interview_rating": 2,
-    "job_review": "Odit iusto expedita vel sunt impedit cum soluta est eaque. Enim hic voluptates quisquam et non. Et quod fuga ut repellat et.\n \rSit quod incidunt. Suscipit modi impedit est eligendi voluptatem et. Nesciunt velit voluptates. Est molestiae qui et aut possimus facere ut id aut. Non in dolores. Dicta natus porro ad rerum ratione ipsam totam.\n \rAd cumque a dolore dicta rerum et qui. At et impedit omnis officiis. Modi reiciendis repellat commodi sunt. Officia non nemo est aut. Voluptatum ut veniam assumenda temporibus.",
-    "job_rating": 2,
-    "tagline": "The best job interview I ever had!",
-    "offer_received": "true",
-    "offer_accepted": "false",
-    "reviewer": "Heather87",
-    "company_name": "Abernathy - Roberts",
-    "company_id": 45,
-    "domain": "abernathyroberts.com"
-
-}
-```
+## Data Model
 
 #### USERS
 
@@ -89,47 +69,190 @@ To get the server running locally:
 
 ```
 {
-{
-    "id": 8,
-    "username": "Isabella.Hartmann11",
-    "email": "isabella@gmail.com"
-    "reviews": [
-        {
-            "id": 35,
-            "job_title": "Corporate Configuration Representative",
-            "job_location": "Iowa",
-            "salary": 97000,
-            "interview_review": "Aut esse minima adipisci molestias velit optio dolores. Et dolore dolor iste nisi aut aut beatae voluptatem. Dignissimos quis et omnis sit ut repudiandae rerum ut at. Nihil sed placeat facilis tempora. Architecto ea possimus. Veritatis beatae nemo facilis autem adipisci nihil nesciunt sit.",
-            "interview_rating": 1,
-            "job_review": "Doloribus quis qui quam amet. Non dolores et enim ut sunt. Enim voluptatem quasi et possimus ipsam numquam. Aut laborum doloremque.\n \rSint numquam et qui ea aut mollitia. Provident quia aut. Unde voluptate voluptatem sit sit ut amet.\n \rQuibusdam eum dolore. Nisi sequi ipsa. Facilis nisi enim consequuntur occaecati aut molestiae amet explicabo. Et a accusamus in a quibusdam vitae doloremque corrupti.",
-            "job_rating": 5,
-            "tagline": "The best job interview I ever had!",
-            "offer_received": "true",
-            "offer_accepted": "false",
-            "reviewer": "Isabella.Hartmann11",
-            "company_name": "Google",
-            "company_id": 2,
-            "domain": "google.com"
-        },
-        {
-            "id": 42,
-            "job_title": "Customer Directives Supervisor",
-            "job_location": "Colorado",
-            "salary": 65000,
-            "interview_review": "Odio sed quia eum eos error in perferendis qui doloremque. Quis dolores sed dolorum debitis hic id. Modi voluptatibus quasi aut beatae quo.",
-            "interview_rating": 2,
-            "job_review": "Repellat distinctio ut molestiae quo et non. Placeat consequatur placeat. Quia cum corrupti. Non enim quisquam et eum deleniti est cupiditate. Neque possimus quia.\n \rQuo velit et quas dicta officiis. Libero eos sunt ea vitae minus vitae possimus nemo sed. Inventore iure vel consequuntur. Eum nemo et dolorem ipsa qui.\n \rQuos consequatur quod in architecto repellendus sit adipisci. Eveniet dicta sed. Ea magnam doloremque voluptates dolorum fugiat. Quia veniam soluta voluptatem vel. Non sunt minus eligendi numquam animi. Iure suscipit voluptates esse debitis tempore.",
-            "job_rating": 2,
-            "tagline": "The best job interview I ever had!",
-            "offer_received": "true",
-            "offer_accepted": "false",
-            "reviewer": "Isabella.Hartmann11",
-            "company_name": "Uber",
-            "company_id": 87,
-            "domain": "uber.com"
-        }
-    ]
+    "id": 1,
+    "username": "nasra555",
+    "email": "nasra555@nasra.com",
+    "track_id": 1,
+    "reviews": []
+
 }
+```
+
+##### TRACKS TABLE
+
+| id  | track_name |
+| --- | ---------- |
+| 1   | AND        |
+| 2   | DS         |
+| 3   | WEB        |
+| 4   | iOS        |
+| 5   | UX         |
+
+##### WORK STATUS TABLE
+
+| id  | work_status      |
+| --- | ---------------- |
+| 1   | Current Employee |
+| 2   | Former Employee  |
+| 3   | Full Time        |
+| 4   | Part Time        |
+| 5   | Intern           |
+
+##### OFFER STATUS TABLE
+
+| id  | work_status    |
+| --- | -------------- |
+| 1   | No Offer       |
+| 2   | Offer Accepted |
+| 3   | Offer Declined |
+
+##### REVIEW TYPES TABLE
+
+| id  | work_status |
+| --- | ----------- |
+| 1   | Company     |
+| 2   | Interview   |
+
+##### STATES TABLE
+
+| id  | state_name |
+| --- | ---------- |
+| 1   | AL         |
+| 2   | AK         |
+| 3   | AZ         |
+| 4   | AR         |
+| 5   | CA         |
+| 6   | CO         |
+| 7   | CT         |
+| ... | ...        |
+| 51  | Remote     |
+| 51  | Unknown    |
+
+#### ALL REVIEWS
+
+---
+
+##### COMPANY REVIEWS
+
+###### EXPECTS
+
+```
+{
+    work_status_id: 1
+    job_title: "Software Geniius"
+    city: "Nashville"
+    state_id: 42
+    start_date: 2010
+    end_date: 2012
+    company_name: "Facet Biotech"
+    comment: "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. "
+    typical_hours: 50
+    salary: 6000
+    review_type_id: 1
+    overall_rating: 3
+}
+```
+
+###### RETURNS
+
+```
+{
+    review_id: 1
+    user_id: 1
+    username: "thisisarealuser"
+    track_name: "WEB"
+    review_type_id: 1
+    company_name: "Nintendo"
+    logo: "nintendo.com"
+    work_status: "Intern"
+    job_title: "Software Geniius"
+    city: "Nashville"
+    state_id: 42
+    start_date: 2010
+    end_date: 2012
+    interview_rounds: 3
+    phone_interview: false
+    resume_review: false
+    take_home_assignments: false
+    online_coding_assignments: false
+    portfolio_review: false
+    screen_share: false
+    open_source_contribution: false
+    side_projects: false
+    comment: "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. "
+    typical_hours: 50
+    salary: 6000
+    difficulty_rating: 4
+    offer_status: "No Offer"
+    overall_rating: 3
+    created_at: "2020-03-20T23:52:55.681Z"
+    updated_at: "2020-03-20T23:52:55.681Z"
+
+}
+```
+
+##### INTERVIEW REVIEWS
+
+###### EXPECTS
+
+```
+{
+    "job_title": "Full Stack Developer",
+    "city": "Los Angeles",
+    "state_id": 5,
+    "company_name": "Twitch",
+    "phone_interview": false,
+    "resume_review": false,
+    "take_home_assignments": false,
+    "online_coding_assignments": false,
+    "portfolio_review": false,
+    "screen_share": true,
+    "open_source_contribution": false,
+    "side_projects": false,
+    "comment": "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. ",
+    "difficulty_rating": 4,
+    "salary": "1234567",
+    "review_type_id": 2,
+    "overall_rating": 3,
+    "offer_status_id": "2"
+}
+
+
+```
+
+###### RETURNS
+
+```
+{
+    "review_id": 2,
+    "user_id": 1,
+    "username": "aaron123",
+    "review_type_id": 2,
+    "company_name": "Twitch",
+    "logo": "twitch.com",
+    "work_status": "Former Employee",
+    "job_title": "Full Stack Developer",
+    "city": "Los Angeles",
+    "state_id": 5,
+    "start_date": 2123,
+    "end_date": 2000,
+    "interview_rounds": 3,
+    "phone_interview": false,
+    "resume_review": false,
+    "take_home_assignments": false,
+    "online_coding_assignments": false,
+    "portfolio_review": false,
+    "screen_share": true,
+    "open_source_contribution": false,
+    "side_projects": false,
+    "comment": "What is Lorem ipsum? A quick and simplified answer is that Lorem Ipsum refers to text that the DTP (Desktop Publishing) industry use as replacement text when the real text is not available.For example, when designing a brochure or book, a designer will insert Lorem ipsum text if the real text is not available. The Lorem ipsum text looks real enough that the brochure or book looks complete. The book or brochure can be shown to the client for approval. ",
+    "typical_hours": 40,
+    "salary": 6000,
+    "difficulty_rating": 4,
+    "offer_status_id": 2
+    "overall_rating": 3,
+    "created_at": "2020-03-19T20:32:17.896Z",
+    "updated_at": "2020-03-19T20:32:17.896Z"
 }
 ```
 
@@ -139,35 +262,41 @@ To get the server running locally:
 
 ```
 {
-    "id": 45024,
-    "name": "Github",
-    "hq_state": "San Francisco",
-    "hq_city": "CA",
-    "domain": "github.com",
-    "industry_name": "Computer Software",
-    "size_range": "1001 - 5000",
-    "linkedin_url": "linkedin.com/company/github"
+    "id": 12,
+    "company_name": "1 Million Cups Organizer",
+    "hq_city": "Kansas City",
+    "state_id": 25,
+    "domain": "1millioncups.com",
+    "industry_name": "Philanthropy",
+    "size_range": "51 - 200",
+    "linkedin_url": "linkedin.com/company/1-million-cups-organizer"
 }
 ```
 
 ## Actions
 
+---
+
+### Users Actions
+
 `findUsers()` -> Returns all users
 
 `findUsersBy({ filter })` -> Returns a single user by specified filter. Must use {}.
 
-`findUserById(userId)` -> Returns all data for a single user by ID (including all reviews).
+`findUserById(userId)` -> Returns all data for a single user by ID (including all company and interview).
 
 `findUserReviews(userId)` => Returns reviews related to a user.
+
+`findUserReviewById(revId)` => Returns a single review related to a user.
 
 `addUser(user object)` -> Creates a new user and returns that user.
 
 `updateUser(userId)` -> Update a single user by ID.
 
 `deleteUser(userId)` -> Deletes everything dependent on the user.
-<br>
-<br>
-<br>
+<br />
+
+### Company Actions
 
 `findCompanies()` -> Retruns a list of all companies.
 
@@ -183,20 +312,23 @@ To get the server running locally:
 
 `deleteCompany(userId)` -> Deletes the single company.
 <br>
+
+### Reviews Actions
+
+`findReviews()` -> Returns a list of all reviews.
+
+`findReviewBy(filter)` -> Returns a single company review by specified filter.
+
+`findReviewById(id)` -> Returns a single review by review ID.
+
+`addReview(newReview)` --> Creates a new review and returns that review.
+
+
+`updateReview(id, changes)` -> Updates a single review by ID.
+
+`deleteReview(id)` -> Deletes a single review by ID.
 <br>
-<br>
 
-`getReviews()` -> Returns a list of all reviews
-
-`getReviewsBy(filter)` -> Returns a single review by specified filter
-
-`getReviewsById(reviewId)` -> Returns a single review by review ID including user and company info
-
-`addReview(review object)` --> Creates a new review and returns that review.
-
-`updateReview(reviewId, changes object)` -> Updates a single review by ID.
-
-`deleteReview(reviewId)` -> Deletes the single review by ID.
 
 ## Environment Variables
 

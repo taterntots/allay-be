@@ -1,0 +1,85 @@
+exports.up = function(knex) {
+  return knex.schema.createTable('reviews', tbl => {
+    tbl.increments();
+    tbl.string('job_title').notNullable();
+    tbl.integer('start_date');
+    tbl.integer('overall_rating');
+    tbl.integer('end_date');
+    tbl.string('comment', 1200);
+    tbl.integer('typical_hours');
+    tbl.integer('salary');
+    tbl.string('city');
+    tbl.integer('difficulty_rating');
+    tbl.boolean('phone_interview').defaultTo(false);
+    tbl.boolean('resume_review').defaultTo(false);
+    tbl.boolean('take_home_assignments').defaultTo(false);
+    tbl.boolean('online_coding_assignments').defaultTo(false);
+    tbl.boolean('portfolio_review').defaultTo(false);
+    tbl.boolean('screen_share').defaultTo(false);
+    tbl.boolean('open_source_contribution').defaultTo(false);
+    tbl.boolean('side_projects').defaultTo(false);
+    tbl.integer('interview_rounds');
+    tbl
+      .integer('user_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('users')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl
+      .integer('review_type_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('review_types')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl
+      .integer('state_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('states')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl
+      .string('company_name')
+      .unsigned()
+      .notNullable()
+      .references('company_name')
+      .inTable('companies')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl
+      .integer('offer_status_id')
+      .unsigned()
+      .notNullable()
+      .defaultTo(4)
+      .references('id')
+      .inTable('offer_status')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl
+      .integer('work_status_id')
+      .unsigned()
+      .notNullable()
+      .defaultTo(6)
+      .references('id')
+      .inTable('work_status')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
+    tbl
+      .timestamp('created_at')
+      .notNullable()
+      .defaultTo(knex.raw('now()'));
+    tbl
+      .timestamp('updated_at')
+      .notNullable()
+      .defaultTo(knex.raw('now()'));
+  });
+};
+
+exports.down = function(knex) {
+  return knex.schema.dropTableIfExists('reviews');
+};

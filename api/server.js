@@ -16,21 +16,21 @@ const { restricted } = require('../middleware/index.js');
 //Router Imports
 const authRouter = require('../routers/auth-router.js');
 const usersRouter = require('../routers/users-router.js');
+const reviewsRouter = require('../routers/reviews-router');
 const companiesRouter = require('../routers/companies-router.js');
-const reviewsRouter = require('../routers/reviews-router.js');
 
 //endpoints
 server.get('/', (req, res) => {
-	res.status(200).json({
-		welcome: `to the danger zone!`,
-		environment: process.env.NODE_ENV
-	});
+  res.status(200).json({
+    welcome: `to the danger zone!`,
+    environment: process.env.NODE_ENV
+  });
 });
 
 //routes with Auth applied
 server.use('/api/auth', authRouter);
 server.use('/api/users', restricted, usersRouter);
-server.use('/api/companies', restricted, companiesRouter);
 server.use('/api/reviews', restricted, reviewsRouter);
+server.use('/api/companies', restricted, companiesRouter);
 
 module.exports = server;

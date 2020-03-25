@@ -20,7 +20,8 @@ describe('server.js', () => {
         .send({
           username: 'toad',
           password: 'toadette',
-          email: 'toad@gmail.com'
+          email: 'toad@gmail.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // check token exists
@@ -30,13 +31,14 @@ describe('server.js', () => {
       res = await request(server)
         .post('/api/companies')
         .send({
-          name: ''
+          company_name: '',
+          state_id: ''
         })
         .set({ authorization: token, Accept: 'application/json' });
       // deny company registration due to missing company name
       expect(res.status).toEqual(400);
       expect(res.body).toMatchObject({
-        errorMessage: 'company name is required'
+        errorMessage: 'company name and state id is required'
       });
     });
     it('should 400 error if company body is empty', async () => {
@@ -46,7 +48,8 @@ describe('server.js', () => {
         .send({
           username: 'toad',
           password: 'toadette',
-          email: 'toad@gmail.com'
+          email: 'toad@gmail.com',
+          track_id: 1
         });
       expect(res.status).toEqual(201);
       // check token exists

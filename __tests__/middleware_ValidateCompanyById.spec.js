@@ -20,7 +20,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'superstar',
-          email: 'mario@gmail.com'
+          email: 'mario@gmail.com',
+          track_id: 1
         });
       //open the database and see that the new user is there
       const newUsers = await db('users');

@@ -3,7 +3,7 @@ const Reviews = require('../helpers/reviews-model');
 const Company = require('../helpers/companies-model');
 const User = require('../helpers/users-model');
 
-describe('Companies Model', () => {
+describe.skip('Companies Model', () => {
   beforeEach(async () => {
     await db.raw('truncate table reviews restart identity cascade');
     await db.raw('truncate table companies restart identity cascade');
@@ -16,26 +16,24 @@ describe('Companies Model', () => {
       const user_1 = {
         username: 'ignacio',
         email: 'ignacio@gmail.com',
-        password: 'ignacio'
+        password: 'ignacio',
+        track_id: 1
       };
 
       // POST new company
       const review_1 = {
         job_title: 'engineer',
-        job_location: 'Tennessee',
+        state_id: 5,
+        city: 'San Diego',
         salary: 500,
-        interview_review: 'some info',
-        interview_rating: 1,
-        job_review: 'more info',
-        job_rating: 5,
-        tagline: 'The Best Interview Ever!',
         user_id: 1,
-        company_id: 1
+        company_name: 'Ignacio Test Company',
+        review_type_id: 1
       };
 
       const company_1 = {
-        name: 'Ignacio Test Company',
-        hq_state: 'California',
+        company_name: 'Ignacio Test Company',
+        state_id: 5,
         hq_city: 'San Diego'
       };
 

@@ -21,7 +21,8 @@ describe('server.js', () => {
       await Users.addUser({
         username: 'cloudStrife',
         password: 'midgar',
-        email: 'cloud@gaea.com'
+        email: 'cloud@gaea.com',
+        track_id: 1
       });
       //open the database and see that the new user is there
       const newUsers = await db('users');
@@ -35,7 +36,8 @@ describe('server.js', () => {
       await Users.addUser({
         username: 'solid snake',
         password: 'FOXDIE',
-        email: 'snake@shadowmoses.com'
+        email: 'snake@shadowmoses.com',
+        track_id: 1
       });
       //open the database and see that the new user is there
       const newUsers = await db('users');
@@ -47,7 +49,8 @@ describe('server.js', () => {
         .send({
           username: 'joker',
           password: 'phantomthieves',
-          email: 'joker@shibuya.com'
+          email: 'joker@shibuya.com',
+          track_id: 1
         })
         .expect(201);
     });
@@ -58,7 +61,8 @@ describe('server.js', () => {
         .send({
           username: 'link',
           password: 'triforce',
-          email: 'link@hyrule.com'
+          email: 'link@hyrule.com',
+          track_id: 1
         })
         .expect(201);
       //adding a second user with the same username as the first
@@ -67,7 +71,8 @@ describe('server.js', () => {
         .send({
           username: 'link',
           password: 'mastersword',
-          email: 'link@lorule.com'
+          email: 'link@lorule.com',
+          track_id: 1
         })
         .expect(500);
     });
@@ -78,7 +83,8 @@ describe('server.js', () => {
         .send({
           username: 'mario',
           password: 'mushroom',
-          email: 'mario@mushroomkingdom.com'
+          email: 'mario@mushroomkingdom.com',
+          track_id: 1
         })
         .expect(201);
       //adding a second user with the same email as the first
@@ -87,7 +93,8 @@ describe('server.js', () => {
         .send({
           username: 'drMario',
           password: 'mushroom',
-          email: 'mario@mushroomkingdom.com'
+          email: 'mario@mushroomkingdom.com',
+          track_id: 1
         })
         .expect(500);
     });
