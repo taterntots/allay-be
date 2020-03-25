@@ -268,6 +268,22 @@ To get the server running locally:
 
 ---
 
+#### EXPECTS
+
+```
+{
+    "company_name": "1 Million Cups Organizer",
+    "hq_city": "Kansas City",
+    "state_id": 25,
+    "domain": "1millioncups.com",
+    "industry_name": "Philanthropy",
+    "size_range": "51 - 200",
+    "linkedin_url": "linkedin.com/company/1-million-cups-organizer"
+}
+```
+
+#### RETURNS
+
 ```
 {
     "id": 12,
