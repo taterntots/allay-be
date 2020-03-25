@@ -80,9 +80,7 @@ To get the server running locally:
 {
     "id": 1,
     "username": "nasra555",
-    "track_id": 1,
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuYXNyYSIsImlhdCI6MTU4NTA2ODAzMSwiZXhwIjoxNTg1MDk2ODMxfQ.szdbRq9uZzvoIw84ka4qelk6ozbIgO8RyQLqtrJ2bqc",
-    "reviews": []
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJuYXNyYSIsImlhdCI6MTU4NTA2ODAzMSwiZXhwIjoxNTg1MDk2ODMxfQ.szdbRq9uZzvoIw84ka4qelk6ozbIgO8RyQLqtrJ2bqc"
 }
 ```
 
