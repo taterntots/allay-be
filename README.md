@@ -4,7 +4,7 @@
 
 #### Backend delpoyed at [Heroku](https://allay-be-production.herokuapp.com/) <br>
 
-## Getting started
+## Getting Started
 
 To get the server running locally:
 
@@ -13,11 +13,10 @@ To get the server running locally:
 - **npm run server** to start the local server
 - **npm test** to start server using testing environment
 
-### Backend framework
+### Backend Framework
 
 - Express for flexibility, simple routing, and middleware support
 - Postgres for data persistence
-- Okta for user authentication
 
 ## Endpoints
 
@@ -107,14 +106,20 @@ To get the server running locally:
 | 3   | Full Time        |
 | 4   | Part Time        |
 | 5   | Intern           |
+| 6   | no work status   |
+
+--- no work status is going to be the default for interview reviews that don't need it
 
 ##### OFFER STATUS TABLE
 
-| id  | work_status    |
-| --- | -------------- |
-| 1   | No Offer       |
-| 2   | Offer Accepted |
-| 3   | Offer Declined |
+| id  | work_status     |
+| --- | --------------- |
+| 1   | No Offer        |
+| 2   | Offer Accepted  |
+| 3   | Offer Declined  |
+| 4   | no offer status |
+
+--- no offer status is going to be the default for company reviews that don't need it
 
 ##### REVIEW TYPES TABLE
 
@@ -135,8 +140,9 @@ To get the server running locally:
 | 6   | CO         |
 | 7   | CT         |
 | ... | ...        |
+| 50  | WY         |
 | 51  | Remote     |
-| 51  | Unknown    |
+| 52  | Unknown    |
 
 #### ALL REVIEWS
 
@@ -301,11 +307,11 @@ To get the server running locally:
 
 ---
 
-### Users Actions
+### User Actions
 
 `findUsers()` -> Returns all users
 
-`findUsersBy({ filter })` -> Returns a single user by specified filter. Must use {}.
+`findUsersBy(filter)` -> Returns a single user by specified filter. Must use {}.
 
 `findUserById(userId)` -> Returns all data for a single user by ID (including all company and interview).
 
@@ -313,7 +319,7 @@ To get the server running locally:
 
 `findUserReviewById(revId)` => Returns a single review related to a user.
 
-`addUser(user object)` -> Creates a new user and returns that user.
+`addUser(newUser)` -> Creates a new user and returns that user.
 
 `updateUser(userId)` -> Update a single user by ID.
 
@@ -326,30 +332,30 @@ To get the server running locally:
 
 `findCompaniesBy(filter)` -> Returns a single company by specified filter.
 
-`findCompanyBy(companyId)` -> Returns a single company by ID.
+`findCompanyBy(comId)` -> Returns a single company by ID.
 
-`findCompanyReviews(companyId)` -> Returns all reviews for a specific company.
+`findCompanyReviews(comId)` -> Returns all reviews for a specific company.
 
-`addCompany(company object)` --> Creates a new company and returns that company. If the company already exists the company will not be added.
+`addCompany(newCompany)` --> Creates a new company and returns that company. If the company already exists the company will not be added.
 
-`updateCompany(userId, changes object)` -> Updates a single company by ID.
+`updateCompany(comId, changes)` -> Updates a single company by ID.
 
-`deleteCompany(userId)` -> Deletes the single company.
+`deleteCompany(comId)` -> Deletes the single company.
 <br>
 
-### Reviews Actions
+### Review Actions
 
 `findReviews()` -> Returns a list of all reviews.
 
-`findReviewBy(filter)` -> Returns a single company review by specified filter.
+`findReviewsBy(filter)` -> Returns a single company review by specified filter.
 
-`findReviewById(id)` -> Returns a single review by review ID.
+`findRevieswById(revId)` -> Returns a single review by review ID.
 
 `addReview(newReview)` --> Creates a new review and returns that review.
 
-`updateReview(id, changes)` -> Updates a single review by ID.
+`updateReview(revId, changes)` -> Updates a single review by ID.
 
-`deleteReview(id)` -> Deletes a single review by ID.
+`deleteReview(revId)` -> Deletes a single review by ID.
 <br>
 
 ## Environment Variables
